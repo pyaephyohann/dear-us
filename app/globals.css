@@ -1,26 +1,140 @@
 @import "tailwindcss";
 
+/*
+ * DearUs Design Tokens
+ *
+ * A warm, romantic, and minimal color system.
+ * Mobile-first with good contrast and accessibility.
+ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* ── Background ─────────────────────────────── */
+  --background: #fdf8f6;
+  --background-secondary: #fef1ee;
+
+  /* ── Foreground / Text ─────────────────────── */
+  --foreground: #2d2226;
+  --foreground-muted: #6b5c60;
+  --foreground-subtle: #9b8c90;
+
+  /* ── Primary — Romantic Pink/Red ───────────── */
+  --primary: #e85d75;
+  --primary-hover: #d94d65;
+  --primary-light: #fce4e8;
+  --primary-foreground: #ffffff;
+
+  /* ── Secondary — Soft Rose ─────────────────── */
+  --secondary: #f4a0b0;
+  --secondary-light: #fdf0f3;
+  --secondary-foreground: #5a3a42;
+
+  /* ── Accent — Warm Blush ───────────────────── */
+  --accent: #f8c4c8;
+  --accent-light: #fdf4f5;
+  --accent-foreground: #5a3a42;
+
+  /* ── Neutral ───────────────────────────────── */
+  --neutral: #f0e6e3;
+  --neutral-hover: #e8dbd7;
+  --neutral-foreground: #4a3a3e;
+
+  /* ── Border ────────────────────────────────── */
+  --border: #e8d8d4;
+  --border-light: #f0e6e3;
+
+  /* ── Ring (focus) ──────────────────────────── */
+  --ring: #e85d75;
+  --ring-offset: #fdf8f6;
+
+  /* ── Shadow ────────────────────────────────── */
+  --shadow-sm: 0 1px 2px rgba(45, 34, 38, 0.04);
+  --shadow: 0 1px 3px rgba(45, 34, 38, 0.06), 0 1px 2px rgba(45, 34, 38, 0.04);
+  --shadow-md: 0 4px 6px rgba(45, 34, 38, 0.05), 0 2px 4px rgba(45, 34, 38, 0.04);
+  --shadow-lg: 0 10px 15px rgba(45, 34, 38, 0.05), 0 4px 6px rgba(45, 34, 38, 0.03);
+
+  /* ── Radius ────────────────────────────────── */
+  --radius-sm: 0.5rem;
+  --radius: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
 }
 
+/*
+ * Tailwind v4 theme integration
+ * Maps design tokens to Tailwind utility classes.
+ */
 @theme inline {
   --color-background: var(--background);
+  --color-background-secondary: var(--background-secondary);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-foreground-subtle: var(--foreground-subtle);
+
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-light: var(--primary-light);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-light: var(--secondary-light);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-light: var(--accent-light);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-neutral: var(--neutral);
+  --color-neutral-hover: var(--neutral-hover);
+  --color-neutral-foreground: var(--neutral-foreground);
+
+  --color-border: var(--border);
+  --color-border-light: var(--border-light);
+
+  --shadow-sm: var(--shadow-sm);
+  --shadow: var(--shadow);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+
+  --radius-sm: var(--radius-sm);
+  --radius: var(--radius);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-playfair);
+  --font-handwritten: var(--font-caveat);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/*
+ * Base styles
+ */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection color */
+::selection {
+  background-color: var(--primary-light);
+  color: var(--foreground);
+}
+
+/* Focus styles */
+*:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Placeholder styles */
+::placeholder {
+  color: var(--foreground-subtle);
 }

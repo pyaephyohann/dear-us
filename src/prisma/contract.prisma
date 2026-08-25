@@ -1,0 +1,10 @@
+// DearUs — Data Contract
+// The complete schema will be designed in Milestone 1.
+// This minimal placeholder verifies Prisma is configured correctly.
+
+model LittleThing {
+  id        Int      @id @default(autoincrement())
+  title     String
+  createdAt TimestamptzString @default(now())
+  updatedAt temporal.updatedAtString()
+}
