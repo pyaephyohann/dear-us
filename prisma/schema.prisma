@@ -1,0 +1,19 @@
+// DearUs — Prisma Schema
+// The complete database schema will be designed in Milestone 1.
+// This minimal placeholder verifies Prisma is configured correctly.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model LittleThing {
+  id        String   @id @default(cuid())
+  title     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
