@@ -1,6 +1,5 @@
 // DearUs — Prisma Schema
-// The complete database schema will be designed in Milestone 1.
-// This minimal placeholder verifies Prisma is configured correctly.
+// Milestone 1: Complete database and data foundation
 
 generator client {
   provider = "prisma-client"
@@ -11,9 +10,98 @@ datasource db {
   provider = "postgresql"
 }
 
+// ---------------------------------------------------------------------------
+// Enums
+// ---------------------------------------------------------------------------
+
+enum LittleThingStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+// ---------------------------------------------------------------------------
+// Models
+// ---------------------------------------------------------------------------
+
+/// The primary entity — a personalized interactive question experience.
 model LittleThing {
-  id        String   @id @default(cuid())
-  title     String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id            String             @id @default(cuid())
+  publicId      String             @unique
+  title         String
+  introMessage  String?
+  creatorName   String?
+  recipientName String?
+  status        LittleThingStatus  @default(DRAFT)
+  createdAt     DateTime           @default(now())
+  updatedAt     DateTime           @updatedAt
+
+  questions Question[]
+  responses Response[]
+
+  @@index([publicId])
+  @@index([status])
+}
+
+/// A single question inside a Little Thing.
+model Question {
+  id             String   @id @default(cuid())
+  littleThingId  String
+  text           String
+  order          Int
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  littleThing    LittleThing      @relation(fields: [littleThingId], references: [id], onDelete: Cascade)
+  answers        Answer[]
+  responseAnswers ResponseAnswer[]
+
+  @@index([littleThingId])
+  @@index([littleThingId, order])
+}
+
+/// A selectable answer for a question.
+model Answer {
+  id         String   @id @default(cuid())
+  questionId String
+  text       String
+  order      Int
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  question        Question         @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  responseAnswers ResponseAnswer[]
+
+  @@index([questionId])
+  @@index([questionId, order])
+}
+
+/// One recipient's completed submission for a Little Thing.
+model Response {
+  id            String    @id @default(cuid())
+  littleThingId String
+  createdAt     DateTime  @default(now())
+  completedAt   DateTime?
+
+  littleThing      LittleThing      @relation(fields: [littleThingId], references: [id], onDelete: Cascade)
+  responseAnswers  ResponseAnswer[]
+
+  @@index([littleThingId])
+}
+
+/// Maps a specific answer selection within a response.
+model ResponseAnswer {
+  id         String @id @default(cuid())
+  responseId String
+  questionId String
+  answerId   String
+
+  response Response @relation(fields: [responseId], references: [id], onDelete: Cascade)
+  question Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  answer   Answer   @relation(fields: [answerId], references: [id], onDelete: Cascade)
+
+  @@unique([responseId, questionId])
+  @@index([responseId])
+  @@index([questionId])
+  @@index([answerId])
 }
