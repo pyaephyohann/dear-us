@@ -1,24 +1,23 @@
 import React from "react";
-import { getLittleThingById } from "@/lib/data/little-thing";
-import { getResponseByIdAndLittleThing } from "@/lib/data/response";
-import { ResponseDetailPage } from "@/components/responses/response-detail-page";
+import { getLittleThingByCreatorToken } from "@/lib/data/little-thing";
+import { getResponsesByLittleThing } from "@/lib/data/response";
+import { ResponseListPage } from "@/components/responses/response-list-page";
 
-type ResponseDetailParams = {
-  params: Promise<{ id: string; responseId: string }>;
+type ResponseListParams = {
+  params: Promise<{ token: string }>;
 };
 
 export const metadata = {
-  title: "Response",
+  title: "Responses",
 };
 
-export default async function ResponseDetailRoute({
-  params,
-}: ResponseDetailParams) {
-  const { id, responseId } = await params;
+export default async function ResponseListRoute({ params }: ResponseListParams) {
+  const { token } = await params;
 
+  // Verify creator access token
   let littleThing;
   try {
-    littleThing = await getLittleThingById(id);
+    littleThing = await getLittleThingByCreatorToken(token);
   } catch {
     return (
       <main className="flex min-h-screen flex-col items-center justify-center px-6 py-24">
@@ -47,7 +46,7 @@ export default async function ResponseDetailRoute({
         <div className="mx-auto max-w-lg text-center">
           <p className="text-3xl">💌</p>
           <h1 className="mt-4 font-display text-2xl font-bold text-foreground">
-            Hmm... we couldn&apos;t find this little thing.
+            That private link isn&apos;t valid anymore. 💌
           </h1>
           <p className="mt-3 text-sm text-foreground-muted">
             It may have been deleted or the link might be wrong.
@@ -63,9 +62,9 @@ export default async function ResponseDetailRoute({
     );
   }
 
-  let response;
+  let responses;
   try {
-    response = await getResponseByIdAndLittleThing(responseId, id);
+    responses = await getResponsesByLittleThing(littleThing.id);
   } catch {
     return (
       <main className="flex min-h-screen flex-col items-center justify-center px-6 py-24">
@@ -75,46 +74,24 @@ export default async function ResponseDetailRoute({
             Hmm... 💌
           </h1>
           <p className="mt-3 text-sm text-foreground-muted">
-            We couldn&apos;t load this response right now.
+            We couldn&apos;t load the answers right now.
           </p>
           <a
-            href={`/creator/${id}/responses`}
+            href={`/creator/${token}/responses`}
             className="mt-6 inline-block rounded-full bg-primary px-6 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary-hover"
           >
-            Back to responses
+            Try Again
           </a>
         </div>
       </main>
     );
   }
 
-  if (!response) {
-    return (
-      <main className="flex min-h-screen flex-col items-center justify-center px-6 py-24">
-        <div className="mx-auto max-w-lg text-center">
-          <p className="text-3xl">💌</p>
-          <h1 className="mt-4 font-display text-2xl font-bold text-foreground">
-            Hmm... we couldn&apos;t find this response.
-          </h1>
-          <p className="mt-3 text-sm text-foreground-muted">
-            It may have been removed or the link might be wrong.
-          </p>
-          <a
-            href={`/creator/${id}/responses`}
-            className="mt-6 inline-block rounded-full bg-primary px-6 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary-hover"
-          >
-            Back to responses
-          </a>
-        </div>
-      </main>
-    );
-  }
-
-  const safeResponse = {
-    id: response.id,
-    createdAt: response.createdAt.toISOString(),
-    completedAt: response.completedAt?.toISOString() ?? null,
-    responseAnswers: response.responseAnswers.map((ra) => ({
+  const safeResponses = responses.map((r) => ({
+    id: r.id,
+    createdAt: r.createdAt.toISOString(),
+    completedAt: r.completedAt?.toISOString() ?? null,
+    responseAnswers: r.responseAnswers.map((ra) => ({
       question: {
         id: ra.question.id,
         text: ra.question.text,
@@ -125,14 +102,16 @@ export default async function ResponseDetailRoute({
         text: ra.answer.text,
       },
     })),
-  };
+  }));
 
   return (
-    <ResponseDetailPage
+    <ResponseListPage
+      creatorAccessToken={token}
       littleThingId={littleThing.id}
-      littleThingTitle={littleThing.title}
       publicId={littleThing.publicId}
-      response={safeResponse}
+      title={littleThing.title}
+      recipientName={littleThing.recipientName}
+      responses={safeResponses}
     />
   );
 }

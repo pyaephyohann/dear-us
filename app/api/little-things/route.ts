@@ -4,6 +4,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { littleThingFullCreateSchema } from "@/lib/validations";
+import { randomBytes } from "crypto";
 
 export async function POST(request: Request) {
   try {
@@ -28,6 +29,7 @@ export async function POST(request: Request) {
           creatorName: data.creatorName || null,
           recipientName: data.recipientName || null,
           publicId: crypto.randomUUID(),
+          creatorAccessToken: randomBytes(32).toString("hex"),
           status: "DRAFT",
         },
       });
@@ -56,7 +58,7 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json(
-      { id: littleThing.id, publicId: littleThing.publicId },
+      { id: littleThing.id, publicId: littleThing.publicId, creatorAccessToken: littleThing.creatorAccessToken },
       { status: 201 }
     );
   } catch {

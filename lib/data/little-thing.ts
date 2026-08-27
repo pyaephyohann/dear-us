@@ -3,6 +3,7 @@
 
 import { prisma } from "../prisma";
 import type { LittleThingStatus } from "../../generated/prisma/client";
+import { randomBytes } from "crypto";
 
 // ---------------------------------------------------------------------------
 // Create
@@ -17,10 +18,14 @@ export async function createLittleThing(data: {
   // Generate a unique publicId using crypto
   const publicId = crypto.randomUUID();
 
+  // Generate a secure creator access token (32 random bytes = 64 hex chars)
+  const creatorAccessToken = randomBytes(32).toString("hex");
+
   return prisma.littleThing.create({
     data: {
       ...data,
       publicId,
+      creatorAccessToken,
     },
   });
 }
@@ -41,6 +46,28 @@ export async function getLittleThingById(id: string) {
           },
         },
       },
+    },
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Read — by creator access token (private creator access)
+// ---------------------------------------------------------------------------
+
+export async function getLittleThingByCreatorToken(creatorAccessToken: string) {
+  return prisma.littleThing.findUnique({
+    where: { creatorAccessToken },
+    select: {
+      id: true,
+      publicId: true,
+      creatorAccessToken: true,
+      title: true,
+      introMessage: true,
+      creatorName: true,
+      recipientName: true,
+      status: true,
+      createdAt: true,
+      updatedAt: true,
     },
   });
 }

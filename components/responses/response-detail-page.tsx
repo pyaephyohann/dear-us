@@ -18,6 +18,7 @@ type ResponseDetail = {
 };
 
 interface ResponseDetailPageProps {
+  creatorAccessToken: string;
   littleThingId: string;
   littleThingTitle: string;
   publicId: string;
@@ -29,9 +30,8 @@ interface ResponseDetailPageProps {
 // ---------------------------------------------------------------------------
 
 export function ResponseDetailPage({
-  littleThingId,
+  creatorAccessToken,
   littleThingTitle,
-  publicId,
   response,
 }: ResponseDetailPageProps) {
   const completedDate = response.completedAt
@@ -113,13 +113,13 @@ export function ResponseDetailPage({
           className="mt-8 flex items-center justify-between"
         >
           <Link
-            href={`/little/${littleThingId}/responses`}
+            href={`/creator/${creatorAccessToken}/responses`}
             className="text-sm text-foreground-subtle hover:text-foreground transition-colors"
           >
             ← All responses
           </Link>
           <Link
-            href={`/share/${publicId}`}
+            href={`/share/${creatorAccessToken}`}
             className="text-sm text-foreground-subtle hover:text-foreground transition-colors"
           >
             Share page →

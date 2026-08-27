@@ -26,20 +26,22 @@ enum LittleThingStatus {
 
 /// The primary entity — a personalized interactive question experience.
 model LittleThing {
-  id            String             @id @default(cuid())
-  publicId      String             @unique
-  title         String
-  introMessage  String?
-  creatorName   String?
-  recipientName String?
-  status        LittleThingStatus  @default(DRAFT)
-  createdAt     DateTime           @default(now())
-  updatedAt     DateTime           @updatedAt
+  id                  String             @id @default(cuid())
+  publicId            String             @unique
+  creatorAccessToken  String             @unique
+  title               String
+  introMessage        String?
+  creatorName         String?
+  recipientName       String?
+  status              LittleThingStatus  @default(DRAFT)
+  createdAt           DateTime           @default(now())
+  updatedAt           DateTime           @updatedAt
 
   questions Question[]
   responses Response[]
 
   @@index([publicId])
+  @@index([creatorAccessToken])
   @@index([status])
 }
 

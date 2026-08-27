@@ -18,6 +18,7 @@ type ResponseItem = {
 };
 
 interface ResponseListPageProps {
+  creatorAccessToken: string;
   littleThingId: string;
   publicId: string;
   title: string;
@@ -60,8 +61,7 @@ function getResponseCountText(count: number): string {
 // ---------------------------------------------------------------------------
 
 export function ResponseListPage({
-  littleThingId,
-  publicId,
+  creatorAccessToken,
   title,
   recipientName,
   responses,
@@ -117,7 +117,7 @@ export function ResponseListPage({
                 back later. 🥹
               </p>
               <Link
-                href={`/share/${publicId}`}
+                href={`/share/${creatorAccessToken}`}
                 className="mt-6 inline-block rounded-full bg-primary px-6 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary-hover"
               >
                 Share Again 💕
@@ -136,8 +136,8 @@ export function ResponseListPage({
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 + index * 0.05 }}
               >
-                <Link
-                  href={`/creator/${littleThingId}/responses/${response.id}`}
+              <Link
+                href={`/creator/${creatorAccessToken}/responses/${response.id}`}
                   className="block rounded-2xl border border-border-light bg-white p-5 shadow-sm transition-all hover:shadow-md hover:border-primary/20"
                 >
                   <div className="flex items-start justify-between">
@@ -168,7 +168,7 @@ export function ResponseListPage({
           className="mt-8 text-center"
         >
           <Link
-            href={`/share/${publicId}`}
+            href={`/share/${creatorAccessToken}`}
             className="text-sm text-foreground-subtle hover:text-foreground transition-colors"
           >
             ← Back to share

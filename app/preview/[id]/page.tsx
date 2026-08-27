@@ -66,6 +66,7 @@ export default async function PreviewRoute({ params }: PreviewPageParams) {
   const previewData: PreviewLittleThing = {
     id: littleThing.id,
     publicId: littleThing.publicId,
+    creatorAccessToken: littleThing.creatorAccessToken,
     title: littleThing.title,
     introMessage: littleThing.introMessage,
     creatorName: littleThing.creatorName,

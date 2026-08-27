@@ -25,6 +25,7 @@ export async function POST(_request: Request, { params }: RouteParams) {
     if (littleThing.status === "PUBLISHED") {
       return NextResponse.json({
         publicId: littleThing.publicId,
+        creatorAccessToken: littleThing.creatorAccessToken,
         status: "PUBLISHED",
       });
     }
@@ -94,6 +95,7 @@ export async function POST(_request: Request, { params }: RouteParams) {
 
     return NextResponse.json({
       publicId: littleThing.publicId,
+      creatorAccessToken: littleThing.creatorAccessToken,
       status: "PUBLISHED",
     });
   } catch {

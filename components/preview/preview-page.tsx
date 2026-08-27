@@ -28,6 +28,7 @@ type PreviewQuestion = {
 export type PreviewLittleThing = {
   id: string;
   publicId: string;
+  creatorAccessToken: string;
   title: string;
   introMessage: string | null;
   creatorName: string | null;
@@ -131,8 +132,8 @@ export function PreviewPage({ littleThing }: PreviewPageProps) {
         return;
       }
 
-      // Navigate to share page
-      router.push(`/share/${data.publicId}`);
+      // Navigate to share page with creator token
+      router.push(`/share/${data.creatorAccessToken}`);
     } catch {
       setPublishError(
         "Something went wrong while publishing. Please try again. 💕"

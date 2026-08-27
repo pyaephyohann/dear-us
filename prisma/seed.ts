@@ -6,6 +6,7 @@
 
 import { PrismaClient } from "../generated/prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
+import { randomBytes } from "crypto";
 
 const adapter = new PrismaPg({
   connectionString: process.env.DATABASE_URL!,
@@ -26,6 +27,7 @@ async function main() {
   const littleThing = await prisma.littleThing.create({
     data: {
       publicId: "demo-a-little-something-for-you",
+      creatorAccessToken: randomBytes(32).toString("hex"),
       title: "A Little Something For You 💕",
       introMessage:
         "I made this little thing just for you. Answer honestly, okay? 🥹",
@@ -101,6 +103,7 @@ async function main() {
   await prisma.littleThing.create({
     data: {
       publicId: "demo-draft-little-thing",
+      creatorAccessToken: randomBytes(32).toString("hex"),
       title: "Work in Progress 🚧",
       introMessage: "This one is still being crafted...",
       creatorName: "Pyae",

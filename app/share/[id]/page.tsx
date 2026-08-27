@@ -1,5 +1,5 @@
 import React from "react";
-import { getLittleThingByPublicId } from "@/lib/data/little-thing";
+import { getLittleThingByCreatorToken } from "@/lib/data/little-thing";
 import { SharePage } from "@/components/share/share-page";
 
 type SharePageParams = {
@@ -13,11 +13,11 @@ export const metadata = {
 export default async function ShareRoute({ params }: SharePageParams) {
   const { id } = await params;
 
+  // The [id] param is now the creatorAccessToken
   let littleThing;
   try {
-    littleThing = await getLittleThingByPublicId(id);
+    littleThing = await getLittleThingByCreatorToken(id);
   } catch {
-    // Database connection error
     return (
       <main className="flex min-h-screen flex-col items-center justify-center px-6 py-24">
         <div className="mx-auto max-w-lg text-center">
@@ -45,7 +45,7 @@ export default async function ShareRoute({ params }: SharePageParams) {
         <div className="mx-auto max-w-lg text-center">
           <p className="text-3xl">💌</p>
           <h1 className="mt-4 font-display text-2xl font-bold text-foreground">
-            Hmm... we couldn&apos;t find this little thing.
+            That private link isn&apos;t valid anymore. 💌
           </h1>
           <p className="mt-3 text-sm text-foreground-muted">
             It may have been deleted or the link might be wrong.
@@ -64,6 +64,7 @@ export default async function ShareRoute({ params }: SharePageParams) {
   return (
     <SharePage
       id={littleThing.id}
+      creatorAccessToken={littleThing.creatorAccessToken}
       publicId={littleThing.publicId}
       title={littleThing.title}
       recipientName={littleThing.recipientName}

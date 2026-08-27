@@ -11,6 +11,7 @@ import { QRCodeSVG } from "qrcode.react";
 
 interface SharePageProps {
   id: string;
+  creatorAccessToken: string;
   publicId: string;
   title: string;
   recipientName: string | null;
@@ -20,13 +21,22 @@ interface SharePageProps {
 // Component
 // ---------------------------------------------------------------------------
 
-export function SharePage({ id, publicId, title, recipientName }: SharePageProps) {
+export function SharePage({ creatorAccessToken, publicId, title, recipientName }: SharePageProps) {
   const [copied, setCopied] = useState(false);
+  const [privateCopied, setPrivateCopied] = useState(false);
 
   // Build the public URL from window.location.origin
   const [shareUrl] = useState(() => {
     if (typeof window !== "undefined") {
       return `${window.location.origin}/little/${publicId}`;
+    }
+    return "";
+  });
+
+  // Build the private creator URL
+  const [privateUrl] = useState(() => {
+    if (typeof window !== "undefined") {
+      return `${window.location.origin}/creator/${creatorAccessToken}/responses`;
     }
     return "";
   });
@@ -39,8 +49,6 @@ export function SharePage({ id, publicId, title, recipientName }: SharePageProps
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      // Clipboard API might not be available
-      // Fallback: select + copy
       try {
         const textArea = document.createElement("textarea");
         textArea.value = shareUrl;
@@ -57,6 +65,31 @@ export function SharePage({ id, publicId, title, recipientName }: SharePageProps
       }
     }
   }, [shareUrl]);
+
+  const handleCopyPrivate = useCallback(async () => {
+    if (!privateUrl) return;
+
+    try {
+      await navigator.clipboard.writeText(privateUrl);
+      setPrivateCopied(true);
+      setTimeout(() => setPrivateCopied(false), 2000);
+    } catch {
+      try {
+        const textArea = document.createElement("textarea");
+        textArea.value = privateUrl;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-9999px";
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textArea);
+        setPrivateCopied(true);
+        setTimeout(() => setPrivateCopied(false), 2000);
+      } catch {
+        // Give up gracefully
+      }
+    }
+  }, [privateUrl]);
 
   const greeting = recipientName
     ? `Your little thing for ${recipientName}`
@@ -134,11 +167,35 @@ export function SharePage({ id, publicId, title, recipientName }: SharePageProps
 
         {/* See responses */}
         <Link
-          href={`/creator/${id}/responses`}
+          href={`/creator/${creatorAccessToken}/responses`}
           className="mt-6 inline-block text-sm text-foreground-subtle hover:text-foreground transition-colors"
         >
           See Responses 💌
         </Link>
+
+        {/* Divider */}
+        <div className="my-6 border-t border-border-light" />
+
+        {/* Private link */}
+        <div className="rounded-xl border border-border-light bg-background-secondary p-4">
+          <p className="text-xs font-medium text-foreground-muted">
+            Your private link 💌
+          </p>
+          <p className="mt-1 text-xs text-foreground-subtle">
+            Keep this link somewhere safe — it&apos;s how you&apos;ll come back to see responses.
+          </p>
+          <button
+            type="button"
+            onClick={handleCopyPrivate}
+            disabled={!privateUrl}
+            className="mt-3 w-full rounded-lg border border-border bg-white px-4 py-2 text-xs font-medium text-foreground transition-all hover:bg-background-secondary active:scale-[0.98] disabled:opacity-50"
+          >
+            {privateCopied ? "Copied! 💕" : "Copy Private Link 💌"}
+          </button>
+          <p className="mt-2 text-[10px] text-foreground-subtle">
+            Anyone with this private link can view your responses.
+          </p>
+        </div>
 
         {/* Title display */}
         <p className="mt-6 font-handwritten text-base text-foreground-subtle">
