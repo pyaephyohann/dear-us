@@ -21,9 +21,12 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
-  title: "DearUs — Create Your Little Thing 💕",
+  title: {
+    default: "DearUs — A Little Thing For Someone You Love",
+    template: "%s | DearUs",
+  },
   description:
-    "A cute romantic web app where you can create a personalized interactive question experience for someone you love.",
+    "Create a tiny little thing for someone you love. A sweet personalized question experience, made with care. 💌",
 };
 
 export default function RootLayout({
