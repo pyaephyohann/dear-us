@@ -1,0 +1,124 @@
+"use client";
+
+import { motion } from "framer-motion";
+import type { QuestionDraft } from "./types";
+import { AnswerList } from "./answer-list";
+
+interface QuestionCardProps {
+  question: QuestionDraft;
+  index: number;
+  total: number;
+  questionErrors: Record<string, string | undefined>;
+  onTextChange: (id: string, text: string) => void;
+  onDelete: (id: string) => void;
+  onMoveUp: (id: string) => void;
+  onMoveDown: (id: string) => void;
+  onAnswerAdd: (questionId: string) => void;
+  onAnswerChange: (questionId: string, answerId: string, text: string) => void;
+  onAnswerDelete: (questionId: string, answerId: string) => void;
+  onAnswerMoveUp: (questionId: string, answerId: string) => void;
+  onAnswerMoveDown: (questionId: string, answerId: string) => void;
+}
+
+export function QuestionCard({
+  question,
+  index,
+  total,
+  questionErrors,
+  onTextChange,
+  onDelete,
+  onMoveUp,
+  onMoveDown,
+  onAnswerAdd,
+  onAnswerChange,
+  onAnswerDelete,
+  onAnswerMoveUp,
+  onAnswerMoveDown,
+}: QuestionCardProps) {
+  const canDelete = total > 1;
+
+  return (
+    <motion.div
+      layout
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -16, scale: 0.97 }}
+      transition={{ duration: 0.25 }}
+      className="rounded-2xl border border-border-light bg-white p-5 shadow-sm sm:p-6"
+    >
+      {/* Header row */}
+      <div className="flex items-start justify-between gap-3">
+        {/* Question number */}
+        <span className="font-display text-lg font-bold text-primary/30">
+          {String(index + 1).padStart(2, "0")}
+        </span>
+
+        <div className="flex items-center gap-1">
+          {/* Reorder buttons */}
+          <button
+            type="button"
+            onClick={() => onMoveUp(question.id)}
+            disabled={index === 0}
+            aria-label="Move question up"
+            className="rounded-lg px-2 py-1 text-xs text-foreground-subtle hover:bg-background-secondary hover:text-primary disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
+          >
+            ↑
+          </button>
+          <button
+            type="button"
+            onClick={() => onMoveDown(question.id)}
+            disabled={index === total - 1}
+            aria-label="Move question down"
+            className="rounded-lg px-2 py-1 text-xs text-foreground-subtle hover:bg-background-secondary hover:text-primary disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
+          >
+            ↓
+          </button>
+
+          {/* Delete question */}
+          {canDelete && (
+            <button
+              type="button"
+              onClick={() => onDelete(question.id)}
+              aria-label="Delete question"
+              className="rounded-lg px-2 py-1 text-xs text-foreground-subtle hover:bg-primary-light hover:text-primary transition-colors"
+            >
+              ✕
+            </button>
+          )}
+        </div>
+      </div>
+
+      {/* Question text input */}
+      <div className="mt-3">
+        <input
+          type="text"
+          value={question.text}
+          onChange={(e) => onTextChange(question.id, e.target.value)}
+          placeholder="What's your favorite thing about me?"
+          className="w-full bg-transparent text-base font-medium text-foreground placeholder-foreground-subtle outline-none border-b border-border-light focus:border-primary transition-colors pb-2"
+          aria-label={`Question ${index + 1} text`}
+        />
+        {questionErrors.text && (
+          <p className="mt-1 text-xs text-primary">{questionErrors.text}</p>
+        )}
+      </div>
+
+      {/* Answers */}
+      <div className="mt-4">
+        <p className="text-xs font-medium text-foreground-subtle mb-2">Answers</p>
+        <AnswerList
+          answers={question.answers}
+          onAdd={() => onAnswerAdd(question.id)}
+          onChange={(answerId, text) => onAnswerChange(question.id, answerId, text)}
+          onDelete={(answerId) => onAnswerDelete(question.id, answerId)}
+          onMoveUp={(answerId) => onAnswerMoveUp(question.id, answerId)}
+          onMoveDown={(answerId) => onAnswerMoveDown(question.id, answerId)}
+        />
+      </div>
+
+      {questionErrors.answers && (
+        <p className="mt-2 text-xs text-primary">{questionErrors.answers}</p>
+      )}
+    </motion.div>
+  );
+}
