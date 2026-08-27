@@ -32,3 +32,20 @@ export const prisma = globalForPrisma.prisma ?? createPrismaClient();
 if (process.env.NODE_ENV !== "production") {
   globalForPrisma.prisma = prisma;
 }
+
+/**
+ * Execute a Prisma query with a timeout.
+ * Prevents infinite hangs when DATABASE_URL is missing or database is unreachable.
+ */
+export function withTimeout<T>(
+  promise: Promise<T>,
+  ms: number,
+  errorMessage = "Database operation timed out"
+): Promise<T> {
+  return Promise.race([
+    promise,
+    new Promise<never>((_, reject) =>
+      setTimeout(() => reject(new Error(errorMessage)), ms)
+    ),
+  ]);
+}

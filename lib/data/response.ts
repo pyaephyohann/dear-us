@@ -114,11 +114,12 @@ export async function createResponse(
 export async function getResponsesByLittleThing(littleThingId: string) {
   return prisma.response.findMany({
     where: { littleThingId },
-    orderBy: { createdAt: "asc" },
+    orderBy: { createdAt: "desc" },
     include: {
       responseAnswers: {
+        orderBy: { question: { order: "asc" } },
         include: {
-          question: { select: { id: true, text: true } },
+          question: { select: { id: true, text: true, order: true } },
           answer: { select: { id: true, text: true } },
         },
       },
@@ -131,8 +132,34 @@ export async function getResponseById(id: string) {
     where: { id },
     include: {
       responseAnswers: {
+        orderBy: { question: { order: "asc" } },
         include: {
-          question: { select: { id: true, text: true } },
+          question: { select: { id: true, text: true, order: true } },
+          answer: { select: { id: true, text: true } },
+        },
+      },
+    },
+  });
+}
+
+/**
+ * Get a response by ID, verifying it belongs to the specified Little Thing.
+ * Returns null if the response doesn't exist or doesn't belong to the Little Thing.
+ */
+export async function getResponseByIdAndLittleThing(
+  responseId: string,
+  littleThingId: string
+) {
+  return prisma.response.findFirst({
+    where: {
+      id: responseId,
+      littleThingId,
+    },
+    include: {
+      responseAnswers: {
+        orderBy: { question: { order: "asc" } },
+        include: {
+          question: { select: { id: true, text: true, order: true } },
           answer: { select: { id: true, text: true } },
         },
       },
