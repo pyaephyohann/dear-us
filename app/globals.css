@@ -15,7 +15,7 @@
   /* ── Foreground / Text ─────────────────────── */
   --foreground: #2d2226;
   --foreground-muted: #6b5c60;
-  --foreground-subtle: #9b8c90;
+  --foreground-subtle: #8a7b7f;
 
   /* ── Primary — Romantic Pink/Red ───────────── */
   --primary: #e85d75;
@@ -137,4 +137,16 @@ html {
 /* Placeholder styles */
 ::placeholder {
   color: var(--foreground-subtle);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

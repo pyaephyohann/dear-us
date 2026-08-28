@@ -53,14 +53,14 @@ export function QuestionCard({
           {String(index + 1).padStart(2, "0")}
         </span>
 
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-0.5">
           {/* Reorder buttons */}
           <button
             type="button"
             onClick={() => onMoveUp(question.id)}
             disabled={index === 0}
             aria-label="Move question up"
-            className="rounded-lg px-2 py-1 text-xs text-foreground-subtle hover:bg-background-secondary hover:text-primary disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
+            className="rounded-lg p-2 text-xs text-foreground-subtle hover:bg-background-secondary hover:text-primary disabled:opacity-20 disabled:cursor-not-allowed transition-colors min-w-[36px] min-h-[36px] flex items-center justify-center"
           >
             ↑
           </button>
@@ -69,7 +69,7 @@ export function QuestionCard({
             onClick={() => onMoveDown(question.id)}
             disabled={index === total - 1}
             aria-label="Move question down"
-            className="rounded-lg px-2 py-1 text-xs text-foreground-subtle hover:bg-background-secondary hover:text-primary disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
+            className="rounded-lg p-2 text-xs text-foreground-subtle hover:bg-background-secondary hover:text-primary disabled:opacity-20 disabled:cursor-not-allowed transition-colors min-w-[36px] min-h-[36px] flex items-center justify-center"
           >
             ↓
           </button>
@@ -80,7 +80,7 @@ export function QuestionCard({
               type="button"
               onClick={() => onDelete(question.id)}
               aria-label="Delete question"
-              className="rounded-lg px-2 py-1 text-xs text-foreground-subtle hover:bg-primary-light hover:text-primary transition-colors"
+              className="rounded-lg p-2 text-xs text-foreground-subtle hover:bg-primary-light hover:text-primary transition-colors min-w-[36px] min-h-[36px] flex items-center justify-center"
             >
               ✕
             </button>

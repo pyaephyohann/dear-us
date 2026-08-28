@@ -1,17 +1,17 @@
 import React from "react";
 import { getLittleThingByCreatorToken } from "@/lib/data/little-thing";
 import { getResponseAnalytics } from "@/lib/data/response";
-import { DashboardPage } from "@/components/dashboard/dashboard-page";
+import { AnalyticsPage } from "@/components/analytics/analytics-page";
 
-type DashboardParams = {
+type AnalyticsParams = {
   params: Promise<{ token: string }>;
 };
 
 export const metadata = {
-  title: "Your Little Thing",
+  title: "Analytics",
 };
 
-export default async function DashboardRoute({ params }: DashboardParams) {
+export default async function AnalyticsRoute({ params }: AnalyticsParams) {
   const { token } = await params;
 
   let littleThing;
@@ -61,33 +61,41 @@ export default async function DashboardRoute({ params }: DashboardParams) {
     );
   }
 
-  // Fetch analytics summary (lightweight — just first/last response dates)
-  let firstResponseAt: string | null = null;
-  let latestResponseAt: string | null = null;
-  if (littleThing._count.responses > 0) {
-    try {
-      const analytics = await getResponseAnalytics(littleThing.id);
-      firstResponseAt = analytics.firstResponseAt;
-      latestResponseAt = analytics.latestResponseAt;
-    } catch {
-      // Non-critical — dashboard still works without analytics
-    }
+  let analytics;
+  try {
+    analytics = await getResponseAnalytics(littleThing.id);
+  } catch {
+    return (
+      <main className="flex min-h-screen flex-col items-center justify-center px-6 py-24">
+        <div className="mx-auto max-w-lg text-center">
+          <p className="text-3xl">📊</p>
+          <h1 className="mt-4 font-display text-2xl font-bold text-foreground">
+            Hmm... we couldn&apos;t load analytics.
+          </h1>
+          <p className="mt-3 text-sm text-foreground-muted">
+            Please try again in a moment.
+          </p>
+          <a
+            href={`/creator/${token}`}
+            className="mt-6 inline-block rounded-full bg-primary px-6 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary-hover"
+          >
+            Back to dashboard 💕
+          </a>
+        </div>
+      </main>
+    );
   }
 
   return (
-    <DashboardPage
+    <AnalyticsPage
       creatorAccessToken={littleThing.creatorAccessToken}
-      publicId={littleThing.publicId}
-      littleThingId={littleThing.id}
       title={littleThing.title}
       recipientName={littleThing.recipientName}
-      creatorName={littleThing.creatorName}
-      status={littleThing.status}
-      responseCount={littleThing._count.responses}
-      firstResponseAt={firstResponseAt}
-      latestResponseAt={latestResponseAt}
-      createdAt={littleThing.createdAt.toISOString()}
-      updatedAt={littleThing.updatedAt.toISOString()}
+      totalResponses={analytics.totalResponses}
+      firstResponseAt={analytics.firstResponseAt}
+      latestResponseAt={analytics.latestResponseAt}
+      activityByDate={analytics.activityByDate}
+      questions={analytics.questions}
     />
   );
 }

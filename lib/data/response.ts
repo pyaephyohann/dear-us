@@ -232,6 +232,129 @@ export async function getReferencedAnswerIds(
 }
 
 // ---------------------------------------------------------------------------
+// Analytics
+// ---------------------------------------------------------------------------
+
+export type QuestionAnalytics = {
+  questionId: string;
+  questionText: string;
+  questionOrder: number;
+  totalAnswers: number;
+  answers: {
+    answerId: string;
+    answerText: string;
+    answerOrder: number;
+    count: number;
+    percentage: number;
+    isMostSelected: boolean;
+  }[];
+};
+
+export type ResponseAnalytics = {
+  totalResponses: number;
+  firstResponseAt: string | null;
+  latestResponseAt: string | null;
+  activityByDate: { date: string; count: number }[];
+  questions: QuestionAnalytics[];
+};
+
+/**
+ * Get comprehensive analytics for a Little Thing's responses.
+ * Server-side aggregation — never send raw ResponseAnswers to the client.
+ */
+export async function getResponseAnalytics(
+  littleThingId: string
+): Promise<ResponseAnalytics> {
+  // 1. Response summary
+  const responseSummary = await prisma.response.aggregate({
+    where: { littleThingId },
+    _count: { id: true },
+    _min: { createdAt: true },
+    _max: { createdAt: true },
+  });
+
+  const totalResponses = responseSummary._count.id;
+  const firstResponseAt = responseSummary._min.createdAt?.toISOString() ?? null;
+  const latestResponseAt = responseSummary._max.createdAt?.toISOString() ?? null;
+
+  // 2. Activity by date (group responses by date)
+  const responses = await prisma.response.findMany({
+    where: { littleThingId },
+    select: { createdAt: true },
+  });
+
+  const dateCounts = new Map<string, number>();
+  for (const r of responses) {
+    const dateKey = r.createdAt.toISOString().split("T")[0];
+    dateCounts.set(dateKey, (dateCounts.get(dateKey) ?? 0) + 1);
+  }
+
+  const activityByDate = Array.from(dateCounts.entries())
+    .map(([date, count]) => ({ date, count }))
+    .sort((a, b) => a.date.localeCompare(b.date));
+
+  // 3. Answer distribution per question
+  const questions = await prisma.question.findMany({
+    where: { littleThingId },
+    orderBy: { order: "asc" },
+    include: {
+      answers: {
+        orderBy: { order: "asc" },
+        select: { id: true, text: true, order: true },
+      },
+    },
+  });
+
+  const questionAnalytics: QuestionAnalytics[] = [];
+
+  for (const question of questions) {
+    // Count how many times each answer was selected
+    const answerCounts = await prisma.responseAnswer.groupBy({
+      by: ["answerId"],
+      where: { questionId: question.id },
+      _count: { answerId: true },
+    });
+
+    const countMap = new Map(answerCounts.map((ac) => [ac.answerId, ac._count.answerId]));
+    const totalForQuestion = answerCounts.reduce((sum, ac) => sum + ac._count.answerId, 0);
+
+    // Find most selected answer
+    let maxCount = 0;
+    for (const ac of answerCounts) {
+      if (ac._count.answerId > maxCount) maxCount = ac._count.answerId;
+    }
+
+    const answerAnalytics = question.answers.map((a) => {
+      const count = countMap.get(a.id) ?? 0;
+      return {
+        answerId: a.id,
+        answerText: a.text,
+        answerOrder: a.order,
+        count,
+        percentage: totalForQuestion > 0 ? Math.round((count / totalForQuestion) * 100) : 0,
+        isMostSelected: count === maxCount && count > 0,
+      };
+    });
+
+    questionAnalytics.push({
+      questionId: question.id,
+      questionText: question.text,
+      questionOrder: question.order,
+      totalAnswers: totalForQuestion,
+      answers: answerAnalytics,
+    });
+  }
+
+  return {
+    totalResponses,
+    firstResponseAt,
+    latestResponseAt,
+    activityByDate,
+    questions: questionAnalytics,
+  };
+}
+
+// ---------------------------------------------------------------------------
 // Custom error class
 // ---------------------------------------------------------------------------
 

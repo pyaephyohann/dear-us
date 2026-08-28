@@ -17,6 +17,8 @@ interface DashboardPageProps {
   creatorName: string | null;
   status: "DRAFT" | "PUBLISHED" | "ARCHIVED";
   responseCount: number;
+  firstResponseAt: string | null;
+  latestResponseAt: string | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -66,6 +68,8 @@ export function DashboardPage({
   creatorName,
   status,
   responseCount,
+  firstResponseAt,
+  latestResponseAt,
   createdAt,
   updatedAt,
 }: DashboardPageProps) {
@@ -164,6 +168,45 @@ export function DashboardPage({
           </div>
         </motion.div>
 
+        {/* Quick analytics */}
+        {responseCount > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.08 }}
+            className="mt-4 rounded-2xl border border-border-light bg-white p-4 shadow-sm"
+          >
+            <div className="flex items-center justify-between">
+              <Link
+                href={`/creator/${creatorAccessToken}/analytics`}
+                className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+              >
+                📊 Quick Stats
+              </Link>
+              <Link
+                href={`/creator/${creatorAccessToken}/analytics`}
+                className="text-xs text-primary hover:text-primary-hover transition-colors"
+              >
+                View all →
+              </Link>
+            </div>
+            <div className="mt-3 grid grid-cols-2 gap-3">
+              <div>
+                <p className="text-lg font-bold text-primary">{responseCount}</p>
+                <p className="text-[10px] text-foreground-subtle">response{responseCount !== 1 ? "s" : ""}</p>
+              </div>
+              <div>
+                {firstResponseAt && latestResponseAt && (
+                  <>
+                    <p className="text-[10px] text-foreground-subtle">First → Latest</p>
+                    <p className="text-xs font-medium text-foreground">{formatDate(firstResponseAt)} → {formatDate(latestResponseAt)}</p>
+                  </>
+                )}
+              </div>
+            </div>
+          </motion.div>
+        )}
+
         {/* Actions */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -193,6 +236,14 @@ export function DashboardPage({
             className="block w-full rounded-full border border-border bg-white px-6 py-3.5 text-center text-sm font-medium text-foreground transition-all hover:bg-background-secondary hover:shadow-sm active:scale-[0.98]"
           >
             Preview
+          </Link>
+
+          {/* Analytics */}
+          <Link
+            href={`/creator/${creatorAccessToken}/analytics`}
+            className="block w-full rounded-full border border-border bg-white px-6 py-3.5 text-center text-sm font-medium text-foreground transition-all hover:bg-background-secondary hover:shadow-sm active:scale-[0.98]"
+          >
+            View Analytics 📊
           </Link>
 
           {/* Edit */}

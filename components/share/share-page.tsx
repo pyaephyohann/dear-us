@@ -166,18 +166,24 @@ export function SharePage({ creatorAccessToken, publicId, title, recipientName }
         </div>
 
         {/* Manage */}
-        <div className="mt-6 flex items-center justify-center gap-4">
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
           <Link
             href={`/creator/${creatorAccessToken}`}
             className="text-sm text-foreground-subtle hover:text-foreground transition-colors"
           >
-            Manage Little Thing 💕
+            Manage 💕
           </Link>
           <Link
             href={`/creator/${creatorAccessToken}/responses`}
             className="text-sm text-foreground-subtle hover:text-foreground transition-colors"
           >
-            See Responses 💌
+            Responses 💌
+          </Link>
+          <Link
+            href={`/creator/${creatorAccessToken}/analytics`}
+            className="text-sm text-foreground-subtle hover:text-foreground transition-colors"
+          >
+            Analytics 📊
           </Link>
         </div>
 

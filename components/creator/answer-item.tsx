@@ -53,7 +53,7 @@ export function AnswerItem({
         onClick={() => onMoveUp(answerId)}
         disabled={index === 0}
         aria-label="Move answer up"
-        className="text-xs text-foreground-subtle hover:text-primary disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
+        className="rounded-lg p-2 text-xs text-foreground-subtle hover:bg-background-secondary hover:text-primary disabled:opacity-20 disabled:cursor-not-allowed transition-colors min-w-[36px] min-h-[36px] flex items-center justify-center"
       >
         ↑
       </button>
@@ -62,7 +62,7 @@ export function AnswerItem({
         onClick={() => onMoveDown(answerId)}
         disabled={index === total - 1}
         aria-label="Move answer down"
-        className="text-xs text-foreground-subtle hover:text-primary disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
+        className="rounded-lg p-2 text-xs text-foreground-subtle hover:bg-background-secondary hover:text-primary disabled:opacity-20 disabled:cursor-not-allowed transition-colors min-w-[36px] min-h-[36px] flex items-center justify-center"
       >
         ↓
       </button>
@@ -74,7 +74,7 @@ export function AnswerItem({
         disabled={!canDelete}
         aria-label="Delete answer"
         title={!canDelete ? "A question needs at least 2 answers 💕" : undefined}
-        className="text-xs text-foreground-subtle hover:text-primary disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
+        className="rounded-lg p-2 text-xs text-foreground-subtle hover:bg-primary-light hover:text-primary disabled:opacity-20 disabled:cursor-not-allowed transition-colors min-w-[36px] min-h-[36px] flex items-center justify-center"
       >
         ✕
       </button>
