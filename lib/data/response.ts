@@ -168,6 +168,70 @@ export async function getResponseByIdAndLittleThing(
 }
 
 // ---------------------------------------------------------------------------
+// Delete
+// ---------------------------------------------------------------------------
+
+/**
+ * Delete a response by ID, verifying it belongs to the specified Little Thing.
+ * Cascade deletion handles ResponseAnswer records.
+ */
+export async function deleteResponse(
+  responseId: string,
+  littleThingId: string
+) {
+  const response = await prisma.response.findFirst({
+    where: { id: responseId, littleThingId },
+    select: { id: true },
+  });
+
+  if (!response) {
+    throw new ResponseError("Response not found", 404);
+  }
+
+  await prisma.response.delete({ where: { id: responseId } });
+}
+
+// ---------------------------------------------------------------------------
+// Response reference checks (for edit safety)
+// ---------------------------------------------------------------------------
+
+/**
+ * Check which question IDs are referenced by existing responses.
+ * Returns a Set of question IDs that have response references.
+ */
+export async function getReferencedQuestionIds(
+  littleThingId: string
+): Promise<Set<string>> {
+  const refs = await prisma.responseAnswer.findMany({
+    where: {
+      response: { littleThingId },
+    },
+    select: { questionId: true },
+    distinct: ["questionId"],
+  });
+
+  return new Set(refs.map((r) => r.questionId));
+}
+
+/**
+ * Check which answer IDs are referenced by existing responses.
+ * Returns a Set of answer IDs that have response references.
+ */
+export async function getReferencedAnswerIds(
+  littleThingId: string
+): Promise<Set<string>> {
+  const refs = await prisma.responseAnswer.findMany({
+    where: {
+      response: { littleThingId },
+    },
+    select: { answerId: true },
+    distinct: ["answerId"],
+  });
+
+  return new Set(refs.map((r) => r.answerId));
+}
+
+// ---------------------------------------------------------------------------
 // Custom error class
 // ---------------------------------------------------------------------------
 

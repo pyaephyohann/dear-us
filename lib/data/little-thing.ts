@@ -68,8 +68,44 @@ export async function getLittleThingByCreatorToken(creatorAccessToken: string) {
       status: true,
       createdAt: true,
       updatedAt: true,
+      _count: { select: { responses: true } },
     },
   });
+}
+
+// ---------------------------------------------------------------------------
+// Read — for editing (by creator token, with questions + answers)
+// ---------------------------------------------------------------------------
+
+export async function getLittleThingForEditing(creatorAccessToken: string) {
+  return prisma.littleThing.findUnique({
+    where: { creatorAccessToken },
+    include: {
+      questions: {
+        orderBy: { order: "asc" },
+        include: {
+          answers: {
+            orderBy: { order: "asc" },
+          },
+        },
+      },
+    },
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Token rotation
+// ---------------------------------------------------------------------------
+
+export async function rotateCreatorToken(id: string) {
+  const newToken = randomBytes(32).toString("hex");
+
+  await prisma.littleThing.update({
+    where: { id },
+    data: { creatorAccessToken: newToken },
+  });
+
+  return newToken;
 }
 
 // ---------------------------------------------------------------------------

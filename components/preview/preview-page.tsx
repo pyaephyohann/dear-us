@@ -205,6 +205,7 @@ export function PreviewPage({ littleThing }: PreviewPageProps) {
             canPublish={isValid}
             onPublish={handlePublish}
             publishError={publishError}
+            creatorAccessToken={littleThing.creatorAccessToken}
           />
 
           {/* Restart preview */}

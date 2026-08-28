@@ -3,9 +3,25 @@
 interface CreatorActionsProps {
   isSubmitting: boolean;
   onSave: () => void;
+  mode?: "create" | "edit";
+  saveLabel?: string;
+  savingLabel?: string;
+  backHref?: string;
+  backLabel?: string;
 }
 
-export function CreatorActions({ isSubmitting, onSave }: CreatorActionsProps) {
+export function CreatorActions({
+  isSubmitting,
+  onSave,
+  mode = "create",
+  saveLabel,
+  savingLabel,
+  backHref,
+  backLabel,
+}: CreatorActionsProps) {
+  const defaultSaveLabel = mode === "edit" ? "Save Changes 💕" : "Save & Continue 💕";
+  const defaultSavingLabel = "Saving... 💕";
+
   return (
     <div className="flex flex-col items-center gap-3 pt-4 sm:flex-row sm:justify-end">
       <button
@@ -17,12 +33,20 @@ export function CreatorActions({ isSubmitting, onSave }: CreatorActionsProps) {
         {isSubmitting ? (
           <>
             <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
-            Saving...
+            {savingLabel ?? defaultSavingLabel}
           </>
         ) : (
-          "Save & Continue 💕"
+          saveLabel ?? defaultSaveLabel
         )}
       </button>
+      {backHref && (
+        <a
+          href={backHref}
+          className="text-sm text-foreground-subtle hover:text-foreground transition-colors"
+        >
+          {backLabel ?? "← Back"}
+        </a>
+      )}
     </div>
   );
 }

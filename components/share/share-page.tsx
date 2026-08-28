@@ -165,13 +165,21 @@ export function SharePage({ creatorAccessToken, publicId, title, recipientName }
           </Link>
         </div>
 
-        {/* See responses */}
-        <Link
-          href={`/creator/${creatorAccessToken}/responses`}
-          className="mt-6 inline-block text-sm text-foreground-subtle hover:text-foreground transition-colors"
-        >
-          See Responses 💌
-        </Link>
+        {/* Manage */}
+        <div className="mt-6 flex items-center justify-center gap-4">
+          <Link
+            href={`/creator/${creatorAccessToken}`}
+            className="text-sm text-foreground-subtle hover:text-foreground transition-colors"
+          >
+            Manage Little Thing 💕
+          </Link>
+          <Link
+            href={`/creator/${creatorAccessToken}/responses`}
+            className="text-sm text-foreground-subtle hover:text-foreground transition-colors"
+          >
+            See Responses 💌
+          </Link>
+        </div>
 
         {/* Divider */}
         <div className="my-6 border-t border-border-light" />

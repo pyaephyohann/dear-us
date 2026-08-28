@@ -1,5 +1,7 @@
 "use client";
 
+import { useState, useCallback } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
@@ -34,6 +36,28 @@ export function ResponseDetailPage({
   littleThingTitle,
   response,
 }: ResponseDetailPageProps) {
+  const router = useRouter();
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const handleDelete = useCallback(async () => {
+    if (!confirm("Are you sure you want to delete this response?")) return;
+
+    setIsDeleting(true);
+    try {
+      const res = await fetch(
+        `/api/little-things/${creatorAccessToken}/responses/${response.id}`,
+        { method: "DELETE" }
+      );
+
+      if (res.ok) {
+        router.push(`/creator/${creatorAccessToken}/responses`);
+      }
+    } catch {
+      // Silently fail
+    } finally {
+      setIsDeleting(false);
+    }
+  }, [creatorAccessToken, response.id, router]);
   const completedDate = response.completedAt
     ? new Date(response.completedAt).toLocaleDateString("en-US", {
         weekday: "long",
@@ -105,6 +129,23 @@ export function ResponseDetailPage({
           </div>
         </motion.div>
 
+        {/* Delete */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.25 }}
+          className="mt-6 text-center"
+        >
+          <button
+            type="button"
+            onClick={handleDelete}
+            disabled={isDeleting}
+            className="text-xs text-foreground-subtle hover:text-red-500 transition-colors disabled:opacity-50"
+          >
+            {isDeleting ? "Deleting..." : "Delete this response"}
+          </button>
+        </motion.div>
+
         {/* Navigation */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -119,10 +160,10 @@ export function ResponseDetailPage({
             ← All responses
           </Link>
           <Link
-            href={`/share/${creatorAccessToken}`}
+            href={`/creator/${creatorAccessToken}`}
             className="text-sm text-foreground-subtle hover:text-foreground transition-colors"
           >
-            Share page →
+            Dashboard →
           </Link>
         </motion.div>
       </div>

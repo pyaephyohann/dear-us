@@ -9,6 +9,7 @@ interface PreviewActionsProps {
   canPublish: boolean;
   onPublish: () => void;
   publishError: string | null;
+  creatorAccessToken?: string;
 }
 
 /**
@@ -22,6 +23,7 @@ export function PreviewActions({
   canPublish,
   onPublish,
   publishError,
+  creatorAccessToken,
 }: PreviewActionsProps) {
   return (
     <motion.div
@@ -61,19 +63,21 @@ export function PreviewActions({
           <p className="text-sm text-foreground-muted">
             This Little Thing is already published ✨
           </p>
-          <Link
-            href={`/share/${""}`}
-            className="mt-2 inline-block text-sm font-medium text-primary hover:text-primary-hover transition-colors"
-          >
-            View share page →
-          </Link>
+          {creatorAccessToken && (
+            <Link
+              href={`/share/${creatorAccessToken}`}
+              className="mt-2 inline-block text-sm font-medium text-primary hover:text-primary-hover transition-colors"
+            >
+              View share page →
+            </Link>
+          )}
         </div>
       )}
 
       {/* Back to editing */}
       <div className="text-center">
         <Link
-          href="/create"
+          href={creatorAccessToken ? `/creator/${creatorAccessToken}/edit` : "/create"}
           className="text-sm text-foreground-subtle hover:text-foreground transition-colors"
         >
           ← Back to editing

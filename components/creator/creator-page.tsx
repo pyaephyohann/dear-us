@@ -76,24 +76,56 @@ function validate(
 }
 
 // ---------------------------------------------------------------------------
+// Edit mode initial data
+// ---------------------------------------------------------------------------
+
+export type EditorInitialQuestion = {
+  id: string;
+  text: string;
+  answers: { id: string; text: string }[];
+};
+
+export type EditorInitialData = {
+  id: string;
+  creatorAccessToken: string;
+  title: string;
+  introMessage: string | null;
+  creatorName: string | null;
+  recipientName: string | null;
+  questions: EditorInitialQuestion[];
+};
+
+interface CreatorPageProps {
+  editMode?: EditorInitialData | null;
+}
+
+// ---------------------------------------------------------------------------
 // Component
 // ---------------------------------------------------------------------------
 
-export function CreatorPage() {
+export function CreatorPage({ editMode = null }: CreatorPageProps) {
   const router = useRouter();
+  const isEditing = !!editMode;
 
-  // Form state
-  const [recipientName, setRecipientName] = useState("");
-  const [creatorName, setCreatorName] = useState("");
-  const [title, setTitle] = useState("");
-  const [introMessage, setIntroMessage] = useState("");
-  const [questions, setQuestions] = useState<QuestionDraft[]>([]);
+  // Form state — initialize from edit data if provided
+  const [recipientName, setRecipientName] = useState(editMode?.recipientName ?? "");
+  const [creatorName, setCreatorName] = useState(editMode?.creatorName ?? "");
+  const [title, setTitle] = useState(editMode?.title ?? "");
+  const [introMessage, setIntroMessage] = useState(editMode?.introMessage ?? "");
+  const [questions, setQuestions] = useState<QuestionDraft[]>(
+    editMode?.questions.map((q) => ({
+      id: q.id,
+      text: q.text,
+      answers: q.answers.map((a) => ({ id: a.id, text: a.text })),
+    })) ?? []
+  );
 
   // UI state
   const [formErrors, setFormErrors] = useState<Record<string, string | undefined>>({});
   const [questionErrors, setQuestionErrors] = useState<Record<number, Record<string, string | undefined>>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
+  const [saveSuccess, setSaveSuccess] = useState(false);
 
   // --- Basic info change ---
   const handleBasicInfoChange = useCallback((field: string, value: string) => {
@@ -232,13 +264,13 @@ export function CreatorPage() {
     setServerError(null);
     setFormErrors({});
     setQuestionErrors({});
+    setSaveSuccess(false);
 
     const { formErrors: fe, questionErrors: qe, valid } = validate(title, questions);
 
     if (!valid) {
       setFormErrors(fe);
       setQuestionErrors(qe);
-      // Scroll to first error
       window.scrollTo({ top: 0, behavior: "smooth" });
       return;
     }
@@ -246,38 +278,79 @@ export function CreatorPage() {
     setIsSubmitting(true);
 
     try {
-      const res = await fetch("/api/little-things", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          title: title.trim(),
-          introMessage: introMessage.trim() || undefined,
-          creatorName: creatorName.trim() || undefined,
-          recipientName: recipientName.trim() || undefined,
-          questions: questions.map((q) => ({
-            text: q.text.trim(),
-            answers: q.answers
-              .filter((a) => a.text.trim())
-              .map((a) => ({ text: a.text.trim() })),
-          })),
-        }),
-      });
+      if (isEditing && editMode) {
+        // --- Edit mode: PATCH to update existing Little Thing ---
+        const res = await fetch(`/api/little-things/${editMode.id}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            creatorAccessToken: editMode.creatorAccessToken,
+            title: title.trim(),
+            introMessage: introMessage.trim() || undefined,
+            creatorName: creatorName.trim() || undefined,
+            recipientName: recipientName.trim() || undefined,
+            questions: questions.map((q) => ({
+              id: q.id.startsWith("tmp-") ? undefined : q.id,
+              text: q.text.trim(),
+              answers: q.answers
+                .filter((a) => a.text.trim())
+                .map((a) => ({
+                  id: a.id.startsWith("tmp-") ? undefined : a.id,
+                  text: a.text.trim(),
+                })),
+            })),
+          }),
+        });
 
-      const data = await res.json();
+        const data = await res.json();
 
-      if (!res.ok) {
-        setServerError(data.error ?? "Something went wrong. Please try again. 💕");
+        if (!res.ok) {
+          setServerError(data.error ?? "We couldn't save your changes just yet. Please try again. 💕");
+          setIsSubmitting(false);
+          return;
+        }
+
+        setSaveSuccess(true);
         setIsSubmitting(false);
-        return;
-      }
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        // --- Create mode: POST to create new Little Thing ---
+        const res = await fetch("/api/little-things", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            title: title.trim(),
+            introMessage: introMessage.trim() || undefined,
+            creatorName: creatorName.trim() || undefined,
+            recipientName: recipientName.trim() || undefined,
+            questions: questions.map((q) => ({
+              text: q.text.trim(),
+              answers: q.answers
+                .filter((a) => a.text.trim())
+                .map((a) => ({ text: a.text.trim() })),
+            })),
+          }),
+        });
 
-      // Navigate to preview
-      router.push(`/preview/${data.id}`);
+        const data = await res.json();
+
+        if (!res.ok) {
+          setServerError(data.error ?? "Something went wrong. Please try again. 💕");
+          setIsSubmitting(false);
+          return;
+        }
+
+        // Navigate to preview
+        router.push(`/preview/${data.id}`);
+      }
     } catch {
-      setServerError("Something went wrong while saving. Please try again. 💕");
+      setServerError(isEditing
+        ? "We couldn't save your changes just yet. Please try again. 💕"
+        : "Something went wrong while saving. Please try again. 💕"
+      );
       setIsSubmitting(false);
     }
-  }, [title, introMessage, creatorName, recipientName, questions, router]);
+  }, [isEditing, editMode, title, introMessage, creatorName, recipientName, questions, router]);
 
   return (
     <div className="mx-auto max-w-2xl px-5 pb-24 pt-24 sm:px-6 sm:pt-28">
@@ -288,10 +361,17 @@ export function CreatorPage() {
         className="text-center"
       >
         <h1 className="font-display text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-          Let&apos;s make something little. 💕
+          {isEditing ? (
+            <>Edit your little thing. 💕</>
+          ) : (
+            <>Let&apos;s make something little. 💕</>
+          )}
         </h1>
         <p className="mt-2 text-sm text-foreground-muted">
-          Fill in the details below and add your questions.
+          {isEditing
+            ? "Make changes below and save when you're ready."
+            : "Fill in the details below and add your questions."
+          }
         </p>
       </motion.div>
 
@@ -299,6 +379,13 @@ export function CreatorPage() {
       {serverError && (
         <div className="mt-6 rounded-xl border border-primary/20 bg-primary-light p-4 text-center text-sm text-primary">
           {serverError}
+        </div>
+      )}
+
+      {/* Save success */}
+      {saveSuccess && (
+        <div className="mt-6 rounded-xl border border-green-200 bg-green-50 p-4 text-center text-sm text-green-700">
+          Saved! 💕
         </div>
       )}
 
@@ -356,7 +443,13 @@ export function CreatorPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.15 }}
         >
-          <CreatorActions isSubmitting={isSubmitting} onSave={handleSave} />
+          <CreatorActions
+            isSubmitting={isSubmitting}
+            onSave={handleSave}
+            mode={isEditing ? "edit" : "create"}
+            backHref={isEditing && editMode ? `/creator/${editMode.creatorAccessToken}` : undefined}
+            backLabel={isEditing ? "← Back to dashboard" : undefined}
+          />
         </motion.div>
       </div>
     </div>

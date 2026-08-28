@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useCallback } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
@@ -59,6 +60,89 @@ function getResponseCountText(count: number): string {
 // ---------------------------------------------------------------------------
 // Component
 // ---------------------------------------------------------------------------
+
+function ResponseCardList({
+  responses,
+  creatorAccessToken,
+}: {
+  responses: ResponseItem[];
+  creatorAccessToken: string;
+}) {
+  const [deletingId, setDeletingId] = useState<string | null>(null);
+
+  const handleDelete = useCallback(
+    async (responseId: string) => {
+      if (!confirm("Are you sure you want to delete this response?")) return;
+
+      setDeletingId(responseId);
+      try {
+        const res = await fetch(
+          `/api/little-things/${creatorAccessToken}/responses/${responseId}`,
+          { method: "DELETE" }
+        );
+
+        if (res.ok) {
+          // Remove from local state — page reloads fresh on next navigation
+          window.location.reload();
+        }
+      } catch {
+        // Silently fail — the user can try again
+      } finally {
+        setDeletingId(null);
+      }
+    },
+    [creatorAccessToken]
+  );
+
+  return (
+    <div className="mt-8 space-y-4">
+      {responses.map((response, index) => (
+        <motion.div
+          key={response.id}
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 + index * 0.05 }}
+        >
+          <div className="rounded-2xl border border-border-light bg-white p-5 shadow-sm transition-all hover:shadow-md hover:border-primary/20">
+            <div className="flex items-start justify-between">
+              <Link
+                href={`/creator/${creatorAccessToken}/responses/${response.id}`}
+                className="flex-1"
+              >
+                <p className="text-sm font-medium text-foreground">
+                  💌 Someone answered
+                </p>
+                <p className="mt-1 text-xs text-foreground-subtle">
+                  {formatRelativeTime(response.createdAt)}
+                </p>
+                <p className="mt-2 text-xs text-foreground-muted">
+                  {response.responseAnswers.length} question{response.responseAnswers.length !== 1 ? "s" : ""} answered
+                </p>
+              </Link>
+              <div className="flex items-center gap-2 ml-4">
+                <Link
+                  href={`/creator/${creatorAccessToken}/responses/${response.id}`}
+                  className="text-sm text-primary"
+                >
+                  →
+                </Link>
+                <button
+                  type="button"
+                  onClick={() => handleDelete(response.id)}
+                  disabled={deletingId === response.id}
+                  className="text-xs text-foreground-subtle hover:text-red-500 transition-colors disabled:opacity-50"
+                  aria-label="Delete response"
+                >
+                  {deletingId === response.id ? "..." : "✕"}
+                </button>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      ))}
+    </div>
+  );
+}
 
 export function ResponseListPage({
   creatorAccessToken,
@@ -128,39 +212,13 @@ export function ResponseListPage({
 
         {/* Response cards */}
         {responseCount > 0 && (
-          <div className="mt-8 space-y-4">
-            {responses.map((response, index) => (
-              <motion.div
-                key={response.id}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 + index * 0.05 }}
-              >
-              <Link
-                href={`/creator/${creatorAccessToken}/responses/${response.id}`}
-                  className="block rounded-2xl border border-border-light bg-white p-5 shadow-sm transition-all hover:shadow-md hover:border-primary/20"
-                >
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <p className="text-sm font-medium text-foreground">
-                        💌 Someone answered
-                      </p>
-                      <p className="mt-1 text-xs text-foreground-subtle">
-                        {formatRelativeTime(response.createdAt)}
-                      </p>
-                      <p className="mt-2 text-xs text-foreground-muted">
-                        {response.responseAnswers.length} question{response.responseAnswers.length !== 1 ? "s" : ""} answered
-                      </p>
-                    </div>
-                    <span className="text-sm text-primary">→</span>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
+          <ResponseCardList
+            responses={responses}
+            creatorAccessToken={creatorAccessToken}
+          />
         )}
 
-        {/* Back to share */}
+        {/* Back to dashboard */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -168,10 +226,10 @@ export function ResponseListPage({
           className="mt-8 text-center"
         >
           <Link
-            href={`/share/${creatorAccessToken}`}
+            href={`/creator/${creatorAccessToken}`}
             className="text-sm text-foreground-subtle hover:text-foreground transition-colors"
           >
-            ← Back to share
+            ← Back to dashboard
           </Link>
         </motion.div>
       </div>

@@ -177,3 +177,57 @@ export const littleThingFullCreateSchema = z.object({
 });
 
 export type LittleThingFullCreateInput = z.infer<typeof littleThingFullCreateSchema>;
+
+// ---------------------------------------------------------------------------
+// Full Little Thing update (editor save)
+// ---------------------------------------------------------------------------
+
+const answerUpdateInputSchema = z.object({
+  id: z.string().optional(), // existing answer — omit to create new
+  text: z
+    .string()
+    .min(1, "Answer text is required")
+    .max(ANSWER_TEXT_MAX, `Answer must be ${ANSWER_TEXT_MAX} characters or less`),
+});
+
+const questionUpdateInputSchema = z.object({
+  id: z.string().optional(), // existing question — omit to create new
+  text: z
+    .string()
+    .min(1, "Question text is required")
+    .max(QUESTION_TEXT_MAX, `Question must be ${QUESTION_TEXT_MAX} characters or less`),
+  answers: z
+    .array(answerUpdateInputSchema)
+    .min(2, "A question needs at least 2 answers"),
+});
+
+export const littleThingFullUpdateWithAuthSchema = z.object({
+  creatorAccessToken: z.string().min(1, "Creator access token is required"),
+});
+
+export const littleThingFullUpdateSchema = z.object({
+  title: z
+    .string()
+    .min(1, "A title is required")
+    .max(TITLE_MAX, `Title must be ${TITLE_MAX} characters or less`),
+  introMessage: z
+    .string()
+    .max(MESSAGE_MAX, `Intro message must be ${MESSAGE_MAX} characters or less`)
+    .optional()
+    .or(z.literal("")),
+  creatorName: z
+    .string()
+    .max(NAME_MAX, `Creator name must be ${NAME_MAX} characters or less`)
+    .optional()
+    .or(z.literal("")),
+  recipientName: z
+    .string()
+    .max(NAME_MAX, `Recipient name must be ${NAME_MAX} characters or less`)
+    .optional()
+    .or(z.literal("")),
+  questions: z
+    .array(questionUpdateInputSchema)
+    .min(1, "Add at least one question"),
+});
+
+export type LittleThingFullUpdateInput = z.infer<typeof littleThingFullUpdateSchema>;
