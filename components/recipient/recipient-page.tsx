@@ -9,6 +9,7 @@ import {
   LittleThingProgress,
   LittleThingComplete,
 } from "@/components/little-thing";
+import { useTranslation } from "@/lib/i18n";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -40,6 +41,8 @@ interface RecipientPageProps {
 // ---------------------------------------------------------------------------
 
 export function RecipientPage({ littleThing }: RecipientPageProps) {
+  const { t } = useTranslation();
+
   // Interaction state
   const [phase, setPhase] = useState<"intro" | "questions" | "submitting" | "complete" | "error">("intro");
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -157,7 +160,7 @@ export function RecipientPage({ littleThing }: RecipientPageProps) {
           className="mx-auto w-full max-w-sm text-center"
         >
           <p className="font-handwritten text-lg text-primary">
-            Someone made this for you 💌
+            {t("recipientIntroLine")}
           </p>
 
           <LittleThingShell>
@@ -179,7 +182,7 @@ export function RecipientPage({ littleThing }: RecipientPageProps) {
                 onClick={handleStart}
                 className="rounded-full bg-primary px-8 py-3 text-base font-medium text-primary-foreground shadow-md transition-all hover:bg-primary-hover hover:shadow-lg active:scale-[0.98]"
               >
-                Begin 💕
+                {t("recipientBegin")}
               </button>
             </div>
           </LittleThingShell>
@@ -238,7 +241,7 @@ export function RecipientPage({ littleThing }: RecipientPageProps) {
             <div className="min-h-[180px] flex flex-col items-center justify-center">
               <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
               <p className="mt-4 text-sm text-foreground-muted">
-                Saving your answers... 💕
+                {t("recipientSaving")}
               </p>
             </div>
           </LittleThingShell>
@@ -264,7 +267,7 @@ export function RecipientPage({ littleThing }: RecipientPageProps) {
                 disabled={isSubmitting}
                 className="mt-4 rounded-full bg-primary px-6 py-2.5 text-sm font-medium text-primary-foreground transition-all hover:bg-primary-hover disabled:opacity-50"
               >
-                Try again 💕
+                {t("recipientTryAgain")}
               </button>
             </div>
           </LittleThingShell>
@@ -289,11 +292,11 @@ export function RecipientPage({ littleThing }: RecipientPageProps) {
             className="mt-6 text-center"
           >
             <p className="text-sm text-foreground-muted">
-              Thanks for answering. ❤️
+              {t("recipientThanks")}
             </p>
             {littleThing.creatorName && (
               <p className="mt-1 text-xs text-foreground-subtle">
-                {littleThing.creatorName} will love seeing your answers.
+                {t("recipientDoneDesc", { creator: littleThing.creatorName })}
               </p>
             )}
             <p className="mt-6 text-xs text-foreground-subtle">

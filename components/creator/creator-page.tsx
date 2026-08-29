@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { BasicInfoForm } from "./basic-info-form";
 import { QuestionBuilder } from "./question-builder";
 import { CreatorActions } from "./creator-actions";
+import { useTranslation } from "@/lib/i18n";
 import type { QuestionDraft, AnswerDraft } from "./types";
 
 let idCounter = 0;
@@ -31,7 +32,8 @@ function makeDefaultQuestion(): QuestionDraft {
 
 function validate(
   title: string,
-  questions: QuestionDraft[]
+  questions: QuestionDraft[],
+  t: (key: string) => string
 ): {
   formErrors: Record<string, string | undefined>;
   questionErrors: Record<number, Record<string, string | undefined>>;
@@ -39,7 +41,7 @@ function validate(
 } {
   const formErrors: Record<string, string | undefined> = {};
   if (!title.trim()) {
-    formErrors.title = "Give your little thing a name ✨";
+    formErrors.title = t("errorTitleRequired");
   }
 
   const questionErrors: Record<number, Record<string, string | undefined>> = {};
@@ -54,16 +56,16 @@ function validate(
     const qe: Record<string, string | undefined> = {};
 
     if (!q.text.trim()) {
-      qe.text = "What do you want to ask?";
+      qe.text = t("errorQuestionEmpty");
       allValid = false;
     }
 
     const nonEmptyAnswers = q.answers.filter((a) => a.text.trim());
     if (q.answers.length < 2) {
-      qe.answers = "A question needs at least 2 answers. 💕";
+      qe.answers = t("errorQuestionMinAnswers");
       allValid = false;
     } else if (nonEmptyAnswers.length < 2) {
-      qe.answers = "Fill in at least 2 answers";
+      qe.answers = t("errorQuestionFillAnswers");
       allValid = false;
     }
 
@@ -105,6 +107,7 @@ interface CreatorPageProps {
 
 export function CreatorPage({ editMode = null }: CreatorPageProps) {
   const router = useRouter();
+  const { t } = useTranslation();
   const isEditing = !!editMode;
 
   // Form state — initialize from edit data if provided
@@ -266,7 +269,7 @@ export function CreatorPage({ editMode = null }: CreatorPageProps) {
     setQuestionErrors({});
     setSaveSuccess(false);
 
-    const { formErrors: fe, questionErrors: qe, valid } = validate(title, questions);
+    const { formErrors: fe, questionErrors: qe, valid } = validate(title, questions, t);
 
     if (!valid) {
       setFormErrors(fe);
@@ -350,7 +353,7 @@ export function CreatorPage({ editMode = null }: CreatorPageProps) {
       );
       setIsSubmitting(false);
     }
-  }, [isEditing, editMode, title, introMessage, creatorName, recipientName, questions, router]);
+  }, [isEditing, editMode, title, introMessage, creatorName, recipientName, questions, router, t]);
 
   return (
     <div className="mx-auto max-w-2xl px-5 pb-24 pt-24 sm:px-6 sm:pt-28">
@@ -361,17 +364,10 @@ export function CreatorPage({ editMode = null }: CreatorPageProps) {
         className="text-center"
       >
         <h1 className="font-display text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-          {isEditing ? (
-            <>Edit your little thing. 💕</>
-          ) : (
-            <>Let&apos;s make something little. 💕</>
-          )}
+          {isEditing ? t("editTitle") : t("createPageTitle")}
         </h1>
         <p className="mt-2 text-sm text-foreground-muted">
-          {isEditing
-            ? "Make changes below and save when you're ready."
-            : "Fill in the details below and add your questions."
-          }
+          {isEditing ? t("editSubtitle") : t("createPageSubtitle")}
         </p>
       </motion.div>
 
@@ -398,7 +394,7 @@ export function CreatorPage({ editMode = null }: CreatorPageProps) {
           transition={{ delay: 0.05 }}
         >
           <h2 className="font-display text-lg font-semibold text-foreground mb-4">
-            The Basics
+            {t("theBasics")}
           </h2>
           <div className="rounded-2xl border border-border-light bg-white p-5 shadow-sm sm:p-6">
             <BasicInfoForm
@@ -419,7 +415,7 @@ export function CreatorPage({ editMode = null }: CreatorPageProps) {
           transition={{ delay: 0.1 }}
         >
           <h2 className="font-display text-lg font-semibold text-foreground mb-4">
-            Your Questions
+            {t("yourQuestions")}
           </h2>
           <QuestionBuilder
             questions={questions}
@@ -448,7 +444,7 @@ export function CreatorPage({ editMode = null }: CreatorPageProps) {
             onSave={handleSave}
             mode={isEditing ? "edit" : "create"}
             backHref={isEditing && editMode ? `/creator/${editMode.creatorAccessToken}` : undefined}
-            backLabel={isEditing ? "← Back to dashboard" : undefined}
+            backLabel={isEditing ? t("backToDashboard") : undefined}
           />
         </motion.div>
       </div>

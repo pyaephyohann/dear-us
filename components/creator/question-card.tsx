@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import type { QuestionDraft } from "./types";
 import { AnswerList } from "./answer-list";
+import { useTranslation } from "@/lib/i18n";
 
 interface QuestionCardProps {
   question: QuestionDraft;
@@ -35,6 +36,7 @@ export function QuestionCard({
   onAnswerMoveUp,
   onAnswerMoveDown,
 }: QuestionCardProps) {
+  const { t } = useTranslation();
   const canDelete = total > 1;
 
   return (
@@ -94,7 +96,7 @@ export function QuestionCard({
           type="text"
           value={question.text}
           onChange={(e) => onTextChange(question.id, e.target.value)}
-          placeholder="What's your favorite thing about me?"
+          placeholder={t("questionPlaceholder")}
           className="w-full bg-transparent text-base font-medium text-foreground placeholder-foreground-subtle outline-none border-b border-border-light focus:border-primary transition-colors pb-2"
           aria-label={`Question ${index + 1} text`}
         />
@@ -105,7 +107,7 @@ export function QuestionCard({
 
       {/* Answers */}
       <div className="mt-4">
-        <p className="text-xs font-medium text-foreground-subtle mb-2">Answers</p>
+        <p className="text-xs font-medium text-foreground-subtle mb-2">{t("answersLabel")}</p>
         <AnswerList
           answers={question.answers}
           onAdd={() => onAnswerAdd(question.id)}

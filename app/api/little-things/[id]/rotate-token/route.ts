@@ -4,6 +4,7 @@
 
 import { NextResponse } from "next/server";
 import { getLittleThingByCreatorToken, rotateCreatorToken } from "@/lib/data/little-thing";
+import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 
 type RouteParams = {
   params: Promise<{ id: string }>;
@@ -11,6 +12,21 @@ type RouteParams = {
 
 export async function POST(request: Request, { params }: RouteParams) {
   try {
+    // Rate limit: max 3 rotations per IP per 10 minutes
+    const clientIp = getClientIp(request);
+    const rl = checkRateLimit(clientIp, {
+      namespace: "rotate-token",
+      maxRequests: 3,
+      windowMs: 600_000,
+    });
+
+    if (!rl.allowed) {
+      return NextResponse.json(
+        { error: "Too many rotation attempts. Please wait a moment. 💌" },
+        { status: 429 }
+      );
+    }
+
     const { id: token } = await params;
 
     // 1. Verify the current token

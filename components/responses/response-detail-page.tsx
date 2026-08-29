@@ -4,6 +4,8 @@ import { useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { ConfirmModal } from "@/components/ui/confirm-modal";
+import { useTranslation } from "@/lib/i18n";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -37,11 +39,12 @@ export function ResponseDetailPage({
   response,
 }: ResponseDetailPageProps) {
   const router = useRouter();
+  const { t } = useTranslation();
   const [isDeleting, setIsDeleting] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
 
-  const handleDelete = useCallback(async () => {
-    if (!confirm("Are you sure you want to delete this response?")) return;
-
+  const handleDeleteConfirm = useCallback(async () => {
+    setShowConfirm(false);
     setIsDeleting(true);
     try {
       const res = await fetch(
@@ -69,6 +72,17 @@ export function ResponseDetailPage({
     : null;
 
   return (
+    <>
+    <ConfirmModal
+      open={showConfirm}
+      title={t("confirmDeleteTitle")}
+      message={t("confirmDeleteMessage")}
+      confirmLabel={t("confirmDeleteYes")}
+      cancelLabel={t("confirmDeleteKeep")}
+      variant="danger"
+      onConfirm={handleDeleteConfirm}
+      onCancel={() => setShowConfirm(false)}
+    />
     <div className="min-h-screen bg-background px-5 py-12 sm:px-6 sm:py-16">
       <div className="mx-auto max-w-lg">
         {/* Header */}
@@ -78,14 +92,14 @@ export function ResponseDetailPage({
           className="text-center"
         >
           <p className="font-handwritten text-lg text-primary">
-            Someone answered 💕
+            {t("responseDetailAnswered")}
           </p>
           <h1 className="mt-2 font-display text-xl font-bold tracking-tight text-foreground sm:text-2xl">
             {littleThingTitle}
           </h1>
           {completedDate && (
             <p className="mt-2 text-xs text-foreground-subtle">
-              Answered on {completedDate}
+              {t("responseDetailAnsweredOn", { date: completedDate })}
             </p>
           )}
         </motion.div>
@@ -138,11 +152,11 @@ export function ResponseDetailPage({
         >
           <button
             type="button"
-            onClick={handleDelete}
+            onClick={() => setShowConfirm(true)}
             disabled={isDeleting}
             className="text-xs text-foreground-subtle hover:text-red-500 transition-colors disabled:opacity-50"
           >
-            {isDeleting ? "Deleting..." : "Delete this response"}
+            {isDeleting ? t("responseDetailDeleting") : t("responseDetailDelete")}
           </button>
         </motion.div>
 
@@ -157,16 +171,17 @@ export function ResponseDetailPage({
             href={`/creator/${creatorAccessToken}/responses`}
             className="text-sm text-foreground-subtle hover:text-foreground transition-colors"
           >
-            ← All responses
+            {t("responseDetailAllResponses")}
           </Link>
           <Link
             href={`/creator/${creatorAccessToken}`}
             className="text-sm text-foreground-subtle hover:text-foreground transition-colors"
           >
-            Dashboard →
+            {t("responseDetailDashboard")}
           </Link>
         </motion.div>
       </div>
     </div>
+    </>
   );
 }

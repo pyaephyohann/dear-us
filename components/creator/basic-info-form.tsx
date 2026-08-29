@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslation } from "@/lib/i18n";
+
 interface BasicInfoFormProps {
   recipientName: string;
   creatorName: string;
@@ -17,19 +19,21 @@ export function BasicInfoForm({
   errors,
   onChange,
 }: BasicInfoFormProps) {
+  const { t } = useTranslation();
+
   return (
     <section className="space-y-6">
       {/* Recipient name */}
       <div>
         <label className="block text-sm font-medium text-foreground" htmlFor="recipientName">
-          Who is this little thing for? 💕
+          {t("labelRecipient")}
         </label>
         <input
           id="recipientName"
           type="text"
           value={recipientName}
           onChange={(e) => onChange("recipientName", e.target.value)}
-          placeholder="My Love"
+          placeholder={t("placeholderRecipient")}
           className="mt-2 w-full rounded-xl border border-border bg-white px-4 py-3 text-sm text-foreground placeholder-foreground-subtle outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20"
         />
       </div>
@@ -37,14 +41,14 @@ export function BasicInfoForm({
       {/* Creator name */}
       <div>
         <label className="block text-sm font-medium text-foreground" htmlFor="creatorName">
-          And who made it? 🫶
+          {t("labelCreator")}
         </label>
         <input
           id="creatorName"
           type="text"
           value={creatorName}
           onChange={(e) => onChange("creatorName", e.target.value)}
-          placeholder="Your name"
+          placeholder={t("placeholderCreator")}
           className="mt-2 w-full rounded-xl border border-border bg-white px-4 py-3 text-sm text-foreground placeholder-foreground-subtle outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20"
         />
       </div>
@@ -52,14 +56,14 @@ export function BasicInfoForm({
       {/* Title */}
       <div>
         <label className="block text-sm font-medium text-foreground" htmlFor="title">
-          Give your little thing a name ✨
+          {t("labelTitle")}
         </label>
         <input
           id="title"
           type="text"
           value={title}
           onChange={(e) => onChange("title", e.target.value)}
-          placeholder="A Little Something For You 💌"
+          placeholder={t("placeholderTitle")}
           className="mt-2 w-full rounded-xl border border-border bg-white px-4 py-3 text-sm text-foreground placeholder-foreground-subtle outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20"
         />
         {errors.title && (
@@ -70,13 +74,13 @@ export function BasicInfoForm({
       {/* Intro message */}
       <div>
         <label className="block text-sm font-medium text-foreground" htmlFor="introMessage">
-          Add a sweet intro message <span className="text-foreground-subtle">(optional)</span>
+          {t("labelIntro")} <span className="text-foreground-subtle">{t("optional")}</span>
         </label>
         <textarea
           id="introMessage"
           value={introMessage}
           onChange={(e) => onChange("introMessage", e.target.value)}
-          placeholder="I made this just for you. Answer honestly, okay? 🥹"
+          placeholder={t("placeholderIntro")}
           rows={2}
           className="mt-2 w-full resize-none rounded-xl border border-border bg-white px-4 py-3 text-sm text-foreground placeholder-foreground-subtle outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20"
         />

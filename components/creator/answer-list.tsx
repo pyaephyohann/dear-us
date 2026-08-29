@@ -3,6 +3,7 @@
 import { AnimatePresence } from "framer-motion";
 import type { AnswerDraft } from "./types";
 import { AnswerItem } from "./answer-item";
+import { useTranslation } from "@/lib/i18n";
 
 interface AnswerListProps {
   answers: AnswerDraft[];
@@ -21,6 +22,8 @@ export function AnswerList({
   onMoveUp,
   onMoveDown,
 }: AnswerListProps) {
+  const { t } = useTranslation();
+
   return (
     <div className="space-y-1">
       <AnimatePresence mode="popLayout">
@@ -45,7 +48,7 @@ export function AnswerList({
         onClick={onAdd}
         className="mt-2 text-sm text-primary hover:text-primary-hover transition-colors"
       >
-        + Add answer
+        {t("addAnswer")}
       </button>
     </div>
   );

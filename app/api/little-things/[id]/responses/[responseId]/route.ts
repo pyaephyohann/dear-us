@@ -3,7 +3,7 @@
 
 import { NextResponse } from "next/server";
 import { getLittleThingByCreatorToken } from "@/lib/data/little-thing";
-import { deleteResponse } from "@/lib/data/response";
+import { deleteResponse, ResponseError } from "@/lib/data/response";
 
 type RouteParams = {
   params: Promise<{ id: string; responseId: string }>;
@@ -27,7 +27,14 @@ export async function DELETE(_request: Request, { params }: RouteParams) {
     await deleteResponse(responseId, littleThing.id);
 
     return NextResponse.json({ success: true });
-  } catch {
+  } catch (error) {
+    if (error instanceof ResponseError) {
+      return NextResponse.json(
+        { error: error.message },
+        { status: error.statusCode }
+      );
+    }
+
     return NextResponse.json(
       {
         error:

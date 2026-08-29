@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslation } from "@/lib/i18n";
+
 interface CreatorActionsProps {
   isSubmitting: boolean;
   onSave: () => void;
@@ -19,8 +21,9 @@ export function CreatorActions({
   backHref,
   backLabel,
 }: CreatorActionsProps) {
-  const defaultSaveLabel = mode === "edit" ? "Save Changes 💕" : "Save & Continue 💕";
-  const defaultSavingLabel = "Saving... 💕";
+  const { t } = useTranslation();
+  const defaultSaveLabel = mode === "edit" ? t("saveChanges") : t("saveAndContinue");
+  const defaultSavingLabel = t("saving");
 
   return (
     <div className="flex flex-col items-center gap-3 pt-4 sm:flex-row sm:justify-end">

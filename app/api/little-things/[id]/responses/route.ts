@@ -7,6 +7,7 @@ import { responseSubmitSchema } from "@/lib/validations";
 import { getLittleThingByPublicId } from "@/lib/data/little-thing";
 import { createResponse, ResponseError } from "@/lib/data/response";
 import { withTimeout } from "@/lib/prisma";
+import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 
 type RouteParams = {
   params: Promise<{ id: string }>;
@@ -15,6 +16,21 @@ type RouteParams = {
 export async function POST(request: Request, { params }: RouteParams) {
   try {
     const { id: publicId } = await params;
+
+    // 0. Rate limit: max 10 submissions per IP per minute
+    const clientIp = getClientIp(request);
+    const rl = checkRateLimit(clientIp, {
+      namespace: "response-submit",
+      maxRequests: 10,
+      windowMs: 60_000,
+    });
+
+    if (!rl.allowed) {
+      return NextResponse.json(
+        { error: "Too many submissions. Please wait a moment and try again. 💌" },
+        { status: 429 }
+      );
+    }
 
     // 1. Find the Little Thing by publicId (with timeout to prevent infinite hangs)
     const littleThing = await withTimeout(

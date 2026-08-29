@@ -4,6 +4,7 @@ import { useState, useCallback } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { QRCodeSVG } from "qrcode.react";
+import { useTranslation } from "@/lib/i18n";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -22,6 +23,7 @@ interface SharePageProps {
 // ---------------------------------------------------------------------------
 
 export function SharePage({ creatorAccessToken, publicId, title, recipientName }: SharePageProps) {
+  const { t } = useTranslation();
   const [copied, setCopied] = useState(false);
   const [privateCopied, setPrivateCopied] = useState(false);
 
@@ -91,10 +93,6 @@ export function SharePage({ creatorAccessToken, publicId, title, recipientName }
     }
   }, [privateUrl]);
 
-  const greeting = recipientName
-    ? `Your little thing for ${recipientName}`
-    : "Your little thing";
-
   return (
     <div className="flex min-h-screen flex-col items-center justify-center px-5 py-12 sm:px-6 sm:py-16">
       <motion.div
@@ -105,12 +103,16 @@ export function SharePage({ creatorAccessToken, publicId, title, recipientName }
       >
         {/* Heading */}
         <p className="font-handwritten text-lg text-primary">
-          It&apos;s ready. 💕
+          {t("shareReady")}
         </p>
         <h1 className="mt-3 font-display text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-          {greeting}
-          <br />
-          is waiting.
+          {t("shareReady")}
+          {recipientName && (
+            <>
+              <br />
+              {t("responseListFor", { name: recipientName })}
+            </>
+          )}
         </h1>
 
         {/* QR Code */}
@@ -133,7 +135,7 @@ export function SharePage({ creatorAccessToken, publicId, title, recipientName }
         )}
 
         <p className="mt-4 text-xs text-foreground-subtle">
-          Scan to open your little thing
+          {t("shareQrTitle")}
         </p>
 
         {/* Divider */}
@@ -153,7 +155,7 @@ export function SharePage({ creatorAccessToken, publicId, title, recipientName }
             disabled={!shareUrl}
             className="w-full rounded-full border border-border bg-white px-6 py-3 text-sm font-medium text-foreground transition-all hover:bg-background-secondary hover:shadow-sm active:scale-[0.98] disabled:opacity-50"
           >
-            {copied ? "Copied! 💕" : "Copy Link 💌"}
+            {copied ? t("shareCopied") : t("shareCopyLink")}
           </button>
 
           {/* Open Little Thing */}
@@ -161,7 +163,7 @@ export function SharePage({ creatorAccessToken, publicId, title, recipientName }
             href={`/little/${publicId}`}
             className="block w-full rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground shadow-md transition-all hover:bg-primary-hover hover:shadow-lg active:scale-[0.98]"
           >
-            Open Little Thing 💌
+            {t("shareOpen")}
           </Link>
         </div>
 
@@ -171,19 +173,19 @@ export function SharePage({ creatorAccessToken, publicId, title, recipientName }
             href={`/creator/${creatorAccessToken}`}
             className="text-sm text-foreground-subtle hover:text-foreground transition-colors"
           >
-            Manage 💕
+            {t("shareManage")}
           </Link>
           <Link
             href={`/creator/${creatorAccessToken}/responses`}
             className="text-sm text-foreground-subtle hover:text-foreground transition-colors"
           >
-            Responses 💌
+            {t("shareResponses")}
           </Link>
           <Link
             href={`/creator/${creatorAccessToken}/analytics`}
             className="text-sm text-foreground-subtle hover:text-foreground transition-colors"
           >
-            Analytics 📊
+            {t("shareAnalytics")}
           </Link>
         </div>
 
@@ -193,10 +195,10 @@ export function SharePage({ creatorAccessToken, publicId, title, recipientName }
         {/* Private link */}
         <div className="rounded-xl border border-border-light bg-background-secondary p-4">
           <p className="text-xs font-medium text-foreground-muted">
-            Your private link 💌
+            {t("dashboardPrivateLink")}
           </p>
           <p className="mt-1 text-xs text-foreground-subtle">
-            Keep this link somewhere safe — it&apos;s how you&apos;ll come back to see responses.
+            {t("dashboardPrivateLinkDesc")}
           </p>
           <button
             type="button"
@@ -204,10 +206,10 @@ export function SharePage({ creatorAccessToken, publicId, title, recipientName }
             disabled={!privateUrl}
             className="mt-3 w-full rounded-lg border border-border bg-white px-4 py-2 text-xs font-medium text-foreground transition-all hover:bg-background-secondary active:scale-[0.98] disabled:opacity-50"
           >
-            {privateCopied ? "Copied! 💕" : "Copy Private Link 💌"}
+            {privateCopied ? t("shareCopied") : t("dashboardCopyLink")}
           </button>
           <p className="mt-2 text-[10px] text-foreground-subtle">
-            Anyone with this private link can view your responses.
+            {t("dashboardLinkWarning")}
           </p>
         </div>
 

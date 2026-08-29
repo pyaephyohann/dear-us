@@ -1,0 +1,104 @@
+▲ Next.js 16.3.3 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.21.116:3000
+- Environments: .env.local, .env
+✓ Ready in 208ms
+✓ Running next.config.ts took 59ms
+
+ GET / 200 in 236ms (next.js: 117ms, application-code: 120ms)
+ GET / 200 in 27ms (next.js: 3ms, application-code: 25ms)
+ GET / 200 in 16ms (next.js: 1.4ms, application-code: 15ms)
+ GET / 200 in 44ms (next.js: 5ms, application-code: 39ms)
+ GET /create 200 in 77ms (next.js: 23ms, application-code: 54ms)
+[browser] Uncaught Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+      <LoadingBoundary name="create/" loading={null}>
+        <HTTPAccessFallbackBoundary notFound={undefined} forbidden={undefined} unauthorized={undefined}>
+          <RedirectBoundary>
+            <RedirectErrorBoundary router={{...}}>
+              <InnerLayoutRouter url="/create" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} segmentPath={[...]} ...>
+                <SegmentViewNode type="page" pagePath="create/pag...">
+                  <SegmentTrieNode>
+                  <CreatePage>
+                    <CreatorPage>
+                      <div className="mx-auto ma...">
+                        <motion.div initial={{opacity:0,y:12}} animate={{opacity:1,y:0}} className="text-center">
+                          <div className="text-center" style={{opacity:0, ...}} ref={function useMotionRef.useCallback}>
+                            <h1 className="font-display text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
++                             အရွယ်ငယ်တဲ့ လက်ဆောင်လေး လုပ်ကြည့်မယ်။ 💕
+-                             {"Let's make something little. 💕"}
+                            ...
+                        ...
+                ...
+              ...
+    ...
+
+    at <unknown> (https://react.dev/link/hydration-mismatch)
+    at h1 (<anonymous>)
+    at CreatorPage (components/creator/creator-page.tsx:366:9)
+    at CreatePage (app/create/page.tsx:4:10)
+  364 |         className="text-center"
+  365 |       >
+> 366 |         <h1 className="font-display text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+      |         ^
+  367 |           {isEditing ? t("editTitle") : t("createPageTitle")}
+  368 |         </h1>
+  369 |         <p className="mt-2 text-sm text-foreground-muted">
+ GET /little/a1b2c3d4 200 in 490ms (next.js: 267ms, application-code: 223ms)
+ GET /little/4587d60e-0d9d-4e11-84f8-4a56016cfb54 200 in 88ms (next.js: 8ms, application-code: 80ms)
+[browser] Uncaught Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <LoadingBoundary name="4587d60e-0..." loading={[...]}>
+      <Suspense name="4587d60e-0..." fallback={<Fragment>}>
+        <HTTPAccessFallbackBoundary notFound={undefined} forbidden={undefined} unauthorized={undefined}>
+          <RedirectBoundary>
+            <RedirectErrorBoundary router={{...}}>
+              <InnerLayoutRouter url="/little/45..." tree={[...]} params={{publicId:"..."}} cacheNode={{rsc:{...}, ...}} ...>
+                <SegmentViewNode type="page" pagePath="little/[pu...">
+                  <SegmentTrieNode>
+                  <LittlePage>
+                    <RecipientPage littleThing={{publicId:"...", ...}}>
+                      <div className="flex min-h...">
+                        <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{duration:0.4}} ...>
+                          <div className="mx-auto w-..." style={{opacity:0, ...}} ref={function useMotionRef.useCallback}>
+                            <p className="font-handwritten text-lg text-primary">
++                             တစ်ယောက်ယောက်က မင်းအတွက် ဒီလေးကို ဖန်တီးထားတယ် 💕
+-                             Someone made this for you 💕
+                            ...
+                ...
+              ...
+
+    at <unknown> (https://react.dev/link/hydration-mismatch)
+    at p (<anonymous>)
+    at RecipientPage (components/recipient/recipient-page.tsx:162:11)
+    at LittlePage (app/little/[publicId]/page.tsx:89:10)
+  160 |           className="mx-auto w-full max-w-sm text-center"
+  161 |         >
+> 162 |           <p className="font-handwritten text-lg text-primary">
+      |           ^
+  163 |             {t("recipientIntroLine")}
+  164 |           </p>
+  165 |

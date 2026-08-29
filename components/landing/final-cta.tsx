@@ -2,8 +2,11 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useTranslation } from "@/lib/i18n";
 
 export function FinalCta() {
+  const { t } = useTranslation();
+
   return (
     <section className="relative overflow-hidden px-5 py-24 sm:px-6 sm:py-32">
       {/* Decorative soft background */}
@@ -29,7 +32,7 @@ export function FinalCta() {
           transition={{ delay: 0.08 }}
           className="mt-4 font-display text-2xl font-bold leading-tight tracking-tight text-foreground sm:text-3xl md:text-4xl"
         >
-          Ready to make something little?
+          {t("finalCtaTitle")}
         </motion.h2>
 
         <motion.p
@@ -39,7 +42,7 @@ export function FinalCta() {
           transition={{ delay: 0.16 }}
           className="mt-4 text-base text-foreground-muted sm:text-lg"
         >
-          Sometimes the smallest things mean the most. 💌
+          {t("finalCtaSubtitle")}
         </motion.p>
 
         <motion.div
@@ -53,7 +56,7 @@ export function FinalCta() {
             href="/create"
             className="inline-flex items-center gap-2 rounded-full bg-primary px-8 py-4 text-base font-semibold text-primary-foreground shadow-md transition-all hover:bg-primary-hover hover:shadow-lg active:scale-[0.98]"
           >
-            Create Your Little Thing 💕
+            {t("createCta")}
           </Link>
         </motion.div>
       </div>

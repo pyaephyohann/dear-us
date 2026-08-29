@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { LittleThingPreview } from "./little-thing-preview";
+import { useTranslation } from "@/lib/i18n";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 16 },
@@ -14,6 +15,8 @@ const fadeUp = {
 };
 
 export function Hero() {
+  const { t } = useTranslation();
+
   return (
     <section className="relative overflow-hidden px-5 pt-28 pb-16 sm:px-6 sm:pt-36 sm:pb-24">
       {/* Decorative soft blobs */}
@@ -32,7 +35,7 @@ export function Hero() {
             variants={fadeUp}
             className="font-handwritten text-xl text-primary sm:text-2xl"
           >
-            for you, for us 💕
+            {t("tagline")}
           </motion.p>
 
           <motion.h1
@@ -42,9 +45,7 @@ export function Hero() {
             variants={fadeUp}
             className="mt-4 font-display text-3xl font-bold leading-tight tracking-tight text-foreground sm:text-4xl md:text-5xl"
           >
-            A tiny little thing
-            <br />
-            for someone you love.
+            {t("heroTitle")}
           </motion.h1>
 
           <motion.p
@@ -54,8 +55,7 @@ export function Hero() {
             variants={fadeUp}
             className="mt-5 max-w-md text-base leading-relaxed text-foreground-muted sm:text-lg lg:mx-0 mx-auto"
           >
-            Create a sweet little experience, fill it with questions only they
-            can answer, and send it their way. 💌
+            {t("heroDescription")}
           </motion.p>
 
           {/* CTAs */}
@@ -70,14 +70,14 @@ export function Hero() {
               href="/create"
               className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground shadow-md transition-all hover:bg-primary-hover hover:shadow-lg active:scale-[0.98]"
             >
-              Create Your Little Thing 💕
+              {t("createCta")}
             </Link>
 
             <Link
               href="#example"
               className="text-sm text-foreground-subtle transition-colors hover:text-primary"
             >
-              Already have one? Open it
+              {t("openLink")}
             </Link>
           </motion.div>
         </div>

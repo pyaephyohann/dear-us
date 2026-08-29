@@ -3,6 +3,7 @@
 import { useState, useCallback } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useTranslation } from "@/lib/i18n";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -36,12 +37,6 @@ function formatDate(dateString: string): string {
   });
 }
 
-function getResponseCountText(count: number): string {
-  if (count === 0) return "Waiting for the first answer 💌";
-  if (count === 1) return "1 person answered 💌";
-  return `${count} people answered 💌`;
-}
-
 function getStatusLabel(status: string): string {
   switch (status) {
     case "DRAFT":
@@ -73,6 +68,7 @@ export function DashboardPage({
   createdAt,
   updatedAt,
 }: DashboardPageProps) {
+  const { t } = useTranslation();
   const [privateCopied, setPrivateCopied] = useState(false);
 
   const privateUrl =
@@ -93,7 +89,7 @@ export function DashboardPage({
   }, [privateUrl]);
 
   const greeting = recipientName
-    ? `For ${recipientName}`
+    ? t("responseListFor", { name: recipientName })
     : null;
 
   return (
@@ -106,7 +102,7 @@ export function DashboardPage({
           className="text-center"
         >
           <p className="font-handwritten text-lg text-primary">
-            Your little thing 💕
+            {t("dashboardYourThing")}
           </p>
           <h1 className="mt-2 font-display text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
             {title}
@@ -126,7 +122,7 @@ export function DashboardPage({
           <div className="space-y-3">
             {/* Status */}
             <div className="flex items-center justify-between">
-              <span className="text-sm text-foreground-muted">Status</span>
+              <span className="text-sm text-foreground-muted">{t("dashboardPublished")}</span>
               <span className="text-sm font-medium text-foreground">
                 {getStatusLabel(status)}
               </span>
@@ -134,16 +130,16 @@ export function DashboardPage({
 
             {/* Response count */}
             <div className="flex items-center justify-between">
-              <span className="text-sm text-foreground-muted">Responses</span>
+              <span className="text-sm text-foreground-muted">{t("shareResponses")}</span>
               <span className="text-sm font-medium text-foreground">
-                {getResponseCountText(responseCount)}
+                {t(responseCount === 0 ? "dashboardNoAnswers" : responseCount === 1 ? "dashboardOneAnswered" : "dashboardPeopleAnswered", { count: responseCount })}
               </span>
             </div>
 
             {/* Creator */}
             {creatorName && (
               <div className="flex items-center justify-between">
-                <span className="text-sm text-foreground-muted">Created by</span>
+                <span className="text-sm text-foreground-muted">{t("labelCreator")}</span>
                 <span className="text-sm font-medium text-foreground">
                   {creatorName}
                 </span>
@@ -151,16 +147,14 @@ export function DashboardPage({
             )}
 
             {/* Created date */}
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-foreground-muted">Created</span>
+            <div className="flex items-center justify-between">                <span className="text-sm text-foreground-muted">{t("dashboardPublished")}</span>
               <span className="text-sm text-foreground-subtle">
                 {formatDate(createdAt)}
               </span>
             </div>
 
             {/* Last updated */}
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-foreground-muted">Last updated</span>
+            <div className="flex items-center justify-between">                <span className="text-sm text-foreground-muted">{t("dashboardPublished")}</span>
               <span className="text-sm text-foreground-subtle">
                 {formatDate(updatedAt)}
               </span>
@@ -181,13 +175,13 @@ export function DashboardPage({
                 href={`/creator/${creatorAccessToken}/analytics`}
                 className="text-sm font-medium text-foreground hover:text-primary transition-colors"
               >
-                📊 Quick Stats
+                {t("dashboardQuickStats")}
               </Link>
               <Link
                 href={`/creator/${creatorAccessToken}/analytics`}
                 className="text-xs text-primary hover:text-primary-hover transition-colors"
               >
-                View all →
+                {t("dashboardViewAnalytics")} →
               </Link>
             </div>
             <div className="mt-3 grid grid-cols-2 gap-3">
@@ -219,7 +213,7 @@ export function DashboardPage({
             href={`/creator/${creatorAccessToken}/responses`}
             className="block w-full rounded-full bg-primary px-6 py-3.5 text-center text-sm font-medium text-primary-foreground shadow-md transition-all hover:bg-primary-hover hover:shadow-lg active:scale-[0.98]"
           >
-            See Responses 💌
+            {t("dashboardSeeResponses")}
           </Link>
 
           {/* Share */}
@@ -227,7 +221,7 @@ export function DashboardPage({
             href={`/share/${creatorAccessToken}`}
             className="block w-full rounded-full border border-border bg-white px-6 py-3.5 text-center text-sm font-medium text-foreground transition-all hover:bg-background-secondary hover:shadow-sm active:scale-[0.98]"
           >
-            Share Again 💕
+            {t("responseShareAgain")}
           </Link>
 
           {/* Preview */}
@@ -235,7 +229,7 @@ export function DashboardPage({
             href={`/preview/${littleThingId}`}
             className="block w-full rounded-full border border-border bg-white px-6 py-3.5 text-center text-sm font-medium text-foreground transition-all hover:bg-background-secondary hover:shadow-sm active:scale-[0.98]"
           >
-            Preview
+            {t("dashboardPreview")}
           </Link>
 
           {/* Analytics */}
@@ -243,7 +237,7 @@ export function DashboardPage({
             href={`/creator/${creatorAccessToken}/analytics`}
             className="block w-full rounded-full border border-border bg-white px-6 py-3.5 text-center text-sm font-medium text-foreground transition-all hover:bg-background-secondary hover:shadow-sm active:scale-[0.98]"
           >
-            View Analytics 📊
+            {t("dashboardViewAnalytics")}
           </Link>
 
           {/* Edit */}
@@ -251,7 +245,7 @@ export function DashboardPage({
             href={`/creator/${creatorAccessToken}/edit`}
             className="block w-full rounded-full border border-border bg-white px-6 py-3.5 text-center text-sm font-medium text-foreground transition-all hover:bg-background-secondary hover:shadow-sm active:scale-[0.98]"
           >
-            Edit Little Thing
+            {t("dashboardEdit")}
           </Link>
         </motion.div>
 
@@ -263,10 +257,10 @@ export function DashboardPage({
           className="mt-8 rounded-xl border border-border-light bg-background-secondary p-4"
         >
           <p className="text-xs font-medium text-foreground-muted">
-            Your private link 🔐
+            {t("dashboardPrivateLink")}
           </p>
           <p className="mt-1 text-xs text-foreground-subtle">
-            Keep this link safe — it&apos;s how you manage your little thing.
+            {t("dashboardPrivateLinkDesc")}
           </p>
           <button
             type="button"
@@ -274,7 +268,7 @@ export function DashboardPage({
             disabled={!privateUrl}
             className="mt-3 w-full rounded-lg border border-border bg-white px-4 py-2 text-xs font-medium text-foreground transition-all hover:bg-background-secondary active:scale-[0.98] disabled:opacity-50"
           >
-            {privateCopied ? "Copied! 💕" : "Copy Private Link 🔐"}
+            {privateCopied ? t("dashboardCopiedLink") : t("dashboardCopyLink")}
           </button>
         </motion.div>
 
@@ -289,7 +283,7 @@ export function DashboardPage({
             href={`/little/${publicId}`}
             className="text-sm text-foreground-subtle hover:text-foreground transition-colors"
           >
-            Open public page →
+            {t("shareOpen")} →
           </Link>
         </motion.div>
       </div>

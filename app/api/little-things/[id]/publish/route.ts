@@ -1,18 +1,43 @@
 // POST /api/little-things/[id]/publish — Publish a Little Thing.
+// Requires creatorAccessToken in the request body for authorization.
 // Validates completeness before transitioning DRAFT → PUBLISHED.
 
 import { NextResponse } from "next/server";
-import { getLittleThingById, updateLittleThingStatus } from "@/lib/data/little-thing";
+import { getLittleThingById, getLittleThingByCreatorToken, updateLittleThingStatus } from "@/lib/data/little-thing";
 
 type RouteParams = {
   params: Promise<{ id: string }>;
 };
 
-export async function POST(_request: Request, { params }: RouteParams) {
+export async function POST(request: Request, { params }: RouteParams) {
   try {
-    const { id } = await params;
+    const { id: littleThingId } = await params;
 
-    const littleThing = await getLittleThingById(id);
+    // 1. Verify creatorAccessToken is provided
+    let body: Record<string, unknown> = {};
+    try {
+      body = await request.json();
+    } catch {
+      // GET without body — still check token below
+    }
+
+    if (!body.creatorAccessToken || typeof body.creatorAccessToken !== "string") {
+      return NextResponse.json(
+        { error: "Creator access token is required. 💌" },
+        { status: 401 }
+      );
+    }
+
+    // 2. Verify the token maps to this LittleThing
+    const tokenLittleThing = await getLittleThingByCreatorToken(body.creatorAccessToken);
+    if (!tokenLittleThing || tokenLittleThing.id !== littleThingId) {
+      return NextResponse.json(
+        { error: "That private link isn't valid anymore. 💌" },
+        { status: 403 }
+      );
+    }
+
+    const littleThing = await getLittleThingById(littleThingId);
 
     if (!littleThing) {
       return NextResponse.json(
@@ -91,7 +116,7 @@ export async function POST(_request: Request, { params }: RouteParams) {
     }
 
     // Publish
-    await updateLittleThingStatus(id, "PUBLISHED");
+    await updateLittleThingStatus(littleThingId, "PUBLISHED");
 
     return NextResponse.json({
       publicId: littleThing.publicId,

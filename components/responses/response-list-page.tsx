@@ -3,6 +3,8 @@
 import { useState, useCallback } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { ConfirmModal } from "@/components/ui/confirm-modal";
+import { useTranslation } from "@/lib/i18n";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -51,12 +53,6 @@ function formatRelativeTime(dateString: string): string {
   });
 }
 
-function getResponseCountText(count: number): string {
-  if (count === 0) return "Waiting for the first answer 💌";
-  if (count === 1) return "1 person answered 💌";
-  return `${count} people answered 💌`;
-}
-
 // ---------------------------------------------------------------------------
 // Component
 // ---------------------------------------------------------------------------
@@ -69,12 +65,13 @@ function ResponseCardList({
   creatorAccessToken: string;
 }) {
   const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
 
-  const handleDelete = useCallback(
-    async (responseId: string) => {
-      if (!confirm("Are you sure you want to delete this response?")) return;
-
-      setDeletingId(responseId);
+  const handleDeleteConfirm = useCallback(async () => {
+    if (!confirmDeleteId) return;
+    const responseId = confirmDeleteId;
+    setConfirmDeleteId(null);
+    setDeletingId(responseId);
       try {
         const res = await fetch(
           `/api/little-things/${creatorAccessToken}/responses/${responseId}`,
@@ -91,10 +88,23 @@ function ResponseCardList({
         setDeletingId(null);
       }
     },
-    [creatorAccessToken]
+    [confirmDeleteId, creatorAccessToken]
   );
 
+  const { t } = useTranslation();
+
   return (
+    <>
+    <ConfirmModal
+      open={confirmDeleteId !== null}
+      title={t("confirmDeleteTitle")}
+      message={t("confirmDeleteMessage")}
+      confirmLabel={t("confirmDeleteYes")}
+      cancelLabel={t("confirmDeleteKeep")}
+      variant="danger"
+      onConfirm={handleDeleteConfirm}
+      onCancel={() => setConfirmDeleteId(null)}
+    />
     <div className="mt-8 space-y-4">
       {responses.map((response, index) => (
         <motion.div
@@ -110,13 +120,13 @@ function ResponseCardList({
                 className="flex-1"
               >
                 <p className="text-sm font-medium text-foreground">
-                  💌 Someone answered
+                  {t("responseSomeoneAnswered")}
                 </p>
                 <p className="mt-1 text-xs text-foreground-subtle">
                   {formatRelativeTime(response.createdAt)}
                 </p>
                 <p className="mt-2 text-xs text-foreground-muted">
-                  {response.responseAnswers.length} question{response.responseAnswers.length !== 1 ? "s" : ""} answered
+                  {response.responseAnswers.length === 1 ? t("responseQuestionCount", { count: response.responseAnswers.length }) : t("responseQuestionCountPlural", { count: response.responseAnswers.length })}
                 </p>
               </Link>
               <div className="flex items-center gap-2 ml-4">
@@ -128,7 +138,7 @@ function ResponseCardList({
                 </Link>
                 <button
                   type="button"
-                  onClick={() => handleDelete(response.id)}
+                  onClick={() => setConfirmDeleteId(response.id)}
                   disabled={deletingId === response.id}
                   className="text-xs text-foreground-subtle hover:text-red-500 transition-colors disabled:opacity-50"
                   aria-label="Delete response"
@@ -141,6 +151,7 @@ function ResponseCardList({
         </motion.div>
       ))}
     </div>
+    </>
   );
 }
 
@@ -150,6 +161,7 @@ export function ResponseListPage({
   recipientName,
   responses,
 }: ResponseListPageProps) {
+  const { t } = useTranslation();
   const responseCount = responses.length;
 
   return (
@@ -162,18 +174,18 @@ export function ResponseListPage({
           className="text-center"
         >
           <p className="font-handwritten text-lg text-primary">
-            Your little thing 💕
+            {t("responseListTitle")}
           </p>
           <h1 className="mt-2 font-display text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
             {title}
           </h1>
           {recipientName && (
             <p className="mt-1 text-sm text-foreground-muted">
-              For {recipientName}
+              {t("responseListFor", { name: recipientName })}
             </p>
           )}
           <p className="mt-3 text-sm text-foreground-subtle">
-            {getResponseCountText(responseCount)}
+            {responseCount === 0 ? t("responseCountZero") : responseCount === 1 ? t("responseCountOne") : t("responseCountMany", { count: responseCount })}
           </p>
         </motion.div>
 
@@ -188,23 +200,19 @@ export function ResponseListPage({
             <div className="rounded-2xl border border-border-light bg-white p-8 shadow-sm">
               <p className="text-3xl">💌</p>
               <h2 className="mt-4 font-display text-lg font-bold text-foreground">
-                Not yet...
+                {t("responseEmptyTitle")}
               </h2>
               <p className="mt-2 text-sm text-foreground-muted">
-                Your little thing is waiting
-                <br />
-                for someone to answer.
+                {t("responseEmptyDesc")}
               </p>
               <p className="mt-1 text-xs text-foreground-subtle">
-                Share it with them and come
-                <br />
-                back later. 🥹
+                {t("responseEmptyHint")}
               </p>
               <Link
                 href={`/share/${creatorAccessToken}`}
                 className="mt-6 inline-block rounded-full bg-primary px-6 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary-hover"
               >
-                Share Again 💕
+                {t("responseShareAgain")}
               </Link>
             </div>
           </motion.div>
@@ -229,7 +237,7 @@ export function ResponseListPage({
             href={`/creator/${creatorAccessToken}`}
             className="text-sm text-foreground-subtle hover:text-foreground transition-colors"
           >
-            ← Back to dashboard
+            {t("backToDashboardLink")}
           </Link>
         </motion.div>
       </div>

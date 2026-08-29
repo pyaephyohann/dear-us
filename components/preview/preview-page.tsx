@@ -12,6 +12,7 @@ import {
 } from "@/components/little-thing";
 import { PreviewHeader } from "./preview-header";
 import { PreviewActions } from "./preview-actions";
+import { useTranslation } from "@/lib/i18n";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -64,6 +65,7 @@ function canPublishLittleThing(lt: PreviewLittleThing): boolean {
 
 export function PreviewPage({ littleThing }: PreviewPageProps) {
   const router = useRouter();
+  const { t } = useTranslation();
 
   // Local interaction state — no database writes
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -119,6 +121,8 @@ export function PreviewPage({ littleThing }: PreviewPageProps) {
     try {
       const res = await fetch(`/api/little-things/${littleThing.id}/publish`, {
         method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ creatorAccessToken: littleThing.creatorAccessToken }),
       });
 
       const data = await res.json();
@@ -126,7 +130,7 @@ export function PreviewPage({ littleThing }: PreviewPageProps) {
       if (!res.ok) {
         setPublishError(
           data.error ??
-            "We couldn't publish your little thing just yet. 💕"
+            t("saveError")
         );
         setIsPublishing(false);
         return;
@@ -136,11 +140,11 @@ export function PreviewPage({ littleThing }: PreviewPageProps) {
       router.push(`/share/${data.creatorAccessToken}`);
     } catch {
       setPublishError(
-        "Something went wrong while publishing. Please try again. 💕"
+        t("saveError")
       );
       setIsPublishing(false);
     }
-  }, [littleThing.id, router]);
+  }, [littleThing.id, littleThing.creatorAccessToken, router, t]);
 
   return (
     <div className="flex min-h-screen flex-col items-center px-5 py-12 sm:px-6 sm:py-16">
@@ -215,7 +219,7 @@ export function PreviewPage({ littleThing }: PreviewPageProps) {
               onClick={handleRestart}
               className="text-xs text-foreground-subtle hover:text-foreground transition-colors"
             >
-              Preview again ↺
+              {t("previewBackToEditing")} ↺
             </button>
           </div>
         </div>

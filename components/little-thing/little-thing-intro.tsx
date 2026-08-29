@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslation } from "@/lib/i18n";
 
 interface LittleThingIntroProps {
   title: string;
@@ -17,6 +18,8 @@ export function LittleThingIntro({
   introMessage,
   recipientName,
 }: LittleThingIntroProps) {
+  const { t } = useTranslation();
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -26,7 +29,7 @@ export function LittleThingIntro({
     >
       {recipientName && (
         <p className="font-handwritten text-lg text-primary">
-          For {recipientName}
+          {t("recipientForYou")} {recipientName}
         </p>
       )}
       <p className="mt-1 text-center font-handwritten text-2xl text-foreground">

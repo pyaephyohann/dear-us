@@ -5,9 +5,25 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { littleThingFullCreateSchema } from "@/lib/validations";
 import { randomBytes } from "crypto";
+import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 
 export async function POST(request: Request) {
   try {
+    // Rate limit: max 5 creates per IP per 10 minutes
+    const clientIp = getClientIp(request);
+    const rl = checkRateLimit(clientIp, {
+      namespace: "create",
+      maxRequests: 5,
+      windowMs: 600_000,
+    });
+
+    if (!rl.allowed) {
+      return NextResponse.json(
+        { error: "Too many little things created. Please wait a moment. 💕" },
+        { status: 429 }
+      );
+    }
+
     const body = await request.json();
 
     // 1. Validate with Zod

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslation } from "@/lib/i18n";
 
 interface AnswerItemProps {
   answerId: string;
@@ -23,6 +24,7 @@ export function AnswerItem({
   onMoveUp,
   onMoveDown,
 }: AnswerItemProps) {
+  const { t } = useTranslation();
   const canDelete = total > 2;
 
   return (
@@ -42,7 +44,7 @@ export function AnswerItem({
         type="text"
         value={text}
         onChange={(e) => onChange(answerId, e.target.value)}
-        placeholder={`Answer ${index + 1}`}
+        placeholder={`${t("answerPlaceholder")} ${index + 1}`}
         className="flex-1 bg-transparent px-1 py-1.5 text-sm text-foreground placeholder-foreground-subtle outline-none border-b border-transparent focus:border-border-light transition-colors"
         aria-label={`Answer ${index + 1}`}
       />
@@ -73,7 +75,7 @@ export function AnswerItem({
         onClick={() => onDelete(answerId)}
         disabled={!canDelete}
         aria-label="Delete answer"
-        title={!canDelete ? "A question needs at least 2 answers 💕" : undefined}
+        title={!canDelete ? t("deleteTooltipMinAnswers") : undefined}
         className="rounded-lg p-2 text-xs text-foreground-subtle hover:bg-primary-light hover:text-primary disabled:opacity-20 disabled:cursor-not-allowed transition-colors min-w-[36px] min-h-[36px] flex items-center justify-center"
       >
         ✕

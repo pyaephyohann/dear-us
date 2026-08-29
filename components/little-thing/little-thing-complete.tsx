@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslation } from "@/lib/i18n";
 
 interface LittleThingCompleteProps {
   creatorName?: string | null;
@@ -12,6 +13,8 @@ interface LittleThingCompleteProps {
  * In recipient mode, this will show a different message.
  */
 export function LittleThingComplete({ creatorName }: LittleThingCompleteProps) {
+  const { t } = useTranslation();
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
@@ -21,12 +24,12 @@ export function LittleThingComplete({ creatorName }: LittleThingCompleteProps) {
     >
       <p className="text-3xl">💕</p>
       <p className="mt-4 font-display text-xl font-bold text-foreground">
-        That&apos;s it!
+        {t("recipientDone")}
       </p>
       <p className="mt-2 text-sm text-foreground-muted">
         {creatorName
-          ? `You've seen everything ${creatorName} prepared for you.`
-          : "You've seen all the questions."}
+          ? t("recipientDoneDesc", { creator: creatorName })
+          : t("recipientDoneDesc", { creator: "" })}
       </p>
     </motion.div>
   );

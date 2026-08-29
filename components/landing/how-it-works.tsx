@@ -1,30 +1,31 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslation } from "@/lib/i18n";
 
 const steps = [
   {
     number: "01",
-    title: "Make it",
-    description: "Create your Little Thing in seconds.",
+    titleKey: "howStep1Title",
+    descKey: "howStep1Desc",
     emoji: "✨",
   },
   {
     number: "02",
-    title: "Fill it",
-    description: "Add questions and cute answers they'll love.",
+    titleKey: "howStep2Title",
+    descKey: "howStep2Desc",
     emoji: "💌",
   },
   {
     number: "03",
-    title: "Send it",
-    description: "Share your private link or QR code.",
+    titleKey: "howStep3Title",
+    descKey: "howStep3Desc",
     emoji: "🔗",
   },
   {
     number: "04",
-    title: "See their answers",
-    description: "Find out what they really think. 💕",
+    titleKey: "howStep4Title",
+    descKey: "howStep4Desc",
     emoji: "🥰",
   },
 ];
@@ -39,6 +40,8 @@ const cardVariants = {
 };
 
 export function HowItWorks() {
+  const { t } = useTranslation();
+
   return (
     <section className="px-5 py-20 sm:px-6 sm:py-28">
       <div className="mx-auto max-w-4xl text-center">
@@ -48,7 +51,7 @@ export function HowItWorks() {
           viewport={{ once: true, margin: "-60px" }}
           className="font-handwritten text-lg text-primary"
         >
-          it&apos;s easy 💕
+          {t("howItWorksSubtitle")}
         </motion.p>
 
         <motion.h2
@@ -58,7 +61,7 @@ export function HowItWorks() {
           transition={{ delay: 0.05 }}
           className="mt-3 font-display text-2xl font-bold tracking-tight text-foreground sm:text-3xl"
         >
-          How it works
+          {t("howItWorksTitle")}
         </motion.h2>
 
         <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -82,12 +85,12 @@ export function HowItWorks() {
 
               {/* Title */}
               <h3 className="mt-3 text-base font-semibold text-foreground">
-                {step.title}
+                {t(step.titleKey)}
               </h3>
 
               {/* Description */}
               <p className="mt-1.5 text-sm leading-relaxed text-foreground-muted">
-                {step.description}
+                {t(step.descKey)}
               </p>
             </motion.div>
           ))}

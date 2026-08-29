@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useTranslation } from "@/lib/i18n";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -64,6 +65,8 @@ function ActivityChart({ data }: { data: { date: string; count: number }[] }) {
   if (data.length === 0) return null;
 
   const maxCount = Math.max(...data.map((d) => d.count));
+  // Ensure single bars are visible and have a reasonable minimum width
+  const minBarWidth = data.length === 1 ? 48 : 16;
 
   return (
     <div className="flex items-end gap-1.5" style={{ height: 80 }}>
@@ -73,7 +76,7 @@ function ActivityChart({ data }: { data: { date: string; count: number }[] }) {
           <div
             key={d.date}
             className="group relative flex flex-col items-center"
-            style={{ flex: 1, minWidth: 16 }}
+            style={{ flex: data.length === 1 ? "none" : 1, minWidth: minBarWidth }}
           >
             {/* Tooltip */}
             <div className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md bg-foreground px-2 py-1 text-[10px] text-white opacity-0 transition-opacity group-hover:opacity-100">
@@ -138,7 +141,7 @@ function AnswerBar({
 // Empty State
 // ---------------------------------------------------------------------------
 
-function EmptyAnalytics({ creatorAccessToken }: { creatorAccessToken: string }) {
+function EmptyAnalytics({ creatorAccessToken, t }: { creatorAccessToken: string; t: (key: string) => string }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 16 }}
@@ -149,18 +152,16 @@ function EmptyAnalytics({ creatorAccessToken }: { creatorAccessToken: string }) 
       <div className="rounded-2xl border border-border-light bg-white p-8 shadow-sm">
         <p className="text-4xl">📊</p>
         <h2 className="mt-4 font-display text-lg font-bold text-foreground">
-          No responses yet...
+          {t("analyticsNoResponses")}
         </h2>
         <p className="mt-2 text-sm text-foreground-muted">
-          Share your little thing with someone
-          <br />
-          and come back to see their answers. 🥹
+          {t("analyticsNoResponsesDesc")}
         </p>
         <Link
           href={`/share/${creatorAccessToken}`}
           className="mt-6 inline-block rounded-full bg-primary px-6 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary-hover"
         >
-          Share Again 💕
+          {t("analyticsShareNow")}
         </Link>
       </div>
     </motion.div>
@@ -181,6 +182,7 @@ export function AnalyticsPage({
   activityByDate,
   questions,
 }: AnalyticsPageProps) {
+  const { t } = useTranslation();
   const hasResponses = totalResponses > 0;
   const totalQuestions = questions.length;
 
@@ -194,21 +196,21 @@ export function AnalyticsPage({
           className="text-center"
         >
           <p className="font-handwritten text-lg text-primary">
-            Response Analytics 📊
+            {t("analyticsTitle")}
           </p>
           <h1 className="mt-2 font-display text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
             {title}
           </h1>
           {recipientName && (
             <p className="mt-1 text-sm text-foreground-muted">
-              For {recipientName}
+              {t("responseListFor", { name: recipientName })}
             </p>
           )}
         </motion.div>
 
         {/* Empty state */}
         {!hasResponses && (
-          <EmptyAnalytics creatorAccessToken={creatorAccessToken} />
+          <EmptyAnalytics creatorAccessToken={creatorAccessToken} t={t} />
         )}
 
         {/* Summary cards */}
@@ -224,7 +226,7 @@ export function AnalyticsPage({
                 {totalResponses}
               </p>
               <p className="mt-1 text-xs text-foreground-muted">
-                Response{totalResponses !== 1 ? "s" : ""}
+                {t("analyticsTotalResponses")}
               </p>
             </div>
             <div className="rounded-2xl border border-border-light bg-white p-4 text-center shadow-sm">
@@ -232,7 +234,7 @@ export function AnalyticsPage({
                 {totalQuestions}
               </p>
               <p className="mt-1 text-xs text-foreground-muted">
-                Question{totalQuestions !== 1 ? "s" : ""}
+                {t("analyticsTotalQuestions")}
               </p>
             </div>
           </motion.div>
@@ -247,7 +249,7 @@ export function AnalyticsPage({
             className="mt-6 rounded-2xl border border-border-light bg-white p-5 shadow-sm"
           >
             <h2 className="font-display text-sm font-semibold text-foreground mb-4">
-              Response Activity
+              {t("analyticsActivityTitle")}
             </h2>
             <ActivityChart data={activityByDate} />
           </motion.div>
@@ -267,7 +269,7 @@ export function AnalyticsPage({
             <div className="space-y-2">
               {firstResponseAt && (
                 <div className="flex items-center justify-between">
-                  <span className="text-xs text-foreground-muted">First response</span>
+                  <span className="text-xs text-foreground-muted">{t("analyticsFirstResponse")}</span>
                   <span className="text-xs text-foreground-subtle">
                     {formatFullDate(firstResponseAt)}
                   </span>
@@ -275,7 +277,7 @@ export function AnalyticsPage({
               )}
               {latestResponseAt && (
                 <div className="flex items-center justify-between">
-                  <span className="text-xs text-foreground-muted">Latest response</span>
+                  <span className="text-xs text-foreground-muted">{t("analyticsLatestResponse")}</span>
                   <span className="text-xs text-foreground-subtle">
                     {formatFullDate(latestResponseAt)}
                   </span>
@@ -289,7 +291,7 @@ export function AnalyticsPage({
         {hasResponses && (
           <div className="mt-6 space-y-4">
             <h2 className="font-display text-sm font-semibold text-foreground">
-              Answer Breakdown
+              {t("analyticsBreakdownTitle")}
             </h2>
             {questions.map((q, index) => (
               <motion.div
@@ -304,7 +306,7 @@ export function AnalyticsPage({
                     {q.questionText}
                   </p>
                   <span className="shrink-0 text-xs text-foreground-subtle">
-                    {q.totalAnswers} answer{q.totalAnswers !== 1 ? "s" : ""}
+                    {q.totalAnswers}
                   </span>
                 </div>
                 <div className="space-y-3">
@@ -321,7 +323,7 @@ export function AnalyticsPage({
                 </div>
                 {q.answers.some((a) => a.isMostSelected) && (
                   <p className="mt-3 text-xs text-primary font-medium">
-                    Most loved: {q.answers.find((a) => a.isMostSelected)?.answerText} ❤️
+                    {t("analyticsMostSelected")}: {q.answers.find((a) => a.isMostSelected)?.answerText} ❤️
                   </p>
                 )}
               </motion.div>
@@ -340,13 +342,13 @@ export function AnalyticsPage({
             href={`/creator/${creatorAccessToken}`}
             className="text-sm text-foreground-subtle hover:text-foreground transition-colors"
           >
-            ← Dashboard
+            {t("backToDashboardLink")}
           </Link>
           <Link
             href={`/creator/${creatorAccessToken}/responses`}
             className="text-sm text-foreground-subtle hover:text-foreground transition-colors"
           >
-            Responses →
+            {t("shareResponses")} →
           </Link>
         </motion.div>
       </div>

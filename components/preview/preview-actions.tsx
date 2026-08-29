@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useTranslation } from "@/lib/i18n";
 
 interface PreviewActionsProps {
   isPublished: boolean;
@@ -25,6 +26,8 @@ export function PreviewActions({
   publishError,
   creatorAccessToken,
 }: PreviewActionsProps) {
+  const { t } = useTranslation();
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 12 }}
@@ -50,10 +53,10 @@ export function PreviewActions({
           {isPublishing ? (
             <span className="inline-flex items-center gap-2">
               <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
-              Publishing...
+              {t("previewPublishing")}
             </span>
           ) : (
-            "Publish Your Little Thing 💕"
+            t("previewShareCta")
           )}
         </button>
       )}
@@ -61,14 +64,14 @@ export function PreviewActions({
       {isPublished && (
         <div className="rounded-xl border border-border-light bg-background-secondary p-4 text-center">
           <p className="text-sm text-foreground-muted">
-            This Little Thing is already published ✨
+            {t("previewPublished")}
           </p>
           {creatorAccessToken && (
             <Link
               href={`/share/${creatorAccessToken}`}
               className="mt-2 inline-block text-sm font-medium text-primary hover:text-primary-hover transition-colors"
             >
-              View share page →
+              {t("shareReady")} →
             </Link>
           )}
         </div>
@@ -80,7 +83,7 @@ export function PreviewActions({
           href={creatorAccessToken ? `/creator/${creatorAccessToken}/edit` : "/create"}
           className="text-sm text-foreground-subtle hover:text-foreground transition-colors"
         >
-          ← Back to editing
+          {t("previewBackToEditing")}
         </Link>
       </div>
     </motion.div>

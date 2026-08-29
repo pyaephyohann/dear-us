@@ -3,6 +3,7 @@
 import { AnimatePresence } from "framer-motion";
 import type { QuestionDraft } from "./types";
 import { QuestionCard } from "./question-card";
+import { useTranslation } from "@/lib/i18n";
 
 interface QuestionBuilderProps {
   questions: QuestionDraft[];
@@ -33,22 +34,24 @@ export function QuestionBuilder({
   onAnswerMoveUp,
   onAnswerMoveDown,
 }: QuestionBuilderProps) {
+  const { t } = useTranslation();
+
   // Empty state
   if (questions.length === 0) {
     return (
       <section className="py-12 text-center">
         <p className="font-display text-lg font-medium text-foreground">
-          Your little thing needs a few questions. 💕
+          {t("questionBuilderEmpty")}
         </p>
         <p className="mt-2 text-sm text-foreground-muted">
-          Start with something simple...
+          {t("questionBuilderEmptySub")}
         </p>
         <button
           type="button"
           onClick={onAddQuestion}
           className="mt-6 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary-light px-6 py-3 text-sm font-medium text-primary transition-all hover:bg-primary hover:text-primary-foreground"
         >
-          + Add Your First Question
+          {t("addFirstQuestion")}
         </button>
       </section>
     );
@@ -84,7 +87,7 @@ export function QuestionBuilder({
           onClick={onAddQuestion}
           className="inline-flex items-center gap-2 rounded-full border border-dashed border-border px-6 py-3 text-sm font-medium text-foreground-muted transition-all hover:border-primary hover:bg-primary-light hover:text-primary"
         >
-          + Add another question
+          {t("addAnotherQuestion")}
         </button>
       </div>
     </section>
