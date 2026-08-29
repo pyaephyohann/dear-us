@@ -102,3 +102,359 @@ https://react.dev/link/hydration-mismatch
   163 |             {t("recipientIntroLine")}
   164 |           </p>
   165 |
+✓ Compiled in 548ms
+ GET /little/4587d60e-0d9d-4e11-84f8-4a56016cfb54 200 in 64ms (next.js: 13ms, application-code: 51ms)
+ GET /little/4587d60e-0d9d-4e11-84f8-4a56016cfb54 200 in 38ms (next.js: 4ms, application-code: 33ms)
+ GET /little/4587d60e-0d9d-4e11-84f8-4a56016cfb54 200 in 16ms (next.js: 3ms, application-code: 13ms)
+ GET /little/4587d60e-0d9d-4e11-84f8-4a56016cfb54 200 in 16ms (next.js: 3ms, application-code: 13ms)
+ GET /little/4587d60e-0d9d-4e11-84f8-4a56016cfb54 200 in 13ms (next.js: 2ms, application-code: 11ms)
+ GET /little/4587d60e-0d9d-4e11-84f8-4a56016cfb54 200 in 16ms (next.js: 2ms, application-code: 13ms)
+ GET /little/4587d60e-0d9d-4e11-84f8-4a56016cfb54 200 in 23ms (next.js: 2ms, application-code: 20ms)
+ GET /little/4587d60e-0d9d-4e11-84f8-4a56016cfb54 200 in 29ms (next.js: 3ms, application-code: 26ms)
+ GET /little/4587d60e-0d9d-4e11-84f8-4a56016cfb54 200 in 28ms (next.js: 3ms, application-code: 25ms)
+ GET /little/4587d60e-0d9d-4e11-84f8-4a56016cfb54 200 in 27ms (next.js: 3ms, application-code: 24ms)
+ GET /little/4587d60e-0d9d-4e11-84f8-4a56016cfb54 200 in 14ms (next.js: 3ms, application-code: 11ms)
+ GET /little/4587d60e-0d9d-4e11-84f8-4a56016cfb54 200 in 19ms (next.js: 3ms, application-code: 16ms)
+ GET /little/4587d60e-0d9d-4e11-84f8-4a56016cfb54 200 in 25ms (next.js: 3ms, application-code: 22ms)
+ GET /little/4587d60e-0d9d-4e11-84f8-4a56016cfb54 200 in 22ms (next.js: 2ms, application-code: 19ms)
+ GET /little/4587d60e-0d9d-4e11-84f8-4a56016cfb54 200 in 26ms (next.js: 3ms, application-code: 23ms)
+ GET /little/4587d60e-0d9d-4e11-84f8-4a56016cfb54 200 in 33ms (next.js: 9ms, application-code: 24ms)
+✓ Compiled in 32ms
+✓ Compiled in 30ms
+ GET /little/4587d60e-0d9d-4e11-84f8-4a56016cfb54 200 in 62ms (next.js: 9ms, application-code: 54ms)
+ GET /little/4587d60e-0d9d-4e11-84f8-4a56016cfb54 200 in 40ms (next.js: 5ms, application-code: 35ms)
+ GET /little/4587d60e-0d9d-4e11-84f8-4a56016cfb54 200 in 50ms (next.js: 4ms, application-code: 45ms)
+ GET /little/4587d60e-0d9d-4e11-84f8-4a56016cfb54 200 in 18ms (next.js: 3ms, application-code: 15ms)
+ GET /little/4587d60e-0d9d-4e11-84f8-4a56016cfb54 200 in 25ms (next.js: 3ms, application-code: 21ms)
+ GET /little/4587d60e-0d9d-4e11-84f8-4a56016cfb54 200 in 29ms (next.js: 4ms, application-code: 25ms)
+ GET /little/4587d60e-0d9d-4e11-84f8-4a56016cfb54 200 in 23ms (next.js: 4ms, application-code: 19ms)
+✓ Compiled in 63ms
+ GET /little/4587d60e-0d9d-4e11-84f8-4a56016cfb54 200 in 24ms (next.js: 6ms, application-code: 18ms)
+✓ Compiled in 32ms
+ GET /little/4587d60e-0d9d-4e11-84f8-4a56016cfb54 200 in 27ms (next.js: 5ms, application-code: 22ms)
+✓ Compiled in 26ms
+ GET / 200 in 44ms (next.js: 11ms, application-code: 33ms)
+ GET /api/little-things 405 in 89ms (next.js: 66ms, application-code: 23ms)
+ GET /creator/e746689d38d05c49e7be9e1def17790dc451e52bc7302906e0017e0c64a4b6f2 200 in 372ms (next.js: 258ms, application-code: 114ms)
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HTTPAccessFallbackBoundary notFound={{...}} forbidden={undefined} unauthorized={undefined}>
+      <HTTPAccessFallbackErrorBoundary pathname="/creator/e..." notFound={{...}} forbidden={undefined} ...>
+        <RedirectBoundary>
+          <RedirectErrorBoundary router={{...}}>
+            <InnerLayoutRouter url="/creator/e..." tree={[...]} params={{token:"e74..."}} cacheNode={{rsc:{...}, ...}} ...>
+              <SegmentViewNode type="page" pagePath="creator/[t...">
+                <SegmentTrieNode>
+                <DashboardRoute>
+                  <DashboardPage creatorAccessToken="e746689d38..." publicId="4587d60e-0..." ...>
+                    <div className="min-h-scre...">
+                      <FloatingLanguageToggle>
+                      <div className="mx-auto ma...">
+                        <motion.div>
+                        <motion.div>
+                        <motion.div>
+                        <motion.div>
+                        <motion.div initial={{opacity:0,y:16}} animate={{opacity:1,y:0}} transition={{delay:0.15}} ...>
+                          <div className="mt-8 round..." style={{opacity:0, ...}} ref={function useMotionRef.useCallback}>
+                            <p>
+                            <p>
+                            <button
+                              type="button"
+                              onClick={function DashboardPage.useCallback[handleCopyPrivate]}
++                             disabled={false}
+-                             disabled=""
+                              className="mt-3 w-full rounded-lg border border-border bg-white px-4 py-2 text-xs font-m..."
+                            >
++                             Copy link
+                        ...
+              ...
+            ...
+ 
+✓ Compiled in 27ms
+ GET /creator/e746689d38d05c49e7be9e1def17790dc451e52bc7302906e0017e0c64a4b6f2 200 in 38ms (next.js: 6ms, application-code: 31ms)
+ GET /creator/e746689d38d05c49e7be9e1def17790dc451e52bc7302906e0017e0c64a4b6f2 200 in 29ms (next.js: 4ms, application-code: 25ms)
+✓ Compiled in 37ms
+ GET /creator/e746689d38d05c49e7be9e1def17790dc451e52bc7302906e0017e0c64a4b6f2 200 in 126ms (next.js: 6ms, application-code: 120ms)
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HTTPAccessFallbackBoundary notFound={{...}} forbidden={undefined} unauthorized={undefined}>
+      <HTTPAccessFallbackErrorBoundary pathname="/creator/e..." notFound={{...}} forbidden={undefined} ...>
+        <RedirectBoundary>
+          <RedirectErrorBoundary router={{...}}>
+            <InnerLayoutRouter url="/creator/e..." tree={[...]} params={{token:"e74..."}} cacheNode={{rsc:{...}, ...}} ...>
+              <SegmentViewNode type="page" pagePath="creator/[t...">
+                <SegmentTrieNode>
+                <DashboardRoute>
+                  <DashboardPage creatorAccessToken="e746689d38..." publicId="4587d60e-0..." ...>
+                    <div className="min-h-scre...">
+                      <FloatingLanguageToggle>
+                      <div className="mx-auto ma...">
+                        <motion.div>
+                        <motion.div>
+                        <motion.div>
+                        <motion.div>
+                        <motion.div initial={{opacity:0,y:16}} animate={{opacity:1,y:0}} transition={{delay:0.15}} ...>
+                          <div className="mt-8 round..." style={{opacity:0, ...}} ref={function useMotionRef.useCallback}>
+                            <p>
+                            <p>
+                            <button
+                              type="button"
+                              onClick={function DashboardPage.useCallback[handleCopyPrivate]}
++                             disabled={false}
+-                             disabled=""
+                              className="mt-3 w-full rounded-lg border border-border bg-white px-4 py-2 text-xs font-m..."
+                            >
++                             Copy link
+                        ...
+              ...
+            ...
+ 
+ GET /creator/e746689d38d05c49e7be9e1def17790dc451e52bc7302906e0017e0c64a4b6f2/responses 200 in 340ms (next.js: 250ms, application-code: 89ms)
+[browser] Uncaught Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+      <LoadingBoundary name="responses/" loading={null}>
+        <HTTPAccessFallbackBoundary notFound={undefined} forbidden={undefined} unauthorized={undefined}>
+          <RedirectBoundary>
+            <RedirectErrorBoundary router={{...}}>
+              <InnerLayoutRouter url="/creator/e..." tree={[...]} params={{token:"e74..."}} cacheNode={{rsc:{...}, ...}} ...>
+                <SegmentViewNode type="page" pagePath="creator/[t...">
+                  <SegmentTrieNode>
+                  <ResponseListRoute>
+                    <ResponseListPage creatorAccessToken="e746689d38..." littleThingId="cmtcmuo8m0..." ...>
+                      <div className="min-h-scre...">
+                        <FloatingLanguageToggle>
+                          <div className="fixed righ...">
+                            <LanguageToggle>
+                              <div className="inline-fle..." role="radiogroup" aria-label="Language s...">
+                                <ToggleOption active={false} onClick={function onClick} label="EN">
+                                  <button
+                                    type="button"
+                                    role="radio"
++                                   aria-checked={false}
+-                                   aria-checked="true"
+                                    aria-label="Switch to English"
+                                    onClick={function onClick}
++                                   className="rounded-full px-2.5 py-1 text-xs font-medium transition-all text-foregr..."
+-                                   className="rounded-full px-2.5 py-1 text-xs font-medium transition-all bg-primary ..."
+                                  >
++                                   EN
+                                <span>
+                                <ToggleOption active={true} onClick={function onClick} label="မြန်မာ">
+                                  <button
+                                    type="button"
+                                    role="radio"
++                                   aria-checked={true}
+-                                   aria-checked="false"
+                                    aria-label="Switch to Burmese"
+                                    onClick={function onClick}
++                                   className="rounded-full px-2.5 py-1 text-xs font-medium transition-all bg-primary ..."
+-                                   className="rounded-full px-2.5 py-1 text-xs font-medium transition-all text-foregr..."
+                                  >
++                                   မြန်မာ
+                        <div className="mx-auto ma...">
+                          <motion.div initial={{opacity:0,y:12}} animate={{opacity:1,y:0}} className="text-center">
+                            <div className="text-center" style={{opacity:0, ...}} ref={function useMotionRef.useCallback}>
+                              <p className="font-handwritten text-lg text-primary">
++                               မင့် Little Thing 💕
+-                               Your little thing 💕
+                              ...
+                          ...
+                ...
+              ...
+
+    at <unknown> (https://react.dev/link/hydration-mismatch)
+    at p (<anonymous>)
+    at ResponseListPage (components/responses/response-list-page.tsx:161:11)
+    at ResponseListRoute (app/creator/[token]/responses/page.tsx:108:5)
+  159 |           className="text-center"
+  160 |         >
+> 161 |           <p className="font-handwritten text-lg text-primary">
+      |           ^
+  162 |             {t("responseListTitle")}
+  163 |           </p>
+  164 |           <h1 className="mt-2 font-display text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+ GET /creator/e746689d38d05c49e7be9e1def17790dc451e52bc7302906e0017e0c64a4b6f2/analytics 200 in 316ms (next.js: 256ms, application-code: 60ms)
+[browser] Uncaught Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <Suspense name="analytics/" fallback={<Fragment>}>
+      <HTTPAccessFallbackBoundary notFound={undefined} forbidden={undefined} unauthorized={undefined}>
+        <RedirectBoundary>
+          <RedirectErrorBoundary router={{...}}>
+            <InnerLayoutRouter url="/creator/e..." tree={[...]} params={{token:"e74..."}} cacheNode={{rsc:{...}, ...}} ...>
+              <SegmentViewNode type="page" pagePath="creator/[t...">
+                <SegmentTrieNode>
+                <AnalyticsRoute>
+                  <AnalyticsPage creatorAccessToken="e746689d38..." title="Security T..." recipientName={null} ...>
+                    <div className="min-h-scre...">
+                      <FloatingLanguageToggle>
+                        <div className="fixed righ...">
+                          <LanguageToggle>
+                            <div className="inline-fle..." role="radiogroup" aria-label="Language s...">
+                              <ToggleOption active={false} onClick={function onClick} label="EN">
+                                <button
+                                  type="button"
+                                  role="radio"
++                                 aria-checked={false}
+-                                 aria-checked="true"
+                                  aria-label="Switch to English"
+                                  onClick={function onClick}
++                                 className="rounded-full px-2.5 py-1 text-xs font-medium transition-all text-foregrou..."
+-                                 className="rounded-full px-2.5 py-1 text-xs font-medium transition-all bg-primary te..."
+                                >
++                                 EN
+                              <span>
+                              <ToggleOption active={true} onClick={function onClick} label="မြန်မာ">
+                                <button
+                                  type="button"
+                                  role="radio"
++                                 aria-checked={true}
+-                                 aria-checked="false"
+                                  aria-label="Switch to Burmese"
+                                  onClick={function onClick}
++                                 className="rounded-full px-2.5 py-1 text-xs font-medium transition-all bg-primary te..."
+-                                 className="rounded-full px-2.5 py-1 text-xs font-medium transition-all text-foregrou..."
+                                >
++                                 မြန်မာ
+                      <div className="mx-auto ma...">
+                        <motion.div initial={{opacity:0,y:12}} animate={{opacity:1,y:0}} className="text-center">
+                          <div className="text-center" style={{opacity:0, ...}} ref={function useMotionRef.useCallback}>
+                            <p className="font-handwritten text-lg text-primary">
++                             အဖြေ ခွဲခြမ်းစိတ်ဖြာချက် 📊
+-                             Response Analytics 📊
+                            ...
+                        ...
+              ...
+            ...
+
+    at <unknown> (https://react.dev/link/hydration-mismatch)
+    at p (<anonymous>)
+    at AnalyticsPage (components/analytics/analytics-page.tsx:185:11)
+    at AnalyticsRoute (app/creator/[token]/analytics/page.tsx:90:5)
+  183 |           className="text-center"
+  184 |         >
+> 185 |           <p className="font-handwritten text-lg text-primary">
+      |           ^
+  186 |             {t("analyticsTitle")}
+  187 |           </p>
+  188 |           <h1 className="mt-2 font-display text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+ GET /create 200 in 31ms (next.js: 8ms, application-code: 23ms)
+[browser] Uncaught Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+      <LoadingBoundary name="create/" loading={null}>
+        <HTTPAccessFallbackBoundary notFound={undefined} forbidden={undefined} unauthorized={undefined}>
+          <RedirectBoundary>
+            <RedirectErrorBoundary router={{...}}>
+              <InnerLayoutRouter url="/create" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} segmentPath={[...]} ...>
+                <SegmentViewNode type="page" pagePath="create/pag...">
+                  <SegmentTrieNode>
+                  <CreatePage>
+                    <CreatorPage>
+                      <div className="relative m...">
+                        <FloatingLanguageToggle>
+                          <div className="fixed righ...">
+                            <LanguageToggle>
+                              <div className="inline-fle..." role="radiogroup" aria-label="Language s...">
+                                <ToggleOption active={false} onClick={function onClick} label="EN">
+                                  <button
+                                    type="button"
+                                    role="radio"
++                                   aria-checked={false}
+-                                   aria-checked="true"
+                                    aria-label="Switch to English"
+                                    onClick={function onClick}
++                                   className="rounded-full px-2.5 py-1 text-xs font-medium transition-all text-foregr..."
+-                                   className="rounded-full px-2.5 py-1 text-xs font-medium transition-all bg-primary ..."
+                                  >
++                                   EN
+                                <span>
+                                <ToggleOption active={true} onClick={function onClick} label="မြန်မာ">
+                                  <button
+                                    type="button"
+                                    role="radio"
++                                   aria-checked={true}
+-                                   aria-checked="false"
+                                    aria-label="Switch to Burmese"
+                                    onClick={function onClick}
++                                   className="rounded-full px-2.5 py-1 text-xs font-medium transition-all bg-primary ..."
+-                                   className="rounded-full px-2.5 py-1 text-xs font-medium transition-all text-foregr..."
+                                  >
++                                   မြန်မာ
+                        <motion.div initial={{opacity:0,y:12}} animate={{opacity:1,y:0}} className="text-center">
+                          <div className="text-center" style={{opacity:0, ...}} ref={function useMotionRef.useCallback}>
+                            <h1 className="font-display text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
++                             အရွယ်ငယ်တဲ့ လက်ဆောင်လေး လုပ်ကြည့်မယ်။ 💕
+-                             {"Let's make something little. 💕"}
+                            ...
+                        ...
+                ...
+              ...
+    ...
+
+    at <unknown> (https://react.dev/link/hydration-mismatch)
+    at h1 (<anonymous>)
+    at CreatorPage (components/creator/creator-page.tsx:368:9)
+    at CreatePage (app/create/page.tsx:4:10)
+  366 |         className="text-center"
+  367 |       >
+> 368 |         <h1 className="font-display text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+      |         ^
+  369 |           {isEditing ? t("editTitle") : t("createPageTitle")}
+  370 |         </h1>
+  371 |         <p className="mt-2 text-sm text-foreground-muted">

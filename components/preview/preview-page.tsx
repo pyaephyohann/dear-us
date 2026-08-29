@@ -13,6 +13,7 @@ import {
 import { PreviewHeader } from "./preview-header";
 import { PreviewActions } from "./preview-actions";
 import { useTranslation } from "@/lib/i18n";
+import { FloatingLanguageToggle } from "@/components/ui/floating-language-toggle";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -147,7 +148,8 @@ export function PreviewPage({ littleThing }: PreviewPageProps) {
   }, [littleThing.id, littleThing.creatorAccessToken, router, t]);
 
   return (
-    <div className="flex min-h-screen flex-col items-center px-5 py-12 sm:px-6 sm:py-16">
+    <div className="relative flex min-h-screen flex-col items-center px-5 py-12 sm:px-6 sm:py-16">
+      <FloatingLanguageToggle />
       {/* Preview header */}
       <PreviewHeader status={littleThing.status} />
 

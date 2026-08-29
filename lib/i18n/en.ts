@@ -42,6 +42,7 @@ export const en: TranslationDict = {
   // Landing Page — Footer
   // ---------------------------------------------------------------------------
   footerMadeWith: "Made with love",
+  madeWith: "Made with {brand}",
 
   // ---------------------------------------------------------------------------
   // Navbar
@@ -270,6 +271,21 @@ export const en: TranslationDict = {
   // ---------------------------------------------------------------------------
   dateToday: "Today",
   dateYesterday: "Yesterday",
+
+  // ---------------------------------------------------------------------------
+  // Dashboard extras
+  // ---------------------------------------------------------------------------
+  dashboardQuickStatsResponses: "responses",
+  dashboardFirstToLatest: "First → Latest",
+  dashboardStatusPublished: "Published ✨",
+  dashboardStatusDraft: "Draft",
+  dashboardStatusArchived: "Archived",
+  dashboardCreated: "Created",
+  dashboardUpdated: "Updated",
+  dashboardResponse: "response",
+  dashboardResponses: "responses",
+  analyticsTimeline: "Timeline",
+  analyticsResponseActivity: "{count} response{s}",
 
   // ---------------------------------------------------------------------------
   // Misc

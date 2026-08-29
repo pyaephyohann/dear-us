@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useTranslation } from "@/lib/i18n";
+import { FloatingLanguageToggle } from "@/components/ui/floating-language-toggle";
+import { formatDateShort, formatDateTime } from "@/lib/i18n/date-format";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -38,30 +40,14 @@ interface AnalyticsPageProps {
 // Helpers
 // ---------------------------------------------------------------------------
 
-function formatDate(dateString: string): string {
-  const date = new Date(dateString);
-  return date.toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric",
-  });
-}
 
-function formatFullDate(dateString: string): string {
-  const date = new Date(dateString);
-  return date.toLocaleDateString("en-US", {
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-    hour: "numeric",
-    minute: "2-digit",
-  });
-}
 
 // ---------------------------------------------------------------------------
 // Activity Bar Chart (pure CSS, no library)
 // ---------------------------------------------------------------------------
 
-function ActivityChart({ data }: { data: { date: string; count: number }[] }) {
+function ActivityChart({ data, language }: { data: { date: string; count: number }[]; language: "en" | "my" }) {
+  const { t } = useTranslation();
   if (data.length === 0) return null;
 
   const maxCount = Math.max(...data.map((d) => d.count));
@@ -80,7 +66,7 @@ function ActivityChart({ data }: { data: { date: string; count: number }[] }) {
           >
             {/* Tooltip */}
             <div className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md bg-foreground px-2 py-1 text-[10px] text-white opacity-0 transition-opacity group-hover:opacity-100">
-              {d.count} response{d.count !== 1 ? "s" : ""}
+              {t("analyticsResponseActivity", { count: d.count, s: d.count !== 1 ? "s" : "" })}
             </div>
             {/* Bar */}
             <div
@@ -89,7 +75,7 @@ function ActivityChart({ data }: { data: { date: string; count: number }[] }) {
             />
             {/* Label */}
             <span className="mt-1 text-[9px] text-foreground-subtle">
-              {formatDate(d.date)}
+              {formatDateShort(d.date, language)}
             </span>
           </div>
         );
@@ -182,12 +168,13 @@ export function AnalyticsPage({
   activityByDate,
   questions,
 }: AnalyticsPageProps) {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const hasResponses = totalResponses > 0;
   const totalQuestions = questions.length;
 
   return (
     <div className="min-h-screen bg-background px-5 py-12 sm:px-6 sm:py-16">
+      <FloatingLanguageToggle />
       <div className="mx-auto max-w-lg">
         {/* Header */}
         <motion.div
@@ -251,7 +238,7 @@ export function AnalyticsPage({
             <h2 className="font-display text-sm font-semibold text-foreground mb-4">
               {t("analyticsActivityTitle")}
             </h2>
-            <ActivityChart data={activityByDate} />
+            <ActivityChart data={activityByDate} language={language} />
           </motion.div>
         )}
 
@@ -264,14 +251,14 @@ export function AnalyticsPage({
             className="mt-4 rounded-2xl border border-border-light bg-white p-5 shadow-sm"
           >
             <h2 className="font-display text-sm font-semibold text-foreground mb-3">
-              Timeline
+              {t("analyticsTimeline")}
             </h2>
             <div className="space-y-2">
               {firstResponseAt && (
                 <div className="flex items-center justify-between">
                   <span className="text-xs text-foreground-muted">{t("analyticsFirstResponse")}</span>
                   <span className="text-xs text-foreground-subtle">
-                    {formatFullDate(firstResponseAt)}
+                    {formatDateTime(firstResponseAt, language)}
                   </span>
                 </div>
               )}
@@ -279,7 +266,7 @@ export function AnalyticsPage({
                 <div className="flex items-center justify-between">
                   <span className="text-xs text-foreground-muted">{t("analyticsLatestResponse")}</span>
                   <span className="text-xs text-foreground-subtle">
-                    {formatFullDate(latestResponseAt)}
+                    {formatDateTime(latestResponseAt, language)}
                   </span>
                 </div>
               )}

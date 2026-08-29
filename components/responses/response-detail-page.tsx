@@ -6,6 +6,8 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ConfirmModal } from "@/components/ui/confirm-modal";
 import { useTranslation } from "@/lib/i18n";
+import { FloatingLanguageToggle } from "@/components/ui/floating-language-toggle";
+import { formatDateTime } from "@/lib/i18n/date-format";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -39,7 +41,7 @@ export function ResponseDetailPage({
   response,
 }: ResponseDetailPageProps) {
   const router = useRouter();
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const [isDeleting, setIsDeleting] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
 
@@ -62,13 +64,7 @@ export function ResponseDetailPage({
     }
   }, [creatorAccessToken, response.id, router]);
   const completedDate = response.completedAt
-    ? new Date(response.completedAt).toLocaleDateString("en-US", {
-        weekday: "long",
-        month: "long",
-        day: "numeric",
-        hour: "numeric",
-        minute: "2-digit",
-      })
+    ? formatDateTime(response.completedAt, language)
     : null;
 
   return (
@@ -84,6 +80,7 @@ export function ResponseDetailPage({
       onCancel={() => setShowConfirm(false)}
     />
     <div className="min-h-screen bg-background px-5 py-12 sm:px-6 sm:py-16">
+      <FloatingLanguageToggle />
       <div className="mx-auto max-w-lg">
         {/* Header */}
         <motion.div

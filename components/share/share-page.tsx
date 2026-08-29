@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { QRCodeSVG } from "qrcode.react";
 import { useTranslation } from "@/lib/i18n";
+import { FloatingLanguageToggle } from "@/components/ui/floating-language-toggle";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -95,6 +96,7 @@ export function SharePage({ creatorAccessToken, publicId, title, recipientName }
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center px-5 py-12 sm:px-6 sm:py-16">
+      <FloatingLanguageToggle />
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -106,13 +108,7 @@ export function SharePage({ creatorAccessToken, publicId, title, recipientName }
           {t("shareReady")}
         </p>
         <h1 className="mt-3 font-display text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-          {t("shareReady")}
-          {recipientName && (
-            <>
-              <br />
-              {t("responseListFor", { name: recipientName })}
-            </>
-          )}
+          {recipientName ? t("responseListFor", { name: recipientName }) : title}
         </h1>
 
         {/* QR Code */}

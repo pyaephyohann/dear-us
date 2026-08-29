@@ -42,6 +42,7 @@ export const my: TranslationDict = {
   // Landing Page — Footer
   // ---------------------------------------------------------------------------
   footerMadeWith: "ချစ်ခြင်းနဲ့ ဖန်တီးထားပါတယ်",
+  madeWith: "{brand} နဲ့ ဖန်တီးထားပါတယ်",
 
   // ---------------------------------------------------------------------------
   // Navbar
@@ -275,6 +276,21 @@ export const my: TranslationDict = {
   // ---------------------------------------------------------------------------
   dateToday: "ဒီနေ့",
   dateYesterday: "မနေ့က",
+
+  // ---------------------------------------------------------------------------
+  // Dashboard extras
+  // ---------------------------------------------------------------------------
+  dashboardQuickStatsResponses: "အဖြေများ",
+  dashboardFirstToLatest: "ပထမဆုံး → နောက်ဆုံး",
+  dashboardStatusPublished: "ထုတ်ဝေပြီး ✨",
+  dashboardStatusDraft: "draft",
+  dashboardStatusArchived: "archive လုပ်ပြီး",
+  dashboardCreated: "ဖန်တီးခဲ့တဲ့အချိန်",
+  dashboardUpdated: "ပြင်ဆင်ခဲ့တဲ့အချိန်",
+  dashboardResponse: "အဖြေ",
+  dashboardResponses: "အဖြေများ",
+  analyticsTimeline: "အချိန်ဇယား",
+  analyticsResponseActivity: "အဖြေ {count} ခု",
 
   // ---------------------------------------------------------------------------
   // Misc

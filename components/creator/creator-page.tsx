@@ -7,6 +7,7 @@ import { BasicInfoForm } from "./basic-info-form";
 import { QuestionBuilder } from "./question-builder";
 import { CreatorActions } from "./creator-actions";
 import { useTranslation } from "@/lib/i18n";
+import { FloatingLanguageToggle } from "@/components/ui/floating-language-toggle";
 import type { QuestionDraft, AnswerDraft } from "./types";
 
 let idCounter = 0;
@@ -356,7 +357,8 @@ export function CreatorPage({ editMode = null }: CreatorPageProps) {
   }, [isEditing, editMode, title, introMessage, creatorName, recipientName, questions, router, t]);
 
   return (
-    <div className="mx-auto max-w-2xl px-5 pb-24 pt-24 sm:px-6 sm:pt-28">
+    <div className="relative mx-auto max-w-2xl px-5 pb-24 pt-24 sm:px-6 sm:pt-28">
+      <FloatingLanguageToggle />
       {/* Page heading */}
       <motion.div
         initial={{ opacity: 0, y: 12 }}

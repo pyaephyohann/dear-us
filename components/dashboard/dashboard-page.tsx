@@ -4,6 +4,8 @@ import { useState, useCallback } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useTranslation } from "@/lib/i18n";
+import { FloatingLanguageToggle } from "@/components/ui/floating-language-toggle";
+import { formatDateLong, formatDateTime } from "@/lib/i18n/date-format";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -28,27 +30,7 @@ interface DashboardPageProps {
 // Helpers
 // ---------------------------------------------------------------------------
 
-function formatDate(dateString: string): string {
-  const date = new Date(dateString);
-  return date.toLocaleDateString("en-US", {
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  });
-}
 
-function getStatusLabel(status: string): string {
-  switch (status) {
-    case "DRAFT":
-      return "Draft";
-    case "PUBLISHED":
-      return "Published ✨";
-    case "ARCHIVED":
-      return "Archived";
-    default:
-      return status;
-  }
-}
 
 // ---------------------------------------------------------------------------
 // Component
@@ -68,7 +50,7 @@ export function DashboardPage({
   createdAt,
   updatedAt,
 }: DashboardPageProps) {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const [privateCopied, setPrivateCopied] = useState(false);
 
   const privateUrl =
@@ -94,6 +76,7 @@ export function DashboardPage({
 
   return (
     <div className="min-h-screen bg-background px-5 py-12 sm:px-6 sm:py-16">
+      <FloatingLanguageToggle />
       <div className="mx-auto max-w-lg">
         {/* Header */}
         <motion.div
@@ -122,17 +105,9 @@ export function DashboardPage({
           <div className="space-y-3">
             {/* Status */}
             <div className="flex items-center justify-between">
-              <span className="text-sm text-foreground-muted">{t("dashboardPublished")}</span>
+              <span className="text-sm text-foreground-muted">{status === "DRAFT" ? t("dashboardDraft") : status === "PUBLISHED" ? `${t("dashboardPublished")} ✨` : status}</span>
               <span className="text-sm font-medium text-foreground">
-                {getStatusLabel(status)}
-              </span>
-            </div>
-
-            {/* Response count */}
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-foreground-muted">{t("shareResponses")}</span>
-              <span className="text-sm font-medium text-foreground">
-                {t(responseCount === 0 ? "dashboardNoAnswers" : responseCount === 1 ? "dashboardOneAnswered" : "dashboardPeopleAnswered", { count: responseCount })}
+                {responseCount === 0 ? t("dashboardNoAnswers") : responseCount === 1 ? t("dashboardOneAnswered") : t("dashboardPeopleAnswered", { count: responseCount })}
               </span>
             </div>
 
@@ -147,16 +122,18 @@ export function DashboardPage({
             )}
 
             {/* Created date */}
-            <div className="flex items-center justify-between">                <span className="text-sm text-foreground-muted">{t("dashboardPublished")}</span>
+            <div className="flex items-center justify-between">
+              <span className="text-sm text-foreground-muted">{t("dashboardCreated")}</span>
               <span className="text-sm text-foreground-subtle">
-                {formatDate(createdAt)}
+                {formatDateLong(createdAt, language)}
               </span>
             </div>
 
             {/* Last updated */}
-            <div className="flex items-center justify-between">                <span className="text-sm text-foreground-muted">{t("dashboardPublished")}</span>
+            <div className="flex items-center justify-between">
+              <span className="text-sm text-foreground-muted">{t("dashboardUpdated")}</span>
               <span className="text-sm text-foreground-subtle">
-                {formatDate(updatedAt)}
+                {formatDateLong(updatedAt, language)}
               </span>
             </div>
           </div>
@@ -187,13 +164,13 @@ export function DashboardPage({
             <div className="mt-3 grid grid-cols-2 gap-3">
               <div>
                 <p className="text-lg font-bold text-primary">{responseCount}</p>
-                <p className="text-[10px] text-foreground-subtle">response{responseCount !== 1 ? "s" : ""}</p>
+                <p className="text-[10px] text-foreground-subtle">{t("dashboardQuickStatsResponses")}</p>
               </div>
               <div>
                 {firstResponseAt && latestResponseAt && (
                   <>
-                    <p className="text-[10px] text-foreground-subtle">First → Latest</p>
-                    <p className="text-xs font-medium text-foreground">{formatDate(firstResponseAt)} → {formatDate(latestResponseAt)}</p>
+                    <p className="text-[10px] text-foreground-subtle">{t("dashboardFirstToLatest")}</p>
+                    <p className="text-xs font-medium text-foreground">{formatDateTime(firstResponseAt, language)} → {formatDateTime(latestResponseAt, language)}</p>
                   </>
                 )}
               </div>

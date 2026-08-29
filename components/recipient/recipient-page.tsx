@@ -10,6 +10,7 @@ import {
   LittleThingComplete,
 } from "@/components/little-thing";
 import { useTranslation } from "@/lib/i18n";
+import { LanguageToggle } from "@/components/ui/language-toggle";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -150,7 +151,12 @@ export function RecipientPage({ littleThing }: RecipientPageProps) {
   }, []);
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center px-5 py-12 sm:px-6 sm:py-16">
+    <div className="relative flex min-h-screen flex-col items-center justify-center px-5 py-12 sm:px-6 sm:py-16">
+      {/* Language toggle — top right */}
+      <div className="fixed right-4 top-4 z-30">
+        <LanguageToggle />
+      </div>
+
       {/* Intro phase */}
       {phase === "intro" && (
         <motion.div
@@ -300,8 +306,7 @@ export function RecipientPage({ littleThing }: RecipientPageProps) {
               </p>
             )}
             <p className="mt-6 text-xs text-foreground-subtle">
-              Made with{" "}
-              <span className="font-medium text-primary">DearUs</span> 💕
+              {t("madeWith", { brand: "DearUs" })} 💕
             </p>
           </motion.div>
         </motion.div>

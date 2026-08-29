@@ -5,6 +5,8 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ConfirmModal } from "@/components/ui/confirm-modal";
 import { useTranslation } from "@/lib/i18n";
+import { FloatingLanguageToggle } from "@/components/ui/floating-language-toggle";
+import { formatRelativeTime } from "@/lib/i18n/date-format";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -33,25 +35,7 @@ interface ResponseListPageProps {
 // Helpers
 // ---------------------------------------------------------------------------
 
-function formatRelativeTime(dateString: string): string {
-  const date = new Date(dateString);
-  const now = new Date();
-  const diffMs = now.getTime() - date.getTime();
-  const diffMinutes = Math.floor(diffMs / 60000);
-  const diffHours = Math.floor(diffMinutes / 60);
-  const diffDays = Math.floor(diffHours / 24);
 
-  if (diffMinutes < 1) return "Just now";
-  if (diffMinutes < 60) return `${diffMinutes} minute${diffMinutes > 1 ? "s" : ""} ago`;
-  if (diffHours < 24) return `${diffHours} hour${diffHours > 1 ? "s" : ""} ago`;
-  if (diffDays < 7) return `${diffDays} day${diffDays > 1 ? "s" : ""} ago`;
-
-  return date.toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric",
-    year: date.getFullYear() !== now.getFullYear() ? "numeric" : undefined,
-  });
-}
 
 // ---------------------------------------------------------------------------
 // Component
@@ -91,7 +75,7 @@ function ResponseCardList({
     [confirmDeleteId, creatorAccessToken]
   );
 
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
 
   return (
     <>
@@ -123,7 +107,7 @@ function ResponseCardList({
                   {t("responseSomeoneAnswered")}
                 </p>
                 <p className="mt-1 text-xs text-foreground-subtle">
-                  {formatRelativeTime(response.createdAt)}
+                  {formatRelativeTime(response.createdAt, language)}
                 </p>
                 <p className="mt-2 text-xs text-foreground-muted">
                   {response.responseAnswers.length === 1 ? t("responseQuestionCount", { count: response.responseAnswers.length }) : t("responseQuestionCountPlural", { count: response.responseAnswers.length })}
@@ -166,6 +150,7 @@ export function ResponseListPage({
 
   return (
     <div className="min-h-screen bg-background px-5 py-12 sm:px-6 sm:py-16">
+      <FloatingLanguageToggle />
       <div className="mx-auto max-w-lg">
         {/* Header */}
         <motion.div
