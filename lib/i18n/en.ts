@@ -264,6 +264,7 @@ export const en: TranslationDict = {
   recipientDoneDesc: "{creator} will love seeing your answers.",
   recipientThanks: "Thanks for answering.",
   recipientTryAgain: "Try again 💕",
+  recipientSubmitError: "Hmm... something went wrong while saving your answers. Please try again. 💕",
   recipientQuestionOf: "Question {current} of {total}",
 
   // ---------------------------------------------------------------------------
@@ -286,6 +287,22 @@ export const en: TranslationDict = {
   dashboardResponses: "responses",
   analyticsTimeline: "Timeline",
   analyticsResponseActivity: "{count} response{s}",
+
+  // ---------------------------------------------------------------------------
+  // Landing Page — Example/Preview Section
+  // ---------------------------------------------------------------------------
+  exampleSubtitle: "see it in action ✨",
+  exampleTitle: "Make it feel like yours.",
+  exampleDesc: "A preview of what your someone special will see.",
+  exampleTapHint: "Tap an answer to see it in action ↑",
+
+  // ---------------------------------------------------------------------------
+  // Preview Card (landing page example)
+  // ---------------------------------------------------------------------------
+  previewCardHeader: "A Little Something",
+  previewCardForYou: "For You 💌",
+  previewCardIntro: "I made this just for you.\nAnswer honestly, okay? 🥹",
+  previewCardQuestionOf: "Question {current} of {total}",
 
   // ---------------------------------------------------------------------------
   // Misc

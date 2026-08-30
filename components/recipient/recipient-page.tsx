@@ -115,7 +115,7 @@ export function RecipientPage({ littleThing }: RecipientPageProps) {
       if (!res.ok) {
         setSubmitError(
           data.error ??
-            "Hmm... something went wrong while saving your answers. Please try again. 💕"
+            t("recipientSubmitError")
         );
         setIsSubmitting(false);
         setPhase("error");
@@ -125,12 +125,12 @@ export function RecipientPage({ littleThing }: RecipientPageProps) {
       setPhase("complete");
     } catch {
       setSubmitError(
-        "Hmm... something went wrong while saving your answers. Please try again. 💕"
+        t("recipientSubmitError")
       );
       setIsSubmitting(false);
       setPhase("error");
     }
-  }, [littleThing.publicId, selectedAnswers]);
+  }, [littleThing.publicId, selectedAnswers, t]);
 
   // --- Auto-submit when phase changes to submitting ---
   const hasSubmittedRef = useRef(false);

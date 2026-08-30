@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslation } from "@/lib/i18n";
 
 const questions = [
   {
@@ -35,6 +36,7 @@ export function LittleThingPreview({
   showProgress = true,
 }: LittleThingPreviewProps) {
   const q = questions[currentQuestion] ?? questions[0];
+  const { t } = useTranslation();
 
   return (
     <motion.div
@@ -46,16 +48,14 @@ export function LittleThingPreview({
       <div className="rounded-2xl border border-border bg-white p-6 shadow-lg sm:p-8">
         {/* Header */}
         <p className="text-center font-handwritten text-lg text-primary">
-          A Little Something
+          {t("previewCardHeader")}
         </p>
         <p className="text-center font-handwritten text-2xl text-foreground">
-          For You 💌
+          {t("previewCardForYou")}
         </p>
 
         <p className="mt-4 text-center text-sm leading-relaxed text-foreground-muted">
-          I made this just for you.
-          <br />
-          Answer honestly, okay? 🥹
+          {t("previewCardIntro")}
         </p>
 
         {/* Divider */}
@@ -99,7 +99,7 @@ export function LittleThingPreview({
         {/* Progress */}
         {showProgress && (
           <p className="mt-5 text-center text-xs text-foreground-subtle">
-            Question {currentQuestion + 1} of {questions.length}
+            {t("previewCardQuestionOf", { current: currentQuestion + 1, total: questions.length })}
           </p>
         )}
       </div>

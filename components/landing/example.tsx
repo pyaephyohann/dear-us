@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from "@/lib/i18n";
 
 const questions = [
   {
@@ -36,6 +37,7 @@ const questions = [
 export function Example() {
   const [current, setCurrent] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
+  const { t } = useTranslation();
 
   const q = questions[current];
 
@@ -57,7 +59,7 @@ export function Example() {
           viewport={{ once: true, margin: "-60px" }}
           className="font-handwritten text-lg text-primary"
         >
-          see it in action ✨
+          {t("exampleSubtitle")}
         </motion.p>
 
         <motion.h2
@@ -67,7 +69,7 @@ export function Example() {
           transition={{ delay: 0.05 }}
           className="mt-3 font-display text-2xl font-bold tracking-tight text-foreground sm:text-3xl"
         >
-          Make it feel like yours.
+          {t("exampleTitle")}
         </motion.h2>
 
         <motion.p
@@ -77,7 +79,7 @@ export function Example() {
           transition={{ delay: 0.1 }}
           className="mx-auto mt-4 max-w-md text-sm text-foreground-muted sm:text-base"
         >
-          A preview of what your someone special will see.
+          {t("exampleDesc")}
         </motion.p>
 
         {/* Card */}
@@ -91,16 +93,14 @@ export function Example() {
           <div className="rounded-2xl border border-border bg-white p-6 shadow-lg sm:p-8">
             {/* Header */}
             <p className="text-center font-handwritten text-lg text-primary">
-              A Little Something
+              {t("previewCardHeader")}
             </p>
             <p className="text-center font-handwritten text-2xl text-foreground">
-              For You 💕
+              {t("previewCardForYou")}
             </p>
 
             <p className="mt-4 text-center text-sm leading-relaxed text-foreground-muted">
-              I made this just for you.
-              <br />
-              Answer honestly, okay? 🥹
+              {t("previewCardIntro")}
             </p>
 
             <div className="my-5 border-t border-border-light" />
@@ -155,7 +155,7 @@ export function Example() {
 
             {/* Progress */}
             <p className="mt-5 text-center text-xs text-foreground-subtle">
-              Question {current + 1} of {questions.length}
+              {t("previewCardQuestionOf", { current: current + 1, total: questions.length })}
             </p>
 
             {/* Progress bar */}
@@ -170,7 +170,7 @@ export function Example() {
         </motion.div>
 
         <p className="mt-6 text-xs text-foreground-subtle">
-          Tap an answer to see it in action ↑
+          {t("exampleTapHint")}
         </p>
       </div>
     </section>

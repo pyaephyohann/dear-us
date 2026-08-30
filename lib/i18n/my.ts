@@ -269,6 +269,7 @@ export const my: TranslationDict = {
   recipientDoneDesc: "{creator} က မင့်အဖြေတွေကြည့်ရင် ပျော်သွားမှာပါ။",
   recipientThanks: "ဖြေပေးလို့ ကျေးဇူးအများကြီးတင်ပါတယ်နော် ❤️",
   recipientTryAgain: "ထပ်ကြိုးစားကြည့်မယ် 💕",
+  recipientSubmitError: "ဟင်... အဖြေတွေသိမ်းတာ မအောင်မြင်ဘူးနော်။ ထပ်ကြိုးစားကြည့်ပါ။ 💕",
   recipientQuestionOf: "မေးခွန်း {current} / {total}",
 
   // ---------------------------------------------------------------------------
@@ -291,6 +292,22 @@ export const my: TranslationDict = {
   dashboardResponses: "အဖြေများ",
   analyticsTimeline: "အချိန်ဇယား",
   analyticsResponseActivity: "အဖြေ {count} ခု",
+
+  // ---------------------------------------------------------------------------
+  // Landing Page — Example/Preview Section
+  // ---------------------------------------------------------------------------
+  exampleSubtitle: "ကြည့်ကြည့်ပါ ✨",
+  exampleTitle: "မင့်ပုံစံနဲ့ လုပ်ကြည့်ပါ။",
+  exampleDesc: "သူဘာမြင်ရမလဲ ကြိုကြည့်ကြည့်ပါ။",
+  exampleTapHint: "အဖြေတစ်ခု နှိပ်ကြည့်ပါ ↑",
+
+  // ---------------------------------------------------------------------------
+  // Preview Card (landing page example)
+  // ---------------------------------------------------------------------------
+  previewCardHeader: "အမှတ်တရလေးတစ်ခု",
+  previewCardForYou: "မင်းအတွက် 💌",
+  previewCardIntro: "မင်းအတွက်ပဲ လုပ်ထားတာနော်။\nရိုးသားဖြေပါနော်? 🥹",
+  previewCardQuestionOf: "မေးခွန်း {current} / {total}",
 
   // ---------------------------------------------------------------------------
   // Misc
