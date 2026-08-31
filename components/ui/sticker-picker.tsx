@@ -1,8 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { STICKER_REGISTRY } from "@/lib/stickers";
-import { StickerRenderer } from "@/lib/stickers";
+import { STICKER_REGISTRY, getStickerAsset } from "@/lib/stickers";
 import type { StickerId } from "@/lib/stickers";
 import { useTranslation } from "@/lib/i18n";
 
@@ -16,16 +15,6 @@ const STICKER_LABELS: Record<StickerId, string> = {
   "cat-sleepy": "stickerSleepy",
 };
 
-/** Cute emoji for each sticker. */
-const STICKER_EMOJI: Record<StickerId, string> = {
-  "cat-love": "💕",
-  "cat-happy": "✨",
-  "cat-shy": "🙈",
-  "cat-kiss": "💋",
-  "cat-laugh": "😂",
-  "cat-sleepy": "😴",
-};
-
 interface StickerPickerProps {
   selectedStickerId: string | null;
   onSelect: (stickerId: string | null) => void;
@@ -33,7 +22,7 @@ interface StickerPickerProps {
 
 /**
  * A compact sticker picker for creator question cards.
- * Shows a "No sticker" option and a grid of sticker previews with labels.
+ * Shows a "No sticker" option and a grid of animated sticker previews with labels.
  */
 export function StickerPicker({ selectedStickerId, onSelect }: StickerPickerProps) {
   const { t } = useTranslation();
@@ -68,7 +57,7 @@ export function StickerPicker({ selectedStickerId, onSelect }: StickerPickerProp
         {stickerIds.map((id) => {
           const isSelected = selectedStickerId === id;
           const labelKey = STICKER_LABELS[id];
-          const emoji = STICKER_EMOJI[id];
+          const asset = getStickerAsset(id);
 
           return (
             <motion.button
@@ -81,13 +70,24 @@ export function StickerPicker({ selectedStickerId, onSelect }: StickerPickerProp
                   ? "border-primary bg-primary-light shadow-sm ring-1 ring-primary/20"
                   : "border-border-light bg-white hover:border-secondary hover:bg-secondary-light"
               }`}
-              aria-label={`${emoji} ${t(labelKey)}`}
+              aria-label={t(labelKey)}
               role="radio"
               aria-checked={isSelected}
             >
-              <StickerRenderer stickerId={id} size={44} />
+              {asset && (
+                /* eslint-disable-next-line @next/next/no-img-element */
+                <img
+                  src={asset}
+                  alt={t(labelKey)}
+                  width={44}
+                  height={44}
+                  className="h-[44px] w-[44px] object-contain"
+                  loading="lazy"
+                  draggable={false}
+                />
+              )}
               <span className={`text-[10px] leading-tight ${isSelected ? "text-primary font-medium" : "text-foreground-subtle"}`}>
-                {emoji} {t(labelKey)}
+                {t(labelKey)}
               </span>
               {isSelected && (
                 <motion.div

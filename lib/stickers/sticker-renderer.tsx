@@ -1,25 +1,10 @@
 // DearUs Sticker Renderer
-// Renders the correct cat sticker SVG by ID.
+// Renders the correct cat sticker by ID using local animated SVG assets.
 // Used in both creator preview and recipient question views.
 
 "use client";
 
-import { CatLoveSticker } from "./cat-love";
-import { CatHappySticker } from "./cat-happy";
-import { CatShySticker } from "./cat-shy";
-import { CatKissSticker } from "./cat-kiss";
-import { CatLaughSticker } from "./cat-laugh";
-import { CatSleepySticker } from "./cat-sleepy";
-import type { StickerId } from "./types";
-
-const STICKER_COMPONENTS: Record<StickerId, React.ComponentType> = {
-  "cat-love": CatLoveSticker,
-  "cat-happy": CatHappySticker,
-  "cat-shy": CatShySticker,
-  "cat-kiss": CatKissSticker,
-  "cat-laugh": CatLaughSticker,
-  "cat-sleepy": CatSleepySticker,
-};
+import { STICKER_REGISTRY, getStickerAsset } from "./registry";
 
 interface StickerRendererProps {
   stickerId: string | null;
@@ -28,8 +13,10 @@ interface StickerRendererProps {
 }
 
 /**
- * Renders a cat sticker by its ID.
+ * Renders a cat sticker by its ID using a local animated SVG asset.
  * If the stickerId is invalid or null, renders nothing.
+ * Respects prefers-reduced-motion: CSS animations in the SVGs are
+ * automatically disabled by the global reduced-motion rule.
  */
 export function StickerRenderer({
   stickerId,
@@ -38,17 +25,29 @@ export function StickerRenderer({
 }: StickerRendererProps) {
   if (!stickerId) return null;
 
-  const Component = STICKER_COMPONENTS[stickerId as StickerId];
-  if (!Component) return null;
+  const asset = getStickerAsset(stickerId);
+  if (!asset) return null;
+
+  const def = STICKER_REGISTRY[stickerId as keyof typeof STICKER_REGISTRY];
+  const label = def?.label ?? "Cute cat sticker";
 
   return (
     <div
       className={`mx-auto ${className}`}
       style={{ width: size, height: size }}
       role="img"
-      aria-label="Cute cat sticker"
+      aria-label={label}
     >
-      <Component />
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={asset}
+        alt={label}
+        width={size}
+        height={size}
+        className="h-full w-full object-contain"
+        loading="lazy"
+        draggable={false}
+      />
     </div>
   );
 }

@@ -164,3 +164,19 @@ https://react.dev/link/hydration-mismatch
   382 |         </h1>
   383 |         <p className="mt-2 text-sm text-foreground-muted">
  GET / 200 in 40ms (next.js: 14ms, application-code: 26ms)
+✓ Compiled in 498ms
+ GET / 200 in 20ms (next.js: 8ms, application-code: 13ms)
+✓ Compiled in 183ms
+ GET / 200 in 18ms (next.js: 9ms, application-code: 9ms)
+✓ Compiled in 168ms
+ GET / 200 in 13ms (next.js: 3ms, application-code: 9ms)
+✓ Compiled in 221ms
+✓ Compiled in 43ms
+ GET / 200 in 17ms (next.js: 6ms, application-code: 11ms)
+✓ Compiled in 31ms
+ GET / 200 in 14ms (next.js: 4ms, application-code: 11ms)
+ GET / 200 in 30ms (next.js: 5ms, application-code: 25ms)
+ GET / 200 in 20ms (next.js: 1.3ms, application-code: 19ms)
+ GET / 200 in 23ms (next.js: 1.7ms, application-code: 22ms)
+ GET /create 200 in 27ms (next.js: 7ms, application-code: 19ms)
+ GET / 200 in 27ms (next.js: 5ms, application-code: 22ms)
