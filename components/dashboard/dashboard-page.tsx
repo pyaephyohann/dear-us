@@ -87,7 +87,7 @@ export function DashboardPage({
           <p className="font-handwritten text-lg text-primary">
             {t("dashboardYourThing")}
           </p>
-          <h1 className="mt-2 font-display text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+          <h1 className="mt-2 font-roboto text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
             {title}
           </h1>
           {greeting && (

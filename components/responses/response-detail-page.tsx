@@ -91,7 +91,7 @@ export function ResponseDetailPage({
           <p className="font-handwritten text-lg text-primary">
             {t("responseDetailAnswered")}
           </p>
-          <h1 className="mt-2 font-display text-xl font-bold tracking-tight text-foreground sm:text-2xl">
+          <h1 className="mt-2 font-roboto text-xl font-bold tracking-tight text-foreground sm:text-2xl">
             {littleThingTitle}
           </h1>
           {completedDate && (

@@ -16,12 +16,12 @@ interface DearUsLogoProps {
  * Shows the official logo.png image alongside the DearUs wordmark.
  */
 export function DearUsLogo({
-  size = 32,
+  size = 40,
   showText = true,
   className = "",
 }: DearUsLogoProps) {
   return (
-    <span className={`inline-flex items-center gap-1.5 ${className}`}>
+    <span className={`inline-flex items-center gap-3 ${className}`}>
       <Image
         src="/logo.png"
         alt="DearUs"
@@ -31,7 +31,7 @@ export function DearUsLogo({
         priority
       />
       {showText && (
-        <span className="font-display text-xl font-bold tracking-tight text-foreground">
+        <span className="font-roboto text-xl font-bold tracking-tight text-foreground">
           DearUs
         </span>
       )}

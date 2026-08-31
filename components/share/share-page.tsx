@@ -109,7 +109,7 @@ export function SharePage({ creatorAccessToken, publicId, title, recipientName, 
         <p className="font-handwritten text-lg text-primary">
           {t("shareReady")}
         </p>
-        <h1 className="mt-3 font-display text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+        <h1 className="mt-3 font-roboto text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
           {recipientName ? t("responseListFor", { name: recipientName }) : title}
         </h1>
 

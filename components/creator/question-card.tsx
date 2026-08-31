@@ -54,7 +54,7 @@ export function QuestionCard({
       {/* Header row */}
       <div className="flex items-start justify-between gap-3">
         {/* Question number */}
-        <span className="font-display text-lg font-bold text-primary/30">
+        <span className="font-roboto text-lg font-bold text-primary/30">
           {String(index + 1).padStart(2, "0")}
         </span>
 

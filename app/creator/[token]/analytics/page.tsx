@@ -22,7 +22,7 @@ export default async function AnalyticsRoute({ params }: AnalyticsParams) {
       <main className="flex min-h-screen flex-col items-center justify-center px-6 py-24">
         <div className="mx-auto max-w-lg text-center">
           <p className="text-3xl">💌</p>
-          <h1 className="mt-4 font-display text-2xl font-bold text-foreground">
+          <h1 className="mt-4 font-roboto text-2xl font-bold text-foreground">
             Hmm... we couldn&apos;t load this page.
           </h1>
           <p className="mt-3 text-sm text-foreground-muted">
@@ -44,7 +44,7 @@ export default async function AnalyticsRoute({ params }: AnalyticsParams) {
       <main className="flex min-h-screen flex-col items-center justify-center px-6 py-24">
         <div className="mx-auto max-w-lg text-center">
           <p className="text-3xl">💌</p>
-          <h1 className="mt-4 font-display text-2xl font-bold text-foreground">
+          <h1 className="mt-4 font-roboto text-2xl font-bold text-foreground">
             That private link isn&apos;t valid anymore. 💌
           </h1>
           <p className="mt-3 text-sm text-foreground-muted">
@@ -69,7 +69,7 @@ export default async function AnalyticsRoute({ params }: AnalyticsParams) {
       <main className="flex min-h-screen flex-col items-center justify-center px-6 py-24">
         <div className="mx-auto max-w-lg text-center">
           <p className="text-3xl">📊</p>
-          <h1 className="mt-4 font-display text-2xl font-bold text-foreground">
+          <h1 className="mt-4 font-roboto text-2xl font-bold text-foreground">
             Hmm... we couldn&apos;t load analytics.
           </h1>
           <p className="mt-3 text-sm text-foreground-muted">

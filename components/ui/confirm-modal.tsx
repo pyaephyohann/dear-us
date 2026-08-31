@@ -124,7 +124,7 @@ export function ConfirmModal({
           >
             <h2
               id="confirm-title"
-              className="font-display text-lg font-semibold text-foreground"
+              className="font-roboto text-lg font-semibold text-foreground"
             >
               {title}
             </h2>

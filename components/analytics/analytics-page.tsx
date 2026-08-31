@@ -137,7 +137,7 @@ function EmptyAnalytics({ creatorAccessToken, t }: { creatorAccessToken: string;
     >
       <div className="rounded-2xl border border-border-light bg-white p-8 shadow-sm">
         <p className="text-4xl">📊</p>
-        <h2 className="mt-4 font-display text-lg font-bold text-foreground">
+        <h2 className="mt-4 font-roboto text-lg font-bold text-foreground">
           {t("analyticsNoResponses")}
         </h2>
         <p className="mt-2 text-sm text-foreground-muted">
@@ -185,7 +185,7 @@ export function AnalyticsPage({
           <p className="font-handwritten text-lg text-primary">
             {t("analyticsTitle")}
           </p>
-          <h1 className="mt-2 font-display text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+          <h1 className="mt-2 font-roboto text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
             {title}
           </h1>
           {recipientName && (
@@ -209,7 +209,7 @@ export function AnalyticsPage({
             className="mt-8 grid grid-cols-2 gap-3"
           >
             <div className="rounded-2xl border border-border-light bg-white p-4 text-center shadow-sm">
-              <p className="font-display text-3xl font-bold text-primary">
+              <p className="font-roboto text-3xl font-bold text-primary">
                 {totalResponses}
               </p>
               <p className="mt-1 text-xs text-foreground-muted">
@@ -217,7 +217,7 @@ export function AnalyticsPage({
               </p>
             </div>
             <div className="rounded-2xl border border-border-light bg-white p-4 text-center shadow-sm">
-              <p className="font-display text-3xl font-bold text-primary">
+              <p className="font-roboto text-3xl font-bold text-primary">
                 {totalQuestions}
               </p>
               <p className="mt-1 text-xs text-foreground-muted">
@@ -235,7 +235,7 @@ export function AnalyticsPage({
             transition={{ delay: 0.1 }}
             className="mt-6 rounded-2xl border border-border-light bg-white p-5 shadow-sm"
           >
-            <h2 className="font-display text-sm font-semibold text-foreground mb-4">
+            <h2 className="font-roboto text-sm font-semibold text-foreground mb-4">
               {t("analyticsActivityTitle")}
             </h2>
             <ActivityChart data={activityByDate} language={language} />
@@ -250,7 +250,7 @@ export function AnalyticsPage({
             transition={{ delay: 0.15 }}
             className="mt-4 rounded-2xl border border-border-light bg-white p-5 shadow-sm"
           >
-            <h2 className="font-display text-sm font-semibold text-foreground mb-3">
+            <h2 className="font-roboto text-sm font-semibold text-foreground mb-3">
               {t("analyticsTimeline")}
             </h2>
             <div className="space-y-2">
@@ -277,7 +277,7 @@ export function AnalyticsPage({
         {/* Question breakdown */}
         {hasResponses && (
           <div className="mt-6 space-y-4">
-            <h2 className="font-display text-sm font-semibold text-foreground">
+            <h2 className="font-roboto text-sm font-semibold text-foreground">
               {t("analyticsBreakdownTitle")}
             </h2>
             {questions.map((q, index) => (

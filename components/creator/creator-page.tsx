@@ -377,7 +377,7 @@ export function CreatorPage({ editMode = null }: CreatorPageProps) {
         animate={{ opacity: 1, y: 0 }}
         className="text-center"
       >
-        <h1 className="font-display text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+        <h1 className="font-roboto text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
           {isEditing ? t("editTitle") : t("createPageTitle")}
         </h1>
         <p className="mt-2 text-sm text-foreground-muted">
@@ -407,7 +407,7 @@ export function CreatorPage({ editMode = null }: CreatorPageProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.05 }}
         >
-          <h2 className="font-display text-lg font-semibold text-foreground mb-4">
+          <h2 className="font-roboto text-lg font-semibold text-foreground mb-4">
             {t("theBasics")}
           </h2>
           <div className="rounded-2xl border border-border-light bg-white p-5 shadow-sm sm:p-6">
@@ -428,7 +428,7 @@ export function CreatorPage({ editMode = null }: CreatorPageProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
         >
-          <h2 className="font-display text-lg font-semibold text-foreground mb-4">
+          <h2 className="font-roboto text-lg font-semibold text-foreground mb-4">
             {t("yourQuestions")}
           </h2>
           <QuestionBuilder

@@ -161,7 +161,7 @@ export function ResponseListPage({
           <p className="font-handwritten text-lg text-primary">
             {t("responseListTitle")}
           </p>
-          <h1 className="mt-2 font-display text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+          <h1 className="mt-2 font-roboto text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
             {title}
           </h1>
           {recipientName && (
@@ -184,7 +184,7 @@ export function ResponseListPage({
           >
             <div className="rounded-2xl border border-border-light bg-white p-8 shadow-sm">
               <p className="text-3xl">💌</p>
-              <h2 className="mt-4 font-display text-lg font-bold text-foreground">
+              <h2 className="mt-4 font-roboto text-lg font-bold text-foreground">
                 {t("responseEmptyTitle")}
               </h2>
               <p className="mt-2 text-sm text-foreground-muted">

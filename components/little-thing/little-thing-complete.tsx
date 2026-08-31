@@ -23,7 +23,7 @@ export function LittleThingComplete({ creatorName }: LittleThingCompleteProps) {
       className="min-h-[180px] text-center"
     >
       <p className="text-3xl">💕</p>
-      <p className="mt-4 font-display text-xl font-bold text-foreground">
+      <p className="mt-4 font-roboto text-xl font-bold text-foreground">
         {t("recipientDone")}
       </p>
       <p className="mt-2 text-sm text-foreground-muted">

@@ -10,7 +10,7 @@ export default function CreatorNotFound() {
     <main className="flex min-h-screen flex-col items-center justify-center px-6 py-24">
       <div className="mx-auto max-w-lg text-center">
         <p className="text-5xl">💌</p>
-        <h1 className="mt-6 font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+        <h1 className="mt-6 font-roboto text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
           {t("creatorNotFoundTitle")}
         </h1>
         <p className="mt-4 text-sm text-foreground-muted">

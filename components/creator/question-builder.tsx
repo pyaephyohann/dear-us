@@ -42,7 +42,7 @@ export function QuestionBuilder({
   if (questions.length === 0) {
     return (
       <section className="py-12 text-center">
-        <p className="font-display text-lg font-medium text-foreground">
+        <p className="font-roboto text-lg font-medium text-foreground">
           {t("questionBuilderEmpty")}
         </p>
         <p className="mt-2 text-sm text-foreground-muted">

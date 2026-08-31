@@ -30,7 +30,7 @@ export function FinalCta() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ delay: 0.08 }}
-          className="mt-4 font-display text-2xl font-bold leading-tight tracking-tight text-foreground sm:text-3xl md:text-4xl"
+          className="mt-4 font-roboto text-2xl font-bold leading-tight tracking-tight text-foreground sm:text-3xl md:text-4xl"
         >
           {t("finalCtaTitle")}
         </motion.h2>

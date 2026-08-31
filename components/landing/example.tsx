@@ -71,7 +71,7 @@ export function Example() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ delay: 0.05 }}
-          className="mt-3 font-display text-2xl font-bold tracking-tight text-foreground sm:text-3xl"
+          className="mt-3 font-roboto text-2xl font-bold tracking-tight text-foreground sm:text-3xl"
         >
           {t("exampleTitle")}
         </motion.h2>

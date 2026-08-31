@@ -59,7 +59,7 @@ export function HowItWorks() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ delay: 0.05 }}
-          className="mt-3 font-display text-2xl font-bold tracking-tight text-foreground sm:text-3xl"
+          className="mt-3 font-roboto text-2xl font-bold tracking-tight text-foreground sm:text-3xl"
         >
           {t("howItWorksTitle")}
         </motion.h2>
@@ -76,7 +76,7 @@ export function HowItWorks() {
               className="group relative rounded-2xl border border-border-light bg-white p-6 text-left shadow-sm transition-shadow hover:shadow-md"
             >
               {/* Number */}
-              <span className="font-display text-3xl font-bold text-primary/20 transition-colors group-hover:text-primary/40">
+              <span className="font-roboto text-3xl font-bold text-primary/20 transition-colors group-hover:text-primary/40">
                 {step.number}
               </span>
 
