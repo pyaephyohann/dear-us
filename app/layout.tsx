@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display, Caveat } from "next/font/google";
+import { Roboto, Playfair_Display, Caveat } from "next/font/google";
 import { Providers } from "@/components/providers";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const roboto = Roboto({
+  variable: "--font-roboto",
   subsets: ["latin"],
+  weight: ["400", "500", "700"],
   display: "swap",
 });
 
@@ -38,7 +39,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${playfair.variable} ${caveat.variable}`}
+      className={`${roboto.variable} ${playfair.variable} ${caveat.variable}`}
       suppressHydrationWarning
     >
       <head>
