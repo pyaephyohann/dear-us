@@ -94,6 +94,7 @@ export default async function EditRoute({ params }: EditPageParams) {
     questions: littleThing.questions.map((q) => ({
       id: q.id,
       text: q.text,
+      stickerId: q.stickerId,
       answers: q.answers.map((a) => ({
         id: a.id,
         text: a.text,

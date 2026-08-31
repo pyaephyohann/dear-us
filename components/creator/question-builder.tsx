@@ -10,6 +10,7 @@ interface QuestionBuilderProps {
   questionErrors: Record<number, Record<string, string | undefined>>;
   onAddQuestion: () => void;
   onQuestionTextChange: (id: string, text: string) => void;
+  onQuestionStickerChange: (id: string, stickerId: string | null) => void;
   onQuestionDelete: (id: string) => void;
   onQuestionMoveUp: (id: string) => void;
   onQuestionMoveDown: (id: string) => void;
@@ -25,6 +26,7 @@ export function QuestionBuilder({
   questionErrors,
   onAddQuestion,
   onQuestionTextChange,
+  onQuestionStickerChange,
   onQuestionDelete,
   onQuestionMoveUp,
   onQuestionMoveDown,
@@ -68,6 +70,7 @@ export function QuestionBuilder({
             total={questions.length}
             questionErrors={questionErrors[i] ?? {}}
             onTextChange={onQuestionTextChange}
+            onStickerChange={onQuestionStickerChange}
             onDelete={onQuestionDelete}
             onMoveUp={onQuestionMoveUp}
             onMoveDown={onQuestionMoveDown}

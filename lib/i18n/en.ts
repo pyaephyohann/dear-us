@@ -305,6 +305,13 @@ export const en: TranslationDict = {
   previewCardQuestionOf: "Question {current} of {total}",
 
   // ---------------------------------------------------------------------------
+  // Sticker
+  // ---------------------------------------------------------------------------
+  stickerLabel: "Cute Sticker",
+  stickerNone: "No sticker",
+  stickerChoose: "Choose a sticker",
+
+  // ---------------------------------------------------------------------------
   // Misc
   // ---------------------------------------------------------------------------
   back: "← Back",

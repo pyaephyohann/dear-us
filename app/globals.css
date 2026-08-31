@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "../lib/stickers/sticker-animations.css";
 
 /*
  * DearUs Design Tokens

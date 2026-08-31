@@ -141,11 +141,20 @@ const answerInputSchema = z.object({
     .max(ANSWER_TEXT_MAX, `Answer must be ${ANSWER_TEXT_MAX} characters or less`),
 });
 
+import { isValidStickerId } from "@/lib/stickers";
+
 const questionInputSchema = z.object({
   text: z
     .string()
     .min(1, "Question text is required")
     .max(QUESTION_TEXT_MAX, `Question must be ${QUESTION_TEXT_MAX} characters or less`),
+  stickerId: z
+    .string()
+    .max(50)
+    .optional()
+    .refine((val) => isValidStickerId(val ?? null), {
+      message: "Invalid sticker ID",
+    }),
   answers: z
     .array(answerInputSchema)
     .min(2, "A question needs at least 2 answers"),
@@ -196,6 +205,14 @@ const questionUpdateInputSchema = z.object({
     .string()
     .min(1, "Question text is required")
     .max(QUESTION_TEXT_MAX, `Question must be ${QUESTION_TEXT_MAX} characters or less`),
+  stickerId: z
+    .string()
+    .max(50)
+    .optional()
+    .nullable()
+    .refine((val) => isValidStickerId(val ?? null), {
+      message: "Invalid sticker ID",
+    }),
   answers: z
     .array(answerUpdateInputSchema)
     .min(2, "A question needs at least 2 answers"),

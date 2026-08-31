@@ -58,6 +58,7 @@ export async function POST(request: Request) {
             littleThingId: lt.id,
             text: q.text,
             order: qi,
+            stickerId: q.stickerId || null,
           },
         });
 

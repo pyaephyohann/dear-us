@@ -24,6 +24,7 @@ type PreviewQuestion = {
   id: string;
   text: string;
   order: number;
+  stickerId: string | null;
   answers: PreviewAnswer[];
 };
 
@@ -177,6 +178,7 @@ export function PreviewPage({ littleThing }: PreviewPageProps) {
               >
                 <LittleThingQuestion
                   questionText={currentQuestion.text}
+                  stickerId={currentQuestion.stickerId}
                   answers={currentQuestion.answers}
                   selectedAnswerId={
                     selectedAnswers[currentQuestion.id] ?? null

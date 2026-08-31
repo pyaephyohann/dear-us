@@ -23,6 +23,7 @@ function makeDefaultQuestion(): QuestionDraft {
   return {
     id: tempId(),
     text: "",
+    stickerId: null,
     answers: [makeDefaultAnswer(), makeDefaultAnswer()],
   };
 }
@@ -85,6 +86,7 @@ function validate(
 export type EditorInitialQuestion = {
   id: string;
   text: string;
+  stickerId: string | null;
   answers: { id: string; text: string }[];
 };
 
@@ -120,6 +122,7 @@ export function CreatorPage({ editMode = null }: CreatorPageProps) {
     editMode?.questions.map((q) => ({
       id: q.id,
       text: q.text,
+      stickerId: q.stickerId ?? null,
       answers: q.answers.map((a) => ({ id: a.id, text: a.text })),
     })) ?? []
   );
@@ -184,6 +187,13 @@ export function CreatorPage({ editMode = null }: CreatorPageProps) {
   const changeQuestionText = useCallback((id: string, text: string) => {
     setQuestions((prev) =>
       prev.map((q) => (q.id === id ? { ...q, text } : q))
+    );
+    setServerError(null);
+  }, []);
+
+  const changeQuestionSticker = useCallback((id: string, stickerId: string | null) => {
+    setQuestions((prev) =>
+      prev.map((q) => (q.id === id ? { ...q, stickerId } : q))
     );
     setServerError(null);
   }, []);
@@ -296,6 +306,7 @@ export function CreatorPage({ editMode = null }: CreatorPageProps) {
             questions: questions.map((q) => ({
               id: q.id.startsWith("tmp-") ? undefined : q.id,
               text: q.text.trim(),
+              stickerId: q.stickerId,
               answers: q.answers
                 .filter((a) => a.text.trim())
                 .map((a) => ({
@@ -329,6 +340,7 @@ export function CreatorPage({ editMode = null }: CreatorPageProps) {
             recipientName: recipientName.trim() || undefined,
             questions: questions.map((q) => ({
               text: q.text.trim(),
+              stickerId: q.stickerId,
               answers: q.answers
                 .filter((a) => a.text.trim())
                 .map((a) => ({ text: a.text.trim() })),
@@ -424,6 +436,7 @@ export function CreatorPage({ editMode = null }: CreatorPageProps) {
             questionErrors={questionErrors}
             onAddQuestion={addQuestion}
             onQuestionTextChange={changeQuestionText}
+            onQuestionStickerChange={changeQuestionSticker}
             onQuestionDelete={deleteQuestion}
             onQuestionMoveUp={moveQuestionUp}
             onQuestionMoveDown={moveQuestionDown}

@@ -9,6 +9,7 @@ export type AnswerDraft = {
 export type QuestionDraft = {
   id: string;
   text: string;
+  stickerId: string | null;
   answers: AnswerDraft[];
 };
 

@@ -47,12 +47,13 @@ model LittleThing {
 
 /// A single question inside a Little Thing.
 model Question {
-  id             String   @id @default(cuid())
+  id             String    @id @default(cuid())
   littleThingId  String
   text           String
   order          Int
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  stickerId      String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
 
   littleThing    LittleThing      @relation(fields: [littleThingId], references: [id], onDelete: Cascade)
   answers        Answer[]

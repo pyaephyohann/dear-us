@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import type { QuestionDraft } from "./types";
 import { AnswerList } from "./answer-list";
+import { StickerPicker } from "@/components/ui/sticker-picker";
 import { useTranslation } from "@/lib/i18n";
 
 interface QuestionCardProps {
@@ -11,6 +12,7 @@ interface QuestionCardProps {
   total: number;
   questionErrors: Record<string, string | undefined>;
   onTextChange: (id: string, text: string) => void;
+  onStickerChange: (id: string, stickerId: string | null) => void;
   onDelete: (id: string) => void;
   onMoveUp: (id: string) => void;
   onMoveDown: (id: string) => void;
@@ -27,6 +29,7 @@ export function QuestionCard({
   total,
   questionErrors,
   onTextChange,
+  onStickerChange,
   onDelete,
   onMoveUp,
   onMoveDown,
@@ -104,6 +107,12 @@ export function QuestionCard({
           <p className="mt-1 text-xs text-primary">{questionErrors.text}</p>
         )}
       </div>
+
+      {/* Sticker picker */}
+      <StickerPicker
+        selectedStickerId={question.stickerId}
+        onSelect={(stickerId) => onStickerChange(question.id, stickerId)}
+      />
 
       {/* Answers */}
       <div className="mt-4">

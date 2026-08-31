@@ -1,0 +1,67 @@
+/* DearUs Cat Sticker Animations
+ * These keyframes are automatically disabled by the existing
+ * prefers-reduced-motion rule in globals.css which sets
+ * animation-duration: 0.01ms !important for all elements.
+ */
+
+/* Floating hearts / bubbles */
+@keyframes sticker-float-up {
+  0%, 100% { transform: translateY(0); opacity: 0.7; }
+  50% { transform: translateY(-6px); opacity: 1; }
+}
+
+.sticker-float-1 {
+  animation: sticker-float-up 2s ease-in-out infinite;
+}
+
+.sticker-float-2 {
+  animation: sticker-float-up 2.5s ease-in-out infinite 0.5s;
+}
+
+/* Sparkle twinkle */
+@keyframes sticker-sparkle {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.3); opacity: 1; }
+}
+
+.sticker-sparkle-1 {
+  animation: sticker-sparkle 1.8s ease-in-out infinite;
+}
+
+.sticker-sparkle-2 {
+  animation: sticker-sparkle 2.2s ease-in-out infinite 0.3s;
+}
+
+/* Tail wag */
+@keyframes sticker-wag {
+  0%, 100% { transform: rotate(0deg); transform-origin: 88px 72px; }
+  25% { transform: rotate(5deg); transform-origin: 88px 72px; }
+  75% { transform: rotate(-5deg); transform-origin: 88px 72px; }
+}
+
+.sticker-wag {
+  animation: sticker-wag 1.5s ease-in-out infinite;
+}
+
+/* Shy peek */
+@keyframes sticker-peek {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-2px); }
+}
+
+.sticker-peek {
+  animation: sticker-peek 2s ease-in-out infinite;
+}
+
+/* Shake / laugh */
+@keyframes sticker-shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-1px); }
+  40% { transform: translateX(1px); }
+  60% { transform: translateX(-1px); }
+  80% { transform: translateX(1px); }
+}
+
+.sticker-shake {
+  animation: sticker-shake 0.6s ease-in-out infinite;
+}

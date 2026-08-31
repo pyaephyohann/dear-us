@@ -77,6 +77,7 @@ export default async function PreviewRoute({ params }: PreviewPageParams) {
       id: q.id,
       text: q.text,
       order: q.order,
+      stickerId: q.stickerId,
       answers: q.answers.map((a) => ({
         id: a.id,
         text: a.text,

@@ -40,6 +40,7 @@ export async function GET(_request: Request, { params }: RouteParams) {
         id: q.id,
         text: q.text,
         order: q.order,
+        stickerId: q.stickerId,
         answers: q.answers.map((a) => ({
           id: a.id,
           text: a.text,
@@ -179,10 +180,10 @@ export async function PATCH(request: Request, { params }: RouteParams) {
         let questionId: string;
 
         if (q.id) {
-          // Existing question — update text and order
+          // Existing question — update text, order, and sticker
           await tx.question.update({
             where: { id: q.id },
-            data: { text: q.text, order: qi },
+            data: { text: q.text, order: qi, stickerId: q.stickerId || null },
           });
           questionId = q.id;
           keepQuestionIds.add(q.id);
@@ -193,6 +194,7 @@ export async function PATCH(request: Request, { params }: RouteParams) {
               littleThingId,
               text: q.text,
               order: qi,
+              stickerId: q.stickerId || null,
             },
           });
           questionId = created.id;

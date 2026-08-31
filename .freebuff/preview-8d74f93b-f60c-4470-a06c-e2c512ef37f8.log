@@ -874,3 +874,5 @@ https://react.dev/link/hydration-mismatch
   27 |             href="/create"
   28 |             className="rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
   29 |           >
+ GET / 200 in 53ms (next.js: 18ms, application-code: 35ms)
+ GET / 200 in 50ms (next.js: 11ms, application-code: 39ms)

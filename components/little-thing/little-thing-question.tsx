@@ -1,9 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { StickerRenderer } from "@/lib/stickers";
 
 interface LittleThingQuestionProps {
   questionText: string;
+  stickerId?: string | null;
   answers: { id: string; text: string }[];
   selectedAnswerId: string | null;
   onSelect: (answerId: string) => void;
@@ -16,12 +18,19 @@ interface LittleThingQuestionProps {
  */
 export function LittleThingQuestion({
   questionText,
+  stickerId,
   answers,
   selectedAnswerId,
   onSelect,
 }: LittleThingQuestionProps) {
   return (
     <div className="min-h-[180px]">
+      {/* Cat sticker */}
+      {stickerId && (
+        <div className="mb-4">
+          <StickerRenderer stickerId={stickerId} size={80} />
+        </div>
+      )}
       <p className="text-center text-base font-medium leading-snug text-foreground">
         {questionText}
       </p>

@@ -11,6 +11,7 @@ export async function createQuestion(data: {
   littleThingId: string;
   text: string;
   order: number;
+  stickerId?: string | null;
 }) {
   return prisma.question.create({
     data,
@@ -50,7 +51,7 @@ export async function getQuestionsByLittleThing(littleThingId: string) {
 
 export async function updateQuestion(
   id: string,
-  data: { text?: string; order?: number }
+  data: { text?: string; order?: number; stickerId?: string | null }
 ) {
   return prisma.question.update({
     where: { id },

@@ -21,6 +21,7 @@ type RecipientQuestion = {
   id: string;
   text: string;
   order: number;
+  stickerId: string | null;
   answers: RecipientAnswer[];
 };
 
@@ -216,6 +217,7 @@ export function RecipientPage({ littleThing }: RecipientPageProps) {
                   >
                     <LittleThingQuestion
                       questionText={currentQuestion.text}
+                      stickerId={currentQuestion.stickerId}
                       answers={currentQuestion.answers}
                       selectedAnswerId={
                         selectedAnswers[currentQuestion.id] ?? null
