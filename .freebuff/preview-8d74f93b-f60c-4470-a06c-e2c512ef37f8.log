@@ -876,3 +876,182 @@ https://react.dev/link/hydration-mismatch
   29 |           >
  GET / 200 in 53ms (next.js: 18ms, application-code: 35ms)
  GET / 200 in 50ms (next.js: 11ms, application-code: 39ms)
+ GET / 200 in 200ms (next.js: 103ms, application-code: 96ms)
+ GET / 200 in 51ms (next.js: 7ms, application-code: 44ms)
+ GET / 200 in 33ms (next.js: 2ms, application-code: 31ms)
+[browser] Uncaught Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HTTPAccessFallbackBoundary notFound={{...}} forbidden={undefined} unauthorized={undefined}>
+      <HTTPAccessFallbackErrorBoundary pathname="/" notFound={{...}} forbidden={undefined} unauthorized={undefined} ...>
+        <RedirectBoundary>
+          <RedirectErrorBoundary router={{...}}>
+            <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} segmentPath={[...]} ...>
+              <SegmentViewNode type="page" pagePath="page.tsx">
+                <SegmentTrieNode>
+                <HomePage>
+                  <Navbar>
+                    <nav className="fixed top-...">
+                      <div className="mx-auto fl...">
+                        <LinkComponent>
+                        <div className="flex items...">
+                          <LanguageToggle>
+                            <div className="inline-fle..." role="radiogroup" aria-label="Language s...">
+                              <ToggleOption active={false} onClick={function onClick} label="EN">
+                                <button
+                                  type="button"
+                                  role="radio"
++                                 aria-checked={false}
+-                                 aria-checked="true"
+                                  aria-label="Switch to English"
+                                  onClick={function onClick}
++                                 className="rounded-full px-2.5 py-1 text-xs font-medium transition-all text-foregrou..."
+-                                 className="rounded-full px-2.5 py-1 text-xs font-medium transition-all bg-primary te..."
+                                >
++                                 EN
+                              <span>
+                              <ToggleOption active={true} onClick={function onClick} label="မြန်မာ">
+                                <button
+                                  type="button"
+                                  role="radio"
++                                 aria-checked={true}
+-                                 aria-checked="false"
+                                  aria-label="Switch to Burmese"
+                                  onClick={function onClick}
++                                 className="rounded-full px-2.5 py-1 text-xs font-medium transition-all bg-primary te..."
+-                                 className="rounded-full px-2.5 py-1 text-xs font-medium transition-all text-foregrou..."
+                                >
++                                 မြန်မာ
+                          <LinkComponent href="/create" className="rounded-fu...">
+                            <a
+                              className="rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary transit..."
+                              ref={function}
+                              onClick={function onClick}
+                              onMouseEnter={function onMouseEnter}
+                              onTouchStart={function onTouchStart}
+                              href="/create"
+                            >
++                             မင့်အတွက် Little Thing လေး ဖန်တီးမယ်
+-                             Create Your Little Thing
+                  ...
+              ...
+            ...
+
+    at <unknown> (https://react.dev/link/hydration-mismatch)
+    at a (<anonymous>)
+    at Navbar (components/landing/navbar.tsx:26:11)
+    at HomePage (app/page.tsx:11:7)
+  24 |         <div className="flex items-center gap-3">
+  25 |           <LanguageToggle />
+> 26 |           <Link
+     |           ^
+  27 |             href="/create"
+  28 |             className="rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+  29 |           >
+ GET /little/b53d4e64-538d-4eb2-ba47-27bee6619892 200 in 358ms (next.js: 84ms, application-code: 274ms)
+ PATCH /api/little-things/cmth0c5rc000004kymdnciysf 403 in 678ms (next.js: 616ms, application-code: 62ms)
+ GET /little/966be7b8-6a49-4afb-a30a-4edeabeee15f 200 in 104ms (next.js: 18ms, application-code: 86ms)
+✓ Compiled in 268ms
+ GET /little/966be7b8-6a49-4afb-a30a-4edeabeee15f 200 in 209ms (next.js: 11ms, application-code: 198ms)
+✓ Compiled in 35ms
+ GET /little/966be7b8-6a49-4afb-a30a-4edeabeee15f 200 in 50ms (next.js: 6ms, application-code: 44ms)
+ GET /little/966be7b8-6a49-4afb-a30a-4edeabeee15f 200 in 43ms (next.js: 3ms, application-code: 40ms)
+✓ Compiled in 185ms
+ GET /little/966be7b8-6a49-4afb-a30a-4edeabeee15f 200 in 55ms (next.js: 5ms, application-code: 50ms)
+✓ Compiled in 45ms
+ GET /little/966be7b8-6a49-4afb-a30a-4edeabeee15f 200 in 48ms (next.js: 4ms, application-code: 44ms)
+ GET /little/966be7b8-6a49-4afb-a30a-4edeabeee15f 200 in 50ms (next.js: 5ms, application-code: 45ms)
+ GET /little/966be7b8-6a49-4afb-a30a-4edeabeee15f 200 in 49ms (next.js: 6ms, application-code: 43ms)
+ GET /little/966be7b8-6a49-4afb-a30a-4edeabeee15f 200 in 39ms (next.js: 4ms, application-code: 35ms)
+ GET / 200 in 149ms (next.js: 91ms, application-code: 58ms)
+ GET / 200 in 48ms (next.js: 6ms, application-code: 42ms)
+[browser] Uncaught Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HTTPAccessFallbackBoundary notFound={{...}} forbidden={undefined} unauthorized={undefined}>
+      <HTTPAccessFallbackErrorBoundary pathname="/" notFound={{...}} forbidden={undefined} unauthorized={undefined} ...>
+        <RedirectBoundary>
+          <RedirectErrorBoundary router={{...}}>
+            <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} segmentPath={[...]} ...>
+              <SegmentViewNode type="page" pagePath="page.tsx">
+                <SegmentTrieNode>
+                <HomePage>
+                  <Navbar>
+                    <nav className="fixed top-...">
+                      <div className="mx-auto fl...">
+                        <LinkComponent>
+                        <div className="flex items...">
+                          <LanguageToggle>
+                            <div className="inline-fle..." role="radiogroup" aria-label="Language s...">
+                              <ToggleOption active={false} onClick={function onClick} label="EN">
+                                <button
+                                  type="button"
+                                  role="radio"
++                                 aria-checked={false}
+-                                 aria-checked="true"
+                                  aria-label="Switch to English"
+                                  onClick={function onClick}
++                                 className="rounded-full px-2.5 py-1 text-xs font-medium transition-all text-foregrou..."
+-                                 className="rounded-full px-2.5 py-1 text-xs font-medium transition-all bg-primary te..."
+                                >
++                                 EN
+                              <span>
+                              <ToggleOption active={true} onClick={function onClick} label="မြန်မာ">
+                                <button
+                                  type="button"
+                                  role="radio"
++                                 aria-checked={true}
+-                                 aria-checked="false"
+                                  aria-label="Switch to Burmese"
+                                  onClick={function onClick}
++                                 className="rounded-full px-2.5 py-1 text-xs font-medium transition-all bg-primary te..."
+-                                 className="rounded-full px-2.5 py-1 text-xs font-medium transition-all text-foregrou..."
+                                >
++                                 မြန်မာ
+                          <LinkComponent href="/create" className="rounded-fu...">
+                            <a
+                              className="rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary transit..."
+                              ref={function}
+                              onClick={function onClick}
+                              onMouseEnter={function onMouseEnter}
+                              onTouchStart={function onTouchStart}
+                              href="/create"
+                            >
++                             မင့်အတွက် Little Thing လေး ဖန်တီးမယ်
+-                             Create Your Little Thing
+                  ...
+              ...
+            ...
+
+    at <unknown> (https://react.dev/link/hydration-mismatch)
+    at a (<anonymous>)
+    at Navbar (components/landing/navbar.tsx:26:11)
+    at HomePage (app/page.tsx:11:7)
+  24 |         <div className="flex items-center gap-3">
+  25 |           <LanguageToggle />
+> 26 |           <Link
+     |           ^
+  27 |             href="/create"
+  28 |             className="rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+  29 |           >
+ GET /create 200 in 83ms (next.js: 31ms, application-code: 52ms)
