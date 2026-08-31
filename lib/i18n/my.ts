@@ -11,38 +11,38 @@ export const my: TranslationDict = {
   // ---------------------------------------------------------------------------
   // Landing Page — Hero
   // ---------------------------------------------------------------------------
-  heroTitle: "မင်းချစ်တဲ့သူအတွက် အမှတ်တရလေးတစ်ခု။",
+  heroTitle: "မင့်ချစ်ရတဲ့သူအတွက် အမှတ်တရလေးတစ်ခု 💕",
   heroDescription:
-    "ချစ်စရာကောင်းတဲ့အတွေ့အကြုံလေးတစ်ခုဖန်တီးပြီး သူ့ပဲဖြေနိုင်တဲ့မေးခွန်းလေးတွေထည့်ပြီး ပို့လိုက်ပါ။ 💌",
+    "ချစ်စရာကောင်းတဲ့ Little Thing လေးဖန်တီးပြီး သူ့ပဲဖြေနိုင်တဲ့ မေးခွန်းလေးတွေထည့်ပြီး ပို့လိုက်ပါ 💌",
   createCta: "မင့်အတွက် Little Thing လေး ဖန်တီးမယ် 💕",
-  openLink: "ရှိပြီးသားလား? ဖွင့်ကြည့်ပါ",
+  openLink: "ရှိပြီးသားလား? ဖွင့်ကြည့်မယ်",
 
   // ---------------------------------------------------------------------------
   // Landing Page — How It Works
   // ---------------------------------------------------------------------------
   howItWorksTitle: "ဘယ်လိုလုပ်ရမလဲ",
-  howItWorksSubtitle: "အရမ်းလွယ်ပါတယ် 💕",
-  howStep1Title: "ဖန်တီးပါ",
-  howStep1Desc: "သိပ်မကြာခင်မှာ ဖန်တီးလို့ရပါတယ်။",
-  howStep2Title: "ဖြည့်ပါ",
-  howStep2Desc: "မေးခွန်းလေးတွေထည့်ပြီး ချစ်စရာအဖြေလေးတွေထည့်ပါ။",
-  howStep3Title: "ပို့ပါ",
-  howStep3Desc: "Private link ဒါမှမဟုတ် QR code နဲ့ မျှဝေပါ။",
-  howStep4Title: "အဖြေတွေကြည့်ပါ",
-  howStep4Desc: "သူဘာထင်လဲ သိလိုက်ပါ။ 💕",
+  howItWorksSubtitle: "အရမ်းလွယ်တယ် 💕",
+  howStep1Title: "ဖန်တီးမယ်",
+  howStep1Desc: "မိနစ်ပိုင်းပဲနဲ့ ဖန်တီးလို့ရတယ်",
+  howStep2Title: "ဖြည့်မယ်",
+  howStep2Desc: "ချစ်စရာကောင်းတဲ့ မေးခွန်းလေးတွေထည့်ပြီး အဖြေလေးတွေ ဖြည့်ပေးလိုက်ပါ",
+  howStep3Title: "ပို့မယ်",
+  howStep3Desc: "Private Link ဒါမှမဟုတ် QR code နဲ့ မျှဝေလိုက်ပါ",
+  howStep4Title: "အဖြေလေးတွေ ကြည့်မယ်",
+  howStep4Desc: "သူဘာထင်လဲ သိလိုက်ရမယ် 💕",
 
   // ---------------------------------------------------------------------------
   // Landing Page — Final CTA
   // ---------------------------------------------------------------------------
   finalCtaTitle: "တစ်ယောက်ယောက်ကို ပြုံးစေချင်လား?",
-  finalCtaSubtitle: "မိနစ်ပိုင်းပဲကြာပါတယ်။ 💕",
+  finalCtaSubtitle: "မိနစ်ပိုင်းပဲပဲကြာတယ် 💕",
   finalCta: "စဖန်တီးကြည့်မယ် 💕",
 
   // ---------------------------------------------------------------------------
   // Landing Page — Footer
   // ---------------------------------------------------------------------------
-  footerMadeWith: "ချစ်ခြင်းနဲ့ ဖန်တီးထားပါတယ်",
-  madeWith: "{brand} နဲ့ ဖန်တီးထားပါတယ်",
+  footerMadeWith: "ချစ်ခြင်းနဲ့ ဖန်တီးထားတယ်",
+  madeWith: "{brand} နဲ့ ဖန်တီးထားတယ်",
 
   // ---------------------------------------------------------------------------
   // Navbar
@@ -52,53 +52,53 @@ export const my: TranslationDict = {
   // ---------------------------------------------------------------------------
   // Create Page
   // ---------------------------------------------------------------------------
-  createPageTitle: "အရွယ်ငယ်တဲ့ လက်ဆောင်လေး လုပ်ကြည့်မယ်။ 💕",
-  createPageSubtitle: "အောက်ပါအချက်လက်တွေဖြည့်ပြီး မေးခွန်းတွေထည့်ပါ။",
-  theBasics: "အခြေခံအချက်များ",
-  yourQuestions: "မင့်မေးခွန်းများ",
-  saveAndContinue: "သိမ်းပြီးဆက်မယ် 💕",
+  createPageTitle: "လက်ဆောင်လေးလေး လုပ်ကြည့်မယ် 💕",
+  createPageSubtitle: "အချက်အလက်တွေ ဖြည့်ပြီး မေးခွန်းလေးတွေ ထည့်လိုက်ပါ",
+  theBasics: "အခြေခံ",
+  yourQuestions: "မင့်မေးခွန်းလေးတွေ",
+  saveAndContinue: "သိမ်းပြီး ဆက်မယ် 💕",
   saving: "သိမ်းနေတယ်... 💕",
 
   // ---------------------------------------------------------------------------
   // Basic Info Form
   // ---------------------------------------------------------------------------
-  labelRecipient: "ဒီ Little Thing လေးက ဘယ်သူ့အတွက်လဲ? 💕",
+  labelRecipient: "ဒီ Little Thing လေးက ဘယ်သူ့အတွက်လဲ 💕",
   placeholderRecipient: "ငါ့အချစ်",
-  labelCreator: "ဘယ်သူကဖန်တီးတာလဲ? 🫶",
+  labelCreator: "ဘယ်သူကဖန်တီးတာလဲ 🫶",
   placeholderCreator: "နင့်နာမည်",
-  labelTitle: "နာမည်ပေးလိုက်ပါ ✨",
+  labelTitle: "နာမည်လေးပေးလိုက်ရအောင် ✨",
   placeholderTitle: "မင့်အတွက် အမှတ်တရလေး 💌",
-  labelIntro: "ချစ်စရာမိတ်ဆက်စကားလေးထည့်ပါ",
-  optional: "(မထည့်လည်းရပါတယ်)",
-  placeholderIntro: "မင်းအတွက်ပဲ လုပ်ထားတာနော်။ ရိုးသားဖြေပါနော်? 🥹",
+  labelIntro: "ချစ်စရာကောင်းတဲ့ မိတ်ဆက်စကားလေး ထည့်ပါ",
+  optional: "(မထည့်လည်းရတယ်)",
+  placeholderIntro: "မင်းအတွက်ပဲ လုပ်ထားတာနော် ရိုးသားဖြေပါနော် 🥹",
 
   // ---------------------------------------------------------------------------
   // Creator Form Validation
   // ---------------------------------------------------------------------------
-  errorTitleRequired: "နာမည်ပေးလိုက်ပါ ✨",
+  errorTitleRequired: "နာမည်လေးပေးလိုက်ပါ ✨",
   errorQuestionEmpty: "ဘာမေးချင်လဲ?",
-  errorQuestionMinAnswers: "အဖြေ ၂ ခုထက်မနည်းရပါတယ်။ 💕",
+  errorQuestionMinAnswers: "အဖြေ ၂ ခုထက်မနည်း ထည့်ပါ 💕",
   errorQuestionFillAnswers: "အဖြေ ၂ ခုထက်မနည်း ဖြည့်ပါ",
 
   // ---------------------------------------------------------------------------
   // Question Builder
   // ---------------------------------------------------------------------------
-  questionBuilderEmpty: "မေးခွန်းလေးတွေ ထည့်ဖို့လိုသေးတယ်။ 💕",
+  questionBuilderEmpty: "မေးခွန်းလေးတွေ ထည့်ဖို့ လိုသေးတယ် 💕",
   questionBuilderEmptySub: "ရိုးရိုးလေးနဲ့ စကြည့်ပါ...",
-  addFirstQuestion: "+ ပထမဆုံးမေးခွန်း ထည့်မယ်",
-  addAnotherQuestion: "+ နောက်ထပ်မေးခွန်းတစ်ခု ထည့်မယ်",
+  addFirstQuestion: "+ ပထမဆုံး မေးခွန်းလေး ထည့်မယ်",
+  addAnotherQuestion: "+ နောက်ထပ် မေးခွန်းလေးတစ်ခု ထည့်မယ်",
 
   // ---------------------------------------------------------------------------
   // Question Card
   // ---------------------------------------------------------------------------
   questionPlaceholder: "ငါ့အကြောင်း ဘာကိုအကြိုက်ဆုံးလဲ?",
-  answersLabel: "အဖြေများ",
+  answersLabel: "အဖြေလေးတွေ",
 
   // ---------------------------------------------------------------------------
   // Answer Item
   // ---------------------------------------------------------------------------
-  answerPlaceholder: "အဖြေ",
-  deleteTooltipMinAnswers: "အဖြေ ၂ ခုထက်မနည်းရပါတယ် 💕",
+  answerPlaceholder: "အဖြေလေး",
+  deleteTooltipMinAnswers: "အဖြေ ၂ ခုထက်မနည်း ထားရမယ် 💕",
 
   // ---------------------------------------------------------------------------
   // Answer List
@@ -108,14 +108,14 @@ export const my: TranslationDict = {
   // ---------------------------------------------------------------------------
   // Preview Page
   // ---------------------------------------------------------------------------
-  previewTitle: "မင့် Little Thing လေး ပြန်ကြည့်နေတာ! 💕",
-  previewSubtitle: "ဒီလိုမြင်ရမှာပါ။ ကျေနပ်လား?",
+  previewTitle: "မင့် Little Thing လေး ဒီလိုပဲမြင်ရမှာ 💕",
+  previewSubtitle: "ဒီလိုပဲမြင်ရမှာနော် ကျေနပ်လား?",
   previewIntroSection: "ဒီလို စမှာပါ 👇",
   previewQuestionsSection: "မေးခွန်းတွေကတော့ ဒီလိုပါ 👇",
   previewQuestionOf: "မေးခွန်း {current} / {total}",
   previewShareCta: "ထုတ်ဝေပြီး မျှဝေမယ် 💕",
   previewPublishing: "ထုတ်ဝေနေတယ်... 💕",
-  previewPublished: "ထုတ်ဝေပြီးပါပြီ! 🎉",
+  previewPublished: "ထုတ်ဝေပြီးပြီ! 🎉",
   previewBackToEditing: "← ပြန်ပြင်မယ်",
 
   // ---------------------------------------------------------------------------
@@ -124,13 +124,13 @@ export const my: TranslationDict = {
   shareReady: "မင့် Little Thing လေး မျှဝေလို့ရပြီ! 💌",
   shareSubtitle: "ဒီ link ကို ပို့လိုက်ပါ",
   shareYourLink: "မင့် link",
-  shareQrTitle: "ဒါမှမဟုတ် QR code ကို scan ပါ",
+  shareQrTitle: "ဒါမှမဟုတ် QR code ကို scan လုပ်ပါ",
   shareCopyLink: "Copy ယူမယ် ✨",
-  shareCopied: "ကူးပြီးပါပြီ! 💕",
+  shareCopied: "ကူးပြီးပြီ! 💕",
   shareOpen: "Little Thing ဖွင့်ကြည့်မယ် ✨",
   shareManage: "စီမံမယ် 💕",
-  shareResponses: "အဖြေများ 💌",
-  shareAnalytics: "ခွဲခြမ်းစိတ်ဖြာ 📊",
+  shareResponses: "အဖြေတွေ 💌",
+  shareAnalytics: "Analytics 📊",
   shareBackToDashboard: "← Dashboard ပြန်သွားမယ်",
 
   // ---------------------------------------------------------------------------
@@ -139,48 +139,48 @@ export const my: TranslationDict = {
   dashboardYourThing: "မင့် Little Thing 💕",
   dashboardPublished: "ထုတ်ဝေပြီး",
   dashboardDraft: " draft",
-  dashboardPeopleAnswered: "လူ {count} ယောက်ဖြေပြီးပါပြီ 💌",
-  dashboardOneAnswered: "လူ ၁ ယောက်ဖြေပြီးပါပြီ 💌",
+  dashboardPeopleAnswered: "လူ {count} ယောက်ဖြေပြီးပြီ 💌",
+  dashboardOneAnswered: "လူ ၁ ယောက်ဖြေပြီးပြီ 💌",
   dashboardNoAnswers: "အဖြေမရှိသေးဘူး 💌",
   dashboardPreview: "ကြိုကြည့်မယ်",
   dashboardShare: "မျှဝေမယ်",
-  dashboardSeeResponses: "အဖြေများ ကြည့်မယ် 💌",
+  dashboardSeeResponses: "အဖြေတွေ ကြည့်မယ် 💌",
   dashboardEdit: "ပြင်မယ်",
-  dashboardViewAnalytics: "ခွဲခြမ်းကြည့်မယ် 📊",
+  dashboardViewAnalytics: "Analytics ကြည့်မယ် 📊",
   dashboardPrivateLink: "မင့် Private Link 🔐",
   dashboardPrivateLinkDesc:
-    "ဒီ link ကို ဘေးကင်းတဲ့နေရာမှာ သိမ်းထားပါ — အဖြေတွေပြန်ကြည့်ဖို့ ဒီ link ကိုပဲသုံးရမှာပါ။",
-  dashboardLinkWarning: "ဒီ link ရှိသမျှသူတွေ အဖြေတွေ ကြည့်လို့ရပါတယ်။",
+    "ဒီ link ကို ဘေးကင်းတဲ့နေရာမှာ သိမ်းထားပါ — အဖြေတွေ ပြန်ကြည့်ဖို့ ဒီ link ကိုပဲသုံးရမှာ",
+  dashboardLinkWarning: "ဒီ link ရှိသမျှသူတွေ အဖြေတွေ ကြည့်လို့ရတယ်",
   dashboardCopyLink: "Copy ယူမယ်",
-  dashboardCopiedLink: "ကူးပြီးပါပြီ! 💕",
+  dashboardCopiedLink: "ကူးပြီးပြီ! 💕",
   dashboardQuickStats: "အကျဉ်းချုပ် 📊",
 
   // ---------------------------------------------------------------------------
   // Edit Page
   // ---------------------------------------------------------------------------
-  editTitle: "Little Thing ကို ပြင်မယ်။ 💕",
-  editSubtitle: "အောက်မှာပြင်ပြီး သိမ်းလိုက်ပါ။",
-  saveChanges: "ပြောင်းလဲမှုတွေ သိမ်းမယ် 💕",
-  savedSuccess: "သိမ်းပြီးပါပြီ! 💕",
+  editTitle: "Little Thing ကို ပြင်မယ် 💕",
+  editSubtitle: "အောက်မှာ ပြင်ပြီး သိမ်းလိုက်ပါ",
+  saveChanges: "ပြင်ထားတာတွေ သိမ်းမယ် 💕",
+  savedSuccess: "သိမ်းပြီးပြီ 💕",
   backToDashboard: "← Dashboard ပြန်သွားမယ်",
-  saveError: "သိမ်းလို့မရသေးဘူးနော်။ ထပ်ကြိုးစားကြည့်ပါ။ 💕",
+  saveError: "သိမ်းလို့မရသေးဘူးနော် ထပ်ကြိုးစားကြည့်ပါ 💕",
 
   // ---------------------------------------------------------------------------
   // Response List
   // ---------------------------------------------------------------------------
   responseListTitle: "မင့် Little Thing 💕",
   responseListFor: "{name} အတွက်",
-  responseCountZero: "ပထမဆုံးအဖြေအတွက် စောင့်နေတယ် 💌",
-  responseCountOne: "လူ ၁ ယောက်ဖြေပြီးပါပြီ 💌",
-  responseCountMany: "လူ {count} ယောက်ဖြေပြီးပါပြီ 💌",
+  responseCountZero: "ပထမဆုံး အဖြေအတွက် စောင့်နေတယ် 💌",
+  responseCountOne: "လူ ၁ ယောက်ဖြေပြီးပြီ 💌",
+  responseCountMany: "လူ {count} ယောက်ဖြေပြီးပြီ 💌",
   responseSomeoneAnswered: "💌 တစ်ယောက်ယောက်ဖြေထားတယ်",
   responseQuestionCount: "မေးခွန်း {count} ခုဖြေပြီး",
   responseQuestionCountPlural: "မေးခွန်း {count} ခုဖြေပြီး",
   responseEmptyTitle: "မရှိသေးဘူး...",
   responseEmptyDesc:
-    "မင့် Little Thing လေး တစ်ယောက်ယောက်ဖြေဖို့ စောင့်နေတာ။",
+    "မင့် Little Thing လေး တစ်ယောက်ယောက်ဖြေဖို့ စောင့်နေတာ",
   responseEmptyHint:
-    "သူတို့ကို ပို့ပြီး နောက်မှ ပြန်လာကြည့်ပါ။ 🥹",
+    "သူတို့ကို ပို့ပြီး နောက်မှ ပြန်လာကြည့်ပါ 🥹",
   responseShareAgain: "ထပ်မျှဝေမယ် 💕",
   backToDashboardLink: "← Dashboard ပြန်သွားမယ်",
 
@@ -189,7 +189,7 @@ export const my: TranslationDict = {
   // ---------------------------------------------------------------------------
   confirmDeleteTitle: "ဒီအဖြေကို ဖျက်မလား?",
   confirmDeleteMessage:
-    "ဒီအဖြေကို အပြီးတိုင်ဖျက်မှာဖြစ်ပြီး ပြန်ဆယ်လို့မရတော့ဘူးနော်။ 💌",
+    "ဒီအဖြေကို ဖျက်ပစ်မှာနော် ပြန်ဆယ်လို့ မရတော့ဘူး 💌",
   confirmDeleteYes: "ဖျက်မယ်",
   confirmDeleteKeep: "ထားမယ်",
 
@@ -206,16 +206,16 @@ export const my: TranslationDict = {
   // ---------------------------------------------------------------------------
   // Analytics Page
   // ---------------------------------------------------------------------------
-  analyticsTitle: "အဖြေ ခွဲခြမ်းစိတ်ဖြာချက် 📊",
-  analyticsTotalResponses: "စုစုပေါင်း အဖြေ",
-  analyticsTotalQuestions: "စုစုပေါင်း မေးခွန်း",
+  analyticsTitle: "Response Analytics 📊",
+  analyticsTotalResponses: "စုစုပေါင်း အဖြေအရေအတွက်",
+  analyticsTotalQuestions: "စုစုပေါင်း မေးခွန်းအရေအတွက်",
   analyticsFirstResponse: "ပထမဆုံး အဖြေ",
   analyticsLatestResponse: "နောက်ဆုံး အဖြေ",
   analyticsActivityTitle: "အဖြေ လုပ်ဆောင်ချက်",
   analyticsBreakdownTitle: "အဖြေ ခွဲခြမ်းချက်",
   analyticsNoResponses: "အဖြေမရှိသေးဘူး...",
   analyticsNoResponsesDesc:
-    "မင့် Little Thing လေးကို တစ်ယောက်ယောက်ကို ပို့ပြီး ဘယ်လိုဖြေထားလဲ ပြန်ကြည့်ပါ!",
+    "မင့် Little Thing လေးကို တစ်ယောက်ယောက် ပို့ပြီး ဘယ်လိုဖြေထားလဲ ပြန်ကြည့်ပါ",
   analyticsShareNow: "အခုပဲ မျှဝေမယ် 💕",
   analyticsMostSelected: "အချစ်ဆုံး",
   analyticsEmptyAnalytics: "အဖြေမရှိသေးဘူး",
@@ -223,14 +223,14 @@ export const my: TranslationDict = {
   // ---------------------------------------------------------------------------
   // Not Found Pages
   // ---------------------------------------------------------------------------
-  notFoundTitle: "ဟင်... ဒီ page မရှိဘူးနော်။",
+  notFoundTitle: "ဟင်... ဒီ page မရှိဘူးနော်",
   notFoundDesc:
     "link လေး မှားနေသလား? တစ်ခြားနည်းလမ်း စမ်းကြည့်ကြမလား?",
   notFoundHome: "အိမ်ပြန်မယ် 💕",
   notFoundCreate: "Little Thing အသစ် ဖန်တီးမယ် 💕",
-  creatorNotFoundTitle: "ဒီ private link က အသုံးမပြုနိုင်တော့ဘူးနော်။",
+  creatorNotFoundTitle: "ဒီ Private Link က အသုံးမပြုနိုင်တော့ဘူးနော်",
   creatorNotFoundDesc:
-    "ဖျက်ပစ်လိုက်တာလား ဒါမှမဟုတ် link မှားနေတာလား။",
+    "ဖျက်ပစ်လိုက်တာလား ဒါမှမဟုတ် link မှားနေတာလား",
   creatorNotFoundCreate: "အသစ်ဖန်တီးမယ် 💕",
 
   // ---------------------------------------------------------------------------
@@ -245,14 +245,15 @@ export const my: TranslationDict = {
   // ---------------------------------------------------------------------------
   // Error Pages
   // ---------------------------------------------------------------------------
-  errorSomethingWrong: "တစ်ခုခု မှားသွားတယ်။",
-  errorDontWorry: "စိတ်မပူပါနဲ့ — မင့် Little Thing လေး ဘေးကင်းနေမှာပါ။ 💕",
+  errorSomethingWrong: "တစ်ခုခု မှားသွားတယ်",
+  errorDontWorry:
+    "စိတ်မပူပါနဲ့ — မင့် Little Thing လေး ဘေးကင်းနေမှာ 💕",
   errorTryAgain: "ထပ်ကြိုးစားကြည့်မယ် 💕",
   errorGoHome: "အိမ်ပြန်မယ်",
-  errorUnexpected: "မမျှော်လင့်ဘဲ အမှားတစ်ခု ဖြစ်သွားတယ်။",
-  errorSomethingWrongCreator: "ဟင်... တစ်ခုခု မှားသွားတယ်။",
+  errorUnexpected: "မမျှော်လင့်ဘဲ အမှားတစ်ခု ဖြစ်သွားတယ်",
+  errorSomethingWrongCreator: "ဟင်... တစ်ခုခု မှားသွားတယ်",
   errorCreatorSafe:
-    "မင့် Little Thing လေး ဘေးကင်းနေမှာပါ။ ထပ်ကြိုးစားကြည့်မလား? 💕",
+    "မင့် Little Thing လေး ဘေးကင်းနေမှာ ထပ်ကြိုးစားကြည့်မလား? 💕",
 
   // ---------------------------------------------------------------------------
   // Recipient Experience
@@ -266,10 +267,10 @@ export const my: TranslationDict = {
   recipientSaving: "မင်းရဲ့အဖြေလေးတွေ သိမ်းနေတယ်နော်... 💕",
   recipientSavingSub: "မင်းရဲ့အဖြေလေးတွေ သိမ်းနေတယ်နော်... 💕",
   recipientDone: "ဒါလေးပါပဲနော် 💕",
-  recipientDoneDesc: "{creator} က မင့်အဖြေတွေကြည့်ရင် ပျော်သွားမှာပါ။",
-  recipientThanks: "ဖြေပေးလို့ ကျေးဇူးအများကြီးတင်ပါတယ်နော် ❤️",
+  recipientDoneDesc: "{creator} က မင့်အဖြေတွေ ကြည့်ရင် ပျော်သွားမှာ",
+  recipientThanks: "ဖြေပေးလို့ ကျေးဇူးပါ ❤️",
   recipientTryAgain: "ထပ်ကြိုးစားကြည့်မယ် 💕",
-  recipientSubmitError: "ဟင်... အဖြေတွေသိမ်းတာ မအောင်မြင်ဘူးနော်။ ထပ်ကြိုးစားကြည့်ပါ။ 💕",
+  recipientSubmitError: "ဟင်... အဖြေတွေ သိမ်းတာ မအောင်မြင်ဘူးနော် ထပ်ကြိုးစားကြည့်ပါ 💕",
   recipientQuestionOf: "မေးခွန်း {current} / {total}",
 
   // ---------------------------------------------------------------------------
@@ -281,24 +282,24 @@ export const my: TranslationDict = {
   // ---------------------------------------------------------------------------
   // Dashboard extras
   // ---------------------------------------------------------------------------
-  dashboardQuickStatsResponses: "အဖြေများ",
+  dashboardQuickStatsResponses: "အဖြေတွေ",
   dashboardFirstToLatest: "ပထမဆုံး → နောက်ဆုံး",
   dashboardStatusPublished: "ထုတ်ဝေပြီး ✨",
-  dashboardStatusDraft: "draft",
+  dashboardStatusDraft: " draft",
   dashboardStatusArchived: "archive လုပ်ပြီး",
   dashboardCreated: "ဖန်တီးခဲ့တဲ့အချိန်",
   dashboardUpdated: "ပြင်ဆင်ခဲ့တဲ့အချိန်",
   dashboardResponse: "အဖြေ",
-  dashboardResponses: "အဖြေများ",
-  analyticsTimeline: "အချိန်ဇယား",
+  dashboardResponses: "အဖြေတွေ",
+  analyticsTimeline: "Timeline",
   analyticsResponseActivity: "အဖြေ {count} ခု",
 
   // ---------------------------------------------------------------------------
   // Landing Page — Example/Preview Section
   // ---------------------------------------------------------------------------
   exampleSubtitle: "ကြည့်ကြည့်ပါ ✨",
-  exampleTitle: "မင့်ပုံစံနဲ့ လုပ်ကြည့်ပါ။",
-  exampleDesc: "သူဘာမြင်ရမလဲ ကြိုကြည့်ကြည့်ပါ။",
+  exampleTitle: "မင့်ပုံစံနဲ့ လုပ်ကြည့်ပါ",
+  exampleDesc: "သူဘာမြင်ရမလဲ ကြိုကြည့်ကြည့်ပါ",
   exampleTapHint: "အဖြေတစ်ခု နှိပ်ကြည့်ပါ ↑",
 
   // ---------------------------------------------------------------------------
@@ -306,27 +307,27 @@ export const my: TranslationDict = {
   // ---------------------------------------------------------------------------
   previewCardHeader: "အမှတ်တရလေးတစ်ခု",
   previewCardForYou: "မင်းအတွက် 💌",
-  previewCardIntro: "မင်းအတွက်ပဲ လုပ်ထားတာနော်။\nရိုးသားဖြေပါနော်? 🥹",
+  previewCardIntro: "မင်းအတွက်ပဲ လုပ်ထားတာနော်\\nရိုးသားဖြေပါနော် 🥹",
   previewCardQuestionOf: "မေးခွန်း {current} / {total}",
 
   // ---------------------------------------------------------------------------
   // Sticker
   // ---------------------------------------------------------------------------
   stickerLabel: "ချစ်စရာ Sticker 🐱",
-  stickerNone: "Sticker မထည့်ဘူး",
+  stickerNone: "Sticker မပါဘူး",
   stickerChoose: "Sticker ရွေးပါ",
-  stickerLove: "ချစ်တယ်",
-  stickerHappy: "ပျော်တယ်",
-  stickerShy: "ရှက်တယ်",
-  stickerKiss: "နမ်းတယ်",
-  stickerLaugh: "ရယ်တယ်",
-  stickerSleepy: "အိပ်ချင်တယ်",
+  stickerLove: "ချစ်တယ် 💕",
+  stickerHappy: "ပျော်တယ် ✨",
+  stickerShy: "ရှက်တယ် 🥺",
+  stickerKiss: "နမ်းမယ် 💋",
+  stickerLaugh: "ရယ်တယ် 😂",
+  stickerSleepy: "အိပ်ချင်ပြီ 😴",
 
   // ---------------------------------------------------------------------------
   // Share Page — Sticker Preview
   // ---------------------------------------------------------------------------
   shareStickerPreview: "မင့်မေးခွန်းလေးတွေ ကြိုကြည့်ကြည့်ပါ 💌",
-  shareStickerPreviewHint: "ဒီလိုမြင်ရမှာပါ။",
+  shareStickerPreviewHint: "ဒီလိုပဲမြင်ရမှာ",
 
   // ---------------------------------------------------------------------------
   // Landing Page — Sticker Hint
@@ -334,10 +335,17 @@ export const my: TranslationDict = {
   exampleStickerHint: "ချစ်စရာကောင်းတဲ့ cat stickers နဲ့ မေးခွန်းလေးတွေ အလှဆင်ပါ 🐱💕",
 
   // ---------------------------------------------------------------------------
+  // Preview Header
+  // ---------------------------------------------------------------------------
+  previewHeaderLabel: "Preview",
+  previewHeaderPublished: "ဒီ Little Thing က ထုတ်ဝေပြီးပြီ ✨",
+  previewHeaderDraft: "သူ့ကို ဒီလိုပဲမြင်ရမှာ 💕",
+
+  // ---------------------------------------------------------------------------
   // Misc
   // ---------------------------------------------------------------------------
   back: "← ပြန်",
   close: "ပိတ်မယ်",
   copyLink: "Copy ယူမယ်",
-  copiedLink: "ကူးပြီးပါပြီ! 💕",
+  copiedLink: "ကူးပြီးပြီ! 💕",
 };

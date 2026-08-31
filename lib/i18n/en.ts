@@ -329,6 +329,13 @@ export const en: TranslationDict = {
   exampleStickerHint: "Decorate questions with cute cat stickers 🐱💕",
 
   // ---------------------------------------------------------------------------
+  // Preview Header
+  // ---------------------------------------------------------------------------
+  previewHeaderLabel: "Preview",
+  previewHeaderPublished: "This Little Thing is published ✨",
+  previewHeaderDraft: "This is what they'll see 💕",
+
+  // ---------------------------------------------------------------------------
   // Misc
   // ---------------------------------------------------------------------------
   back: "← Back",
