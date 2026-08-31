@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { LanguageToggle } from "@/components/ui/language-toggle";
+import { DearUsLogo } from "@/components/ui/dearus-logo";
 import { useTranslation } from "@/lib/i18n";
 
 export function Navbar() {
@@ -11,11 +12,9 @@ export function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border-light">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-5 py-4 sm:px-6">
         {/* Brand */}
-        <Link href="/" className="group flex items-center gap-1.5">
-          <span className="font-display text-xl font-bold tracking-tight text-foreground">
-            {t("navBrand")}
-          </span>
-          <span className="text-sm transition-transform duration-200 group-hover:scale-110">
+        <Link href="/" className="group flex items-center">
+          <DearUsLogo size={28} />
+          <span className="ml-1 text-sm transition-transform duration-200 group-hover:scale-110">
             💕
           </span>
         </Link>
