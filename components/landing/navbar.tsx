@@ -14,9 +14,6 @@ export function Navbar() {
         {/* Brand */}
         <Link href="/" className="group flex items-center">
           <DearUsLogo size={28} />
-          <span className="ml-1 text-sm transition-transform duration-200 group-hover:scale-110">
-            💕
-          </span>
         </Link>
 
         {/* Right side: Language toggle + CTA */}

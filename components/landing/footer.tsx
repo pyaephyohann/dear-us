@@ -11,9 +11,6 @@ export function Footer() {
       <div className="mx-auto max-w-5xl text-center">
         <div className="flex items-center justify-center gap-1.5">
           <DearUsLogo size={20} showText={false} />
-          <span className="font-display text-sm font-semibold text-foreground">
-            DearUs <span className="text-primary">💕</span>
-          </span>
         </div>
         <p className="mt-1 text-xs text-foreground-subtle">
           {t("footerMadeWith")}

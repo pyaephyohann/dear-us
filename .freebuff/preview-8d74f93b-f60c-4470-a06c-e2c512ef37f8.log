@@ -191,3 +191,87 @@ https://react.dev/link/hydration-mismatch
  GET /create 200 in 23ms (next.js: 4ms, application-code: 19ms)
  GET / 200 in 20ms (next.js: 1.3ms, application-code: 19ms)
  GET /create 200 in 25ms (next.js: 4ms, application-code: 21ms)
+ GET / 200 in 27ms (next.js: 3ms, application-code: 24ms)
+[browser] Uncaught Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HTTPAccessFallbackBoundary notFound={{...}} forbidden={undefined} unauthorized={undefined}>
+      <HTTPAccessFallbackErrorBoundary pathname="/" notFound={{...}} forbidden={undefined} unauthorized={undefined} ...>
+        <RedirectBoundary>
+          <RedirectErrorBoundary router={{...}}>
+            <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} segmentPath={[...]} ...>
+              <SegmentViewNode type="page" pagePath="page.tsx">
+                <SegmentTrieNode>
+                <HomePage>
+                  <Navbar>
+                    <nav className="fixed top-...">
+                      <div className="mx-auto fl...">
+                        <LinkComponent>
+                        <div className="flex items...">
+                          <LanguageToggle>
+                            <div className="inline-fle..." role="radiogroup" aria-label="Language s...">
+                              <ToggleOption active={false} onClick={function onClick} label="EN">
+                                <button
+                                  type="button"
+                                  role="radio"
++                                 aria-checked={false}
+-                                 aria-checked="true"
+                                  aria-label="Switch to English"
+                                  onClick={function onClick}
++                                 className="rounded-full px-2.5 py-1 text-xs font-medium transition-all text-foregrou..."
+-                                 className="rounded-full px-2.5 py-1 text-xs font-medium transition-all bg-primary te..."
+                                >
++                                 EN
+                              <span>
+                              <ToggleOption active={true} onClick={function onClick} label="မြန်မာ">
+                                <button
+                                  type="button"
+                                  role="radio"
++                                 aria-checked={true}
+-                                 aria-checked="false"
+                                  aria-label="Switch to Burmese"
+                                  onClick={function onClick}
++                                 className="rounded-full px-2.5 py-1 text-xs font-medium transition-all bg-primary te..."
+-                                 className="rounded-full px-2.5 py-1 text-xs font-medium transition-all text-foregrou..."
+                                >
++                                 မြန်မာ
+                          <LinkComponent href="/create" className="rounded-fu...">
+                            <a
+                              className="rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary transit..."
+                              ref={function}
+                              onClick={function onClick}
+                              onMouseEnter={function onMouseEnter}
+                              onTouchStart={function onTouchStart}
+                              href="/create"
+                            >
++                             မင့်အတွက် Little Thing လေး ဖန်တီးမယ်
+-                             Create Your Little Thing
+                  ...
+              ...
+            ...
+
+    at <unknown> (https://react.dev/link/hydration-mismatch)
+    at a (<anonymous>)
+    at Navbar (components/landing/navbar.tsx:25:11)
+    at HomePage (app/page.tsx:11:7)
+  23 |         <div className="flex items-center gap-3">
+  24 |           <LanguageToggle />
+> 25 |           <Link
+     |           ^
+  26 |             href="/create"
+  27 |             className="rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+  28 |           >
+ GET / 200 in 15ms (next.js: 6ms, application-code: 8ms)
+✓ Compiled in 294ms
+ GET / 200 in 13ms (next.js: 5ms, application-code: 9ms)
+✓ Compiled in 80ms
