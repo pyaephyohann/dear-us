@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { QRCodeSVG } from "qrcode.react";
 import { useTranslation } from "@/lib/i18n";
 import { FloatingLanguageToggle } from "@/components/ui/floating-language-toggle";
+import { StickerRenderer } from "@/lib/stickers";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -17,13 +18,14 @@ interface SharePageProps {
   publicId: string;
   title: string;
   recipientName: string | null;
+  questions?: { text: string; stickerId: string | null }[];
 }
 
 // ---------------------------------------------------------------------------
 // Component
 // ---------------------------------------------------------------------------
 
-export function SharePage({ creatorAccessToken, publicId, title, recipientName }: SharePageProps) {
+export function SharePage({ creatorAccessToken, publicId, title, recipientName, questions = [] }: SharePageProps) {
   const { t } = useTranslation();
   const [copied, setCopied] = useState(false);
   const [privateCopied, setPrivateCopied] = useState(false);
@@ -110,6 +112,43 @@ export function SharePage({ creatorAccessToken, publicId, title, recipientName }
         <h1 className="mt-3 font-display text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
           {recipientName ? t("responseListFor", { name: recipientName }) : title}
         </h1>
+
+        {/* Question Sticker Preview */}
+        {questions.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="mt-8 text-left"
+          >
+            <p className="mb-3 text-center text-xs font-medium text-foreground-subtle">
+              {t("shareStickerPreview")}
+            </p>
+            <div className="space-y-3">
+              {questions.map((q, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.15 + i * 0.05 }}
+                  className="rounded-xl border border-border-light bg-background-secondary px-4 py-3"
+                >
+                  {q.stickerId && (
+                    <div className="mb-1">
+                      <StickerRenderer stickerId={q.stickerId} size={40} />
+                    </div>
+                  )}
+                  <p className="text-sm font-medium leading-snug text-foreground">
+                    {q.text}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+            <p className="mt-2 text-center text-[10px] text-foreground-subtle">
+              {t("shareStickerPreviewHint")}
+            </p>
+          </motion.div>
+        )}
 
         {/* QR Code */}
         {shareUrl && (

@@ -2,20 +2,24 @@
 
 import { motion } from "framer-motion";
 import { useTranslation } from "@/lib/i18n";
+import { StickerRenderer } from "@/lib/stickers";
 
 const questions = [
   {
     text: "What's your favorite thing about me?",
+    stickerId: "cat-love" as const,
     answers: ["My smile", "Your stupid jokes 😂", "Your personality", "Everything ❤️"],
     selected: 3,
   },
   {
     text: "Where should we go on our next date?",
+    stickerId: null,
     answers: ["Coffee shop ☕", "The beach 🏖️", "Cozy movie night 🎬", "Surprise me! 🎁"],
     selected: null,
   },
   {
     text: "What song makes you think of us?",
+    stickerId: "cat-happy" as const,
     answers: [
       "Our song 🎵",
       "Something by Taylor Swift",
@@ -60,6 +64,13 @@ export function LittleThingPreview({
 
         {/* Divider */}
         <div className="my-5 border-t border-border-light" />
+
+        {/* Sticker */}
+        {q.stickerId && (
+          <div className="mb-2 flex justify-center">
+            <StickerRenderer stickerId={q.stickerId} size={48} />
+          </div>
+        )}
 
         {/* Question */}
         <p className="text-center text-base font-medium leading-snug text-foreground">

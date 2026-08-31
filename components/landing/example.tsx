@@ -3,10 +3,12 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "@/lib/i18n";
+import { StickerRenderer } from "@/lib/stickers";
 
 const questions = [
   {
     text: "What's your favorite memory with me?",
+    stickerId: "cat-love",
     answers: [
       "Our first date",
       "That rainy day",
@@ -16,6 +18,7 @@ const questions = [
   },
   {
     text: "What do you love most about us?",
+    stickerId: "cat-happy",
     answers: [
       "How safe I feel",
       "The little moments",
@@ -25,6 +28,7 @@ const questions = [
   },
   {
     text: "Where should we be in five years?",
+    stickerId: null,
     answers: [
       "Still laughing together",
       "Traveling the world",
@@ -115,6 +119,11 @@ export function Example() {
                   exit={{ opacity: 0, x: -20 }}
                   transition={{ duration: 0.25 }}
                 >
+                  {q.stickerId && (
+                    <div className="mb-2 flex justify-center">
+                      <StickerRenderer stickerId={q.stickerId} size={56} />
+                    </div>
+                  )}
                   <p className="text-center text-base font-medium leading-snug text-foreground">
                     {q.text}
                   </p>
@@ -169,7 +178,10 @@ export function Example() {
           </div>
         </motion.div>
 
-        <p className="mt-6 text-xs text-foreground-subtle">
+        <p className="mt-4 text-xs text-foreground-subtle">
+          {t("exampleStickerHint")}
+        </p>
+        <p className="mt-2 text-xs text-foreground-subtle">
           {t("exampleTapHint")}
         </p>
       </div>

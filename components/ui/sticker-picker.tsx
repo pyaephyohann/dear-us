@@ -6,6 +6,26 @@ import { StickerRenderer } from "@/lib/stickers";
 import type { StickerId } from "@/lib/stickers";
 import { useTranslation } from "@/lib/i18n";
 
+/** Map sticker IDs to their label translation keys. */
+const STICKER_LABELS: Record<StickerId, string> = {
+  "cat-love": "stickerLove",
+  "cat-happy": "stickerHappy",
+  "cat-shy": "stickerShy",
+  "cat-kiss": "stickerKiss",
+  "cat-laugh": "stickerLaugh",
+  "cat-sleepy": "stickerSleepy",
+};
+
+/** Cute emoji for each sticker. */
+const STICKER_EMOJI: Record<StickerId, string> = {
+  "cat-love": "💕",
+  "cat-happy": "✨",
+  "cat-shy": "🙈",
+  "cat-kiss": "💋",
+  "cat-laugh": "😂",
+  "cat-sleepy": "😴",
+};
+
 interface StickerPickerProps {
   selectedStickerId: string | null;
   onSelect: (stickerId: string | null) => void;
@@ -13,7 +33,7 @@ interface StickerPickerProps {
 
 /**
  * A compact sticker picker for creator question cards.
- * Shows a "No sticker" option and a grid of sticker previews.
+ * Shows a "No sticker" option and a grid of sticker previews with labels.
  */
 export function StickerPicker({ selectedStickerId, onSelect }: StickerPickerProps) {
   const { t } = useTranslation();
@@ -25,13 +45,13 @@ export function StickerPicker({ selectedStickerId, onSelect }: StickerPickerProp
         {t("stickerLabel")}
       </p>
 
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2" role="radiogroup" aria-label={t("stickerChoose")}>
         {/* No sticker option */}
         <motion.button
           type="button"
           whileTap={{ scale: 0.95 }}
           onClick={() => onSelect(null)}
-          className={`flex h-16 w-16 items-center justify-center rounded-xl border-2 text-xs transition-all sm:h-[72px] sm:w-[72px] ${
+          className={`flex h-[72px] w-[72px] flex-col items-center justify-center gap-0.5 rounded-xl border-2 text-xs transition-all sm:h-[80px] sm:w-[80px] ${
             selectedStickerId === null
               ? "border-primary bg-primary-light text-primary font-medium"
               : "border-border-light bg-background text-foreground-subtle hover:border-secondary"
@@ -41,12 +61,14 @@ export function StickerPicker({ selectedStickerId, onSelect }: StickerPickerProp
           aria-checked={selectedStickerId === null}
         >
           <span className="text-lg leading-none">✕</span>
+          <span className="text-[10px] leading-tight">{t("stickerNone")}</span>
         </motion.button>
 
         {/* Sticker options */}
         {stickerIds.map((id) => {
-          const def = STICKER_REGISTRY[id];
           const isSelected = selectedStickerId === id;
+          const labelKey = STICKER_LABELS[id];
+          const emoji = STICKER_EMOJI[id];
 
           return (
             <motion.button
@@ -54,21 +76,24 @@ export function StickerPicker({ selectedStickerId, onSelect }: StickerPickerProp
               type="button"
               whileTap={{ scale: 0.95 }}
               onClick={() => onSelect(id)}
-              className={`relative flex h-16 w-16 items-center justify-center rounded-xl border-2 transition-all sm:h-[72px] sm:w-[72px] ${
+              className={`relative flex h-[72px] w-[72px] flex-col items-center justify-center gap-0.5 rounded-xl border-2 transition-all sm:h-[80px] sm:w-[80px] ${
                 isSelected
-                  ? "border-primary bg-primary-light shadow-sm"
+                  ? "border-primary bg-primary-light shadow-sm ring-1 ring-primary/20"
                   : "border-border-light bg-white hover:border-secondary hover:bg-secondary-light"
               }`}
-              aria-label={def.label}
+              aria-label={`${emoji} ${t(labelKey)}`}
               role="radio"
               aria-checked={isSelected}
             >
-              <StickerRenderer stickerId={id} size={48} />
+              <StickerRenderer stickerId={id} size={44} />
+              <span className={`text-[10px] leading-tight ${isSelected ? "text-primary font-medium" : "text-foreground-subtle"}`}>
+                {emoji} {t(labelKey)}
+              </span>
               {isSelected && (
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
-                  className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[8px] text-white"
+                  className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[8px] text-white shadow-sm"
                 >
                   ✓
                 </motion.div>

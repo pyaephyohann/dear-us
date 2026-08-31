@@ -310,6 +310,23 @@ export const en: TranslationDict = {
   stickerLabel: "Cute Sticker",
   stickerNone: "No sticker",
   stickerChoose: "Choose a sticker",
+  stickerLove: "Love",
+  stickerHappy: "Happy",
+  stickerShy: "Shy",
+  stickerKiss: "Kiss",
+  stickerLaugh: "Laugh",
+  stickerSleepy: "Sleepy",
+
+  // ---------------------------------------------------------------------------
+  // Share Page — Sticker Preview
+  // ---------------------------------------------------------------------------
+  shareStickerPreview: "A little peek at your questions 💌",
+  shareStickerPreviewHint: "This is what your recipient will see.",
+
+  // ---------------------------------------------------------------------------
+  // Landing Page — Sticker Hint
+  // ---------------------------------------------------------------------------
+  exampleStickerHint: "Decorate questions with cute cat stickers 🐱💕",
 
   // ---------------------------------------------------------------------------
   // Misc

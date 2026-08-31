@@ -1,5 +1,6 @@
 import React from "react";
 import { getLittleThingByCreatorToken } from "@/lib/data/little-thing";
+import { prisma } from "@/lib/prisma";
 import { SharePage } from "@/components/share/share-page";
 
 type SharePageParams = {
@@ -61,6 +62,19 @@ export default async function ShareRoute({ params }: SharePageParams) {
     );
   }
 
+  // Fetch questions with sticker data for the preview
+  let questions: { text: string; stickerId: string | null }[] = [];
+  try {
+    const raw = await prisma.question.findMany({
+      where: { littleThingId: littleThing.id },
+      orderBy: { order: "asc" },
+      select: { text: true, stickerId: true },
+    });
+    questions = raw.map((q) => ({ text: q.text, stickerId: q.stickerId }));
+  } catch {
+    // Non-critical — share page works without preview
+  }
+
   return (
     <SharePage
       id={littleThing.id}
@@ -68,6 +82,7 @@ export default async function ShareRoute({ params }: SharePageParams) {
       publicId={littleThing.publicId}
       title={littleThing.title}
       recipientName={littleThing.recipientName}
+      questions={questions}
     />
   );
 }
