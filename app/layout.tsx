@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Roboto, Playfair_Display, Caveat } from "next/font/google";
+import { Roboto, Caveat } from "next/font/google";
 import { Providers } from "@/components/providers";
 import "./globals.css";
 
@@ -7,12 +7,6 @@ const roboto = Roboto({
   variable: "--font-roboto",
   subsets: ["latin"],
   weight: ["400", "500", "700"],
-  display: "swap",
-});
-
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
   display: "swap",
 });
 
@@ -39,7 +33,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${roboto.variable} ${playfair.variable} ${caveat.variable}`}
+      className={`${roboto.variable} ${caveat.variable}`}
       suppressHydrationWarning
     >
       <head>

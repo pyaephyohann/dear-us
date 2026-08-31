@@ -102,7 +102,7 @@
   --radius-xl: var(--radius-xl);
 
   --font-sans: var(--font-roboto);
-  --font-display: var(--font-playfair);
+  --font-display: var(--font-roboto);
   --font-handwritten: var(--font-caveat);
 }
 
