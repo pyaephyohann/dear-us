@@ -20,6 +20,8 @@ export function BasicInfoForm({
   onChange,
 }: BasicInfoFormProps) {
   const { t } = useTranslation();
+  const fieldClassName =
+    "mt-2 w-full rounded-xl border border-border bg-white px-4 py-3 text-sm text-foreground placeholder-foreground-subtle outline-none transition-colors focus:border-primary focus:outline-none focus-visible:outline-none focus:ring-2 focus:ring-primary/20 focus:ring-offset-0 focus-visible:ring-2 focus-visible:ring-primary/20 focus-visible:ring-offset-0";
 
   return (
     <section className="space-y-6">
@@ -34,7 +36,7 @@ export function BasicInfoForm({
           value={recipientName}
           onChange={(e) => onChange("recipientName", e.target.value)}
           placeholder={t("placeholderRecipient")}
-          className="mt-2 w-full rounded-xl border border-border bg-white px-4 py-3 text-sm text-foreground placeholder-foreground-subtle outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20"
+          className={fieldClassName}
         />
       </div>
 
@@ -49,7 +51,7 @@ export function BasicInfoForm({
           value={creatorName}
           onChange={(e) => onChange("creatorName", e.target.value)}
           placeholder={t("placeholderCreator")}
-          className="mt-2 w-full rounded-xl border border-border bg-white px-4 py-3 text-sm text-foreground placeholder-foreground-subtle outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20"
+          className={fieldClassName}
         />
       </div>
 
@@ -64,7 +66,7 @@ export function BasicInfoForm({
           value={title}
           onChange={(e) => onChange("title", e.target.value)}
           placeholder={t("placeholderTitle")}
-          className="mt-2 w-full rounded-xl border border-border bg-white px-4 py-3 text-sm text-foreground placeholder-foreground-subtle outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20"
+          className={fieldClassName}
         />
         {errors.title && (
           <p className="mt-1.5 text-xs text-primary">{errors.title}</p>
@@ -82,7 +84,7 @@ export function BasicInfoForm({
           onChange={(e) => onChange("introMessage", e.target.value)}
           placeholder={t("placeholderIntro")}
           rows={2}
-          className="mt-2 w-full resize-none rounded-xl border border-border bg-white px-4 py-3 text-sm text-foreground placeholder-foreground-subtle outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20"
+          className={fieldClassName}
         />
         {errors.introMessage && (
           <p className="mt-1.5 text-xs text-primary">{errors.introMessage}</p>

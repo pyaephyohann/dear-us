@@ -126,8 +126,14 @@ html {
   color: var(--foreground);
 }
 
-/* Focus styles */
-*:focus-visible {
+/* Focus styles — form controls use component-level rings that match border-radius */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: none;
+}
+
+*:focus-visible:not(input):not(textarea):not(select) {
   outline: 2px solid var(--ring);
   outline-offset: 2px;
   border-radius: var(--radius-sm);

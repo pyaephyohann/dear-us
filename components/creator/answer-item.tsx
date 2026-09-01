@@ -45,7 +45,7 @@ export function AnswerItem({
         value={text}
         onChange={(e) => onChange(answerId, e.target.value)}
         placeholder={`${t("answerPlaceholder")} ${index + 1}`}
-        className="flex-1 bg-transparent px-1 py-1.5 text-sm text-foreground placeholder-foreground-subtle outline-none border-b border-transparent focus:border-border-light transition-colors"
+        className="flex-1 bg-transparent px-1 py-1.5 text-sm text-foreground placeholder-foreground-subtle outline-none border-b border-transparent focus:border-border-light focus:outline-none focus-visible:outline-none transition-colors"
         aria-label={`Answer ${index + 1}`}
       />
 

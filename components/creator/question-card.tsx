@@ -100,7 +100,7 @@ export function QuestionCard({
           value={question.text}
           onChange={(e) => onTextChange(question.id, e.target.value)}
           placeholder={t("questionPlaceholder")}
-          className="w-full bg-transparent text-base font-medium text-foreground placeholder-foreground-subtle outline-none border-b border-border-light focus:border-primary transition-colors pb-2"
+          className="w-full bg-transparent text-base font-medium text-foreground placeholder-foreground-subtle outline-none border-b border-border-light focus:border-primary focus:outline-none focus-visible:outline-none transition-colors pb-2"
           aria-label={`Question ${index + 1} text`}
         />
         {questionErrors.text && (
