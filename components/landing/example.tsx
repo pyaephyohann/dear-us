@@ -96,12 +96,16 @@ export function Example() {
         >
           <div className="rounded-2xl border border-border bg-white p-6 shadow-lg sm:p-8">
             {/* Header */}
-            <p className="text-center font-handwritten text-lg text-primary">
-              {t("previewCardHeader")}
-            </p>
-            <p className="text-center font-handwritten text-2xl text-foreground">
-              {t("previewCardForYou")}
-            </p>
+            {t("exampleCardHeader") ? (
+              <p className="text-center font-handwritten text-lg text-primary">
+                {t("exampleCardHeader")}
+              </p>
+            ) : null}
+            {t("exampleCardForYou") ? (
+              <p className="text-center font-handwritten text-2xl text-foreground">
+                {t("exampleCardForYou")}
+              </p>
+            ) : null}
 
             <p className="mt-4 text-center text-sm leading-relaxed text-foreground-muted">
               {t("previewCardIntro")}

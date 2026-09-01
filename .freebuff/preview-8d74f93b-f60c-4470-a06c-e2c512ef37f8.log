@@ -221,3 +221,423 @@ https://react.dev/link/hydration-mismatch
  GET / 200 in 18ms (next.js: 3ms, application-code: 15ms)
 ✓ Compiled in 36ms
  GET / 200 in 53ms (next.js: 23ms, application-code: 30ms)
+ GET / 200 in 20ms (next.js: 9ms, application-code: 10ms)
+✓ Compiled in 127ms
+ GET / 200 in 17ms (next.js: 3ms, application-code: 13ms)
+✓ Compiled in 36ms
+ GET / 200 in 13ms (next.js: 2ms, application-code: 11ms)
+✓ Compiled in 38ms
+ GET / 200 in 13ms (next.js: 4ms, application-code: 9ms)
+✓ Compiled in 34ms
+ GET / 200 in 13ms (next.js: 3ms, application-code: 10ms)
+✓ Compiled in 39ms
+ GET / 200 in 10ms (next.js: 1.9ms, application-code: 8ms)
+✓ Compiled in 107ms
+ GET / 200 in 12ms (next.js: 3ms, application-code: 9ms)
+✓ Compiled in 98ms
+ GET / 200 in 13ms (next.js: 3ms, application-code: 10ms)
+✓ Compiled in 50ms
+ GET / 200 in 37ms (next.js: 6ms, application-code: 32ms)
+ GET / 200 in 38ms (next.js: 3ms, application-code: 35ms)
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <LoadingBoundary name="/" loading={[...]}>
+      <Suspense name="/" fallback={<Fragment>}>
+        <HTTPAccessFallbackBoundary notFound={{...}} forbidden={undefined} unauthorized={undefined}>
+          <HTTPAccessFallbackErrorBoundary pathname="/" notFound={{...}} forbidden={undefined} unauthorized={undefined} ...>
+            <RedirectBoundary>
+              <RedirectErrorBoundary router={{...}}>
+                <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} segmentPath={[...]} ...>
+                  <SegmentViewNode type="page" pagePath="page.tsx">
+                    <SegmentTrieNode>
+                    <HomePage>
+                      <Navbar>
+                        <nav className="fixed top-...">
+                          <div className="mx-auto fl...">
+                            <LinkComponent href="/" className="group flex...">
+                              <a
+                                className="group flex items-center"
+                                ref={function}
+                                onClick={function onClick}
+                                onMouseEnter={function onMouseEnter}
+                                onTouchStart={function onTouchStart}
+                                href="/"
+-                               data-cursor-ref="e0"
+                              >
+                            <div className="flex items...">
+                              <LanguageToggle>
+                                <div className="inline-fle..." role="radiogroup" aria-label="Language s...">
+                                  <ToggleOption active={true} onClick={function onClick} label="EN">
+                                    <button
+                                      type="button"
+                                      role="radio"
+                                      aria-checked={true}
+                                      aria-label="Switch to English"
+                                      onClick={function onClick}
+                                      className="rounded-full px-2.5 py-1 text-xs font-medium transition-all bg-primar..."
+-                                     data-cursor-ref="e1"
+                                    >
++                                     EN
+                                  <span>
+                                  <ToggleOption active={false} onClick={function onClick} label="မြန်မာ">
+                                    <button
+                                      type="button"
+                                      role="radio"
+                                      aria-checked={false}
+                                      aria-label="Switch to Burmese"
+                                      onClick={function onClick}
+                                      className="rounded-full px-2.5 py-1 text-xs font-medium transition-all text-fore..."
+-                                     data-cursor-ref="e2"
+                                    >
++                                     မြန်မာ
+                              <LinkComponent href="/create" className="rounded-fu...">
+                                <a
+                                  className="rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary tra..."
+                                  ref={function}
+                                  onClick={function onClick}
+                                  onMouseEnter={function onMouseEnter}
+                                  onTouchStart={function onTouchStart}
+                                  href="/create"
+-                                 data-cursor-ref="e3"
+                                >
++                                 Create Your Little Thing
+                      <main>
+                        ...
+                          <div className="relative m...">
+                            <div className="flex-1 tex...">
+                              <motion.p custom={0} initial="hidden" animate="visible" variants={{hidden:{...}, ...}} ...>
+                                <p
+                                  className="font-handwritten text-xl text-primary sm:text-2xl"
+                                  style={{opacity:0,transform:"translateY..."}}
+                                  ref={function useMotionRef.useCallback}
+-                                 data-cursor-ref="e12"
+                                >
++                                 for you, for us 💕
+                              <motion.h1 custom={1} initial="hidden" animate="visible" variants={{hidden:{...}, ...}} ...>
+                                <h1
+                                  className="mt-4 font-roboto text-3xl font-bold leading-tight tracking-tight text-for..."
+                                  style={{opacity:0,transform:"translateY..."}}
+                                  ref={function useMotionRef.useCallback}
+-                                 data-cursor-ref="e13"
+                                >
++                                 A tiny little thing for someone you love.
+                              <motion.p custom={2} initial="hidden" animate="visible" variants={{hidden:{...}, ...}} ...>
+                                <p
+                                  className="mt-5 max-w-md text-base leading-relaxed text-foreground-muted sm:text-lg ..."
+                                  style={{opacity:0,transform:"translateY..."}}
+                                  ref={function useMotionRef.useCallback}
+-                                 data-cursor-ref="e14"
+                                >
++                                 Create a sweet little experience, fill it with questions only they can answer, and se...
+                              ...
+                                <div className="mt-8 flex ..." style={{opacity:0, ...}} ...>
+                                  <LinkComponent href="/create" className="inline-fle...">
+                                    <a
+                                      className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 te..."
+                                      ref={function}
+                                      onClick={function onClick}
+                                      onMouseEnter={function onMouseEnter}
+                                      onTouchStart={function onTouchStart}
+                                      href="/create"
+-                                     data-cursor-ref="e4"
+                                    >
++                                     Create Your Little Thing 💕
+                                  <LinkComponent href="#example" className="text-sm te...">
+                                    <a
+                                      className="text-sm text-foreground-subtle transition-colors hover:text-primary"
+                                      ref={function}
+                                      onClick={function onClick}
+                                      onMouseEnter={function onMouseEnter}
+                                      onTouchStart={function onTouchStart}
+                                      href="#example"
+-                                     data-cursor-ref="e5"
+                                    >
++                                     Already have one? Open it
+                            ...
+                              <div className="w-full max..." style={{opacity:0, ...}} ...>
+                                <div className="rounded-2x...">
+                                  <p
+                                    className="text-center font-handwritten text-lg text-primary"
+-                                   data-cursor-ref="e15"
+                                  >
++                                   A Little Something
+                                  <p
+                                    className="text-center font-handwritten text-2xl text-foreground"
+-                                   data-cursor-ref="e16"
+                                  >
++                                   For You 💌
+                                  <p
+                                    className="mt-4 text-center text-sm leading-relaxed text-foreground-muted"
+-                                   data-cursor-ref="e17"
+                                  >
++                                   {"I made this just for you.\nAnswer honestly, okay? 🥹"}
+                                  <div>
+                                  <div>
+                                  <p
+                                    className="text-center text-base font-medium leading-snug text-foreground"
+-                                   data-cursor-ref="e18"
+                                  >
++                                   {"What's your favorite thing about me?"}
+                                  <div>
+                                  <p
+                                    className="mt-5 text-center text-xs text-foreground-subtle"
+-                                   data-cursor-ref="e19"
+                                  >
++                                   Question 1 of 3
+                        <HowItWorks>
+                          <section className="px-5 py-20...">
+                            <div className="mx-auto ma...">
+                              <motion.p initial={{opacity:0}} whileInView={{opacity:1}} viewport={{once:true, ...}} ...>
+                                <p
+                                  className="font-handwritten text-lg text-primary"
+                                  style={{opacity:0}}
+                                  ref={function useMotionRef.useCallback}
+-                                 data-cursor-ref="e20"
+                                >
++                                 {"it's easy 💕"}
+                              <motion.h2 initial={{opacity:0,y:12}} whileInView={{opacity:1,y:0}} ...>
+                                <h2
+                                  className="mt-3 font-roboto text-2xl font-bold tracking-tight text-foreground sm:tex..."
+                                  style={{opacity:0,transform:"translateY..."}}
+                                  ref={function useMotionRef.useCallback}
+-                                 data-cursor-ref="e21"
+                                >
++                                 How it works
+                              <div className="mt-12 grid...">
+                                <motion.div custom={0} initial="hidden" whileInView="visible" viewport={{once:true, ...}} ...>
+                                  <div className="group rela..." style={{opacity:0, ...}} ...>
+                                    <span>
+                                    <p
+                                      className="mt-2 text-2xl"
+-                                     data-cursor-ref="e22"
+                                    >
++                                     ✨
+                                    <h3
+                                      className="mt-3 text-base font-semibold text-foreground"
+-                                     data-cursor-ref="e23"
+                                    >
++                                     Make it
+                                    <p
+                                      className="mt-1.5 text-sm leading-relaxed text-foreground-muted"
+-                                     data-cursor-ref="e24"
+                                    >
++                                     Create your Little Thing in seconds.
+                                <motion.div custom={1} initial="hidden" whileInView="visible" viewport={{once:true, ...}} ...>
+                                  <div className="group rela..." style={{opacity:0, ...}} ...>
+                                    <span>
+                                    <p
+                                      className="mt-2 text-2xl"
+-                                     data-cursor-ref="e25"
+                                    >
++                                     💌
+                                    <h3
+                                      className="mt-3 text-base font-semibold text-foreground"
+-                                     data-cursor-ref="e26"
+                                    >
++                                     Fill it
+                                    <p
+                                      className="mt-1.5 text-sm leading-relaxed text-foreground-muted"
+-                                     data-cursor-ref="e27"
+                                    >
++                                     {"Add questions and cute answers they'll love."}
+                                <motion.div custom={2} initial="hidden" whileInView="visible" viewport={{once:true, ...}} ...>
+                                  <div className="group rela..." style={{opacity:0, ...}} ...>
+                                    <span>
+                                    <p
+                                      className="mt-2 text-2xl"
+-                                     data-cursor-ref="e28"
+                                    >
++                                     🔗
+                                    <h3
+                                      className="mt-3 text-base font-semibold text-foreground"
+-                                     data-cursor-ref="e29"
+                                    >
++                                     Send it
+                                    <p
+                                      className="mt-1.5 text-sm leading-relaxed text-foreground-muted"
+-                                     data-cursor-ref="e30"
+                                    >
++                                     Share your private link or QR code.
+                                <motion.div custom={3} initial="hidden" whileInView="visible" viewport={{once:true, ...}} ...>
+                                  <div className="group rela..." style={{opacity:0, ...}} ...>
+                                    <span>
+                                    <p
+                                      className="mt-2 text-2xl"
+-                                     data-cursor-ref="e31"
+                                    >
++                                     🥰
+                                    <h3
+                                      className="mt-3 text-base font-semibold text-foreground"
+-                                     data-cursor-ref="e32"
+                                    >
++                                     See their answers
+                                    <p
+                                      className="mt-1.5 text-sm leading-relaxed text-foreground-muted"
+-                                     data-cursor-ref="e33"
+                                    >
++                                     Find out what they really think. 💕
+                        <Example>
+                          <section id="example" className="px-5 py-20...">
+                            <div className="mx-auto ma...">
+                              <motion.p initial={{opacity:0}} whileInView={{opacity:1}} viewport={{once:true, ...}} ...>
+                                <p
+                                  className="font-handwritten text-lg text-primary"
+                                  style={{opacity:0}}
+                                  ref={function useMotionRef.useCallback}
+-                                 data-cursor-ref="e34"
+                                >
++                                 see it in action ✨
+                              <motion.h2 initial={{opacity:0,y:12}} whileInView={{opacity:1,y:0}} ...>
+                                <h2
+                                  className="mt-3 font-roboto text-2xl font-bold tracking-tight text-foreground sm:tex..."
+                                  style={{opacity:0,transform:"translateY..."}}
+                                  ref={function useMotionRef.useCallback}
+-                                 data-cursor-ref="e35"
+                                >
++                                 Make it feel like yours.
+                              <motion.p initial={{opacity:0}} whileInView={{opacity:1}} viewport={{once:true, ...}} ...>
+                                <p
+                                  className="mx-auto mt-4 max-w-md text-sm text-foreground-muted sm:text-base"
+                                  style={{opacity:0}}
+                                  ref={function useMotionRef.useCallback}
+-                                 data-cursor-ref="e36"
+                                >
++                                 A preview of what your someone special will see.
+                              <motion.div initial={{opacity:0,y:20}} whileInView={{opacity:1,y:0}} ...>
+                                <div className="mx-auto mt..." style={{opacity:0, ...}} ...>
+                                  <div className="rounded-2x...">
+                                    <p
+                                      className="text-center font-handwritten text-lg text-primary"
+-                                     data-cursor-ref="e37"
+                                    >
++                                     A Little Something
+                                    <p
+                                      className="text-center font-handwritten text-2xl text-foreground"
+-                                     data-cursor-ref="e38"
+                                    >
++                                     For You 💌
+                                    <p
+                                      className="mt-4 text-center text-sm leading-relaxed text-foreground-muted"
+-                                     data-cursor-ref="e39"
+                                    >
++                                     {"I made this just for you.\nAnswer honestly, okay? 🥹"}
+                                    <div>
+                                    ...
+                                      <motion.div initial={{opacity:0,x:20}} animate={{opacity:1,x:0}} ...>
+                                        <div style={{opacity:0, ...}} ref={function useMotionRef.useCallback}>
+                                          <div>
+                                          <p
+                                            className="text-center text-base font-medium leading-snug text-foreground"
+-                                           data-cursor-ref="e40"
+                                          >
++                                           {"What's your favorite memory with me?"}
+                                          <div className="mt-4 space...">
+                                            <button
+                                              type="button"
+                                              onClick={function onClick}
+                                              className="flex w-full items-center gap-3 rounded-xl border px-4 py-3 te..."
+-                                             data-cursor-ref="e6"
+                                            >
+                                            <button
+                                              type="button"
+                                              onClick={function onClick}
+                                              className="flex w-full items-center gap-3 rounded-xl border px-4 py-3 te..."
+-                                             data-cursor-ref="e7"
+                                            >
+                                            <button
+                                              type="button"
+                                              onClick={function onClick}
+                                              className="flex w-full items-center gap-3 rounded-xl border px-4 py-3 te..."
+-                                             data-cursor-ref="e8"
+                                            >
+                                            <button
+                                              type="button"
+                                              onClick={function onClick}
+                                              className="flex w-full items-center gap-3 rounded-xl border px-4 py-3 te..."
+-                                             data-cursor-ref="e9"
+                                            >
+                                    <p
+                                      className="mt-5 text-center text-xs text-foreground-subtle"
+-                                     data-cursor-ref="e41"
+                                    >
++                                     Question 1 of 3
+                                    ...
+                              <p
+                                className="mt-4 text-xs text-foreground-subtle"
+-                               data-cursor-ref="e42"
+                              >
++                               Decorate questions with cute cat stickers 🐱💕
+                              <p
+                                className="mt-2 text-xs text-foreground-subtle"
+-                               data-cursor-ref="e43"
+                              >
++                               Tap an answer to see it in action ↑
+                        <FinalCta>
+                          <section className="relative o...">
+                            <div>
+                            <div className="relative m...">
+                              <motion.p initial={{opacity:0,y:12}} whileInView={{opacity:1,y:0}} ...>
+                                <p
+                                  className="font-handwritten text-lg text-primary"
+                                  style={{opacity:0,transform:"translateY..."}}
+                                  ref={function useMotionRef.useCallback}
+-                                 data-cursor-ref="e44"
+                                >
++                                 {"let's make something 💌"}
+                              <motion.h2 initial={{opacity:0,y:16}} whileInView={{opacity:1,y:0}} ...>
+                                <h2
+                                  className="mt-4 font-roboto text-2xl font-bold leading-tight tracking-tight text-for..."
+                                  style={{opacity:0,transform:"translateY..."}}
+                                  ref={function useMotionRef.useCallback}
+-                                 data-cursor-ref="e45"
+                                >
++                                 Ready to make someone smile?
+                              <motion.p initial={{opacity:0}} whileInView={{opacity:1}} viewport={{once:true, ...}} ...>
+                                <p
+                                  className="mt-4 text-base text-foreground-muted sm:text-lg"
+                                  style={{opacity:0}}
+                                  ref={function useMotionRef.useCallback}
+-                                 data-cursor-ref="e46"
+                                >
++                                 It takes less than a minute. 💕
+                              ...
+                                <div className="mt-8" style={{opacity:0, ...}} ref={function useMotionRef.useCallback}>
+                                  <LinkComponent href="/create" className="inline-fle...">
+                                    <a
+                                      className="inline-flex items-center gap-2 rounded-full bg-primary px-8 py-4 text..."
+                                      ref={function}
+                                      onClick={function onClick}
+                                      onMouseEnter={function onMouseEnter}
+                                      onTouchStart={function onTouchStart}
+                                      href="/create"
+-                                     data-cursor-ref="e10"
+                                    >
++                                     Create Your Little Thing 💕
+                      <Footer>
+                        <footer className="border-t b...">
+                          <div className="mx-auto ma...">
+                            <div>
+                            <p
+                              className="mt-1 text-xs text-foreground-subtle"
+-                             data-cursor-ref="e47"
+                            >
++                             Made with love
+                            <p
+                              className="mt-2 text-xs text-foreground-subtle"
+-                             data-cursor-ref="e48"
+                            >
+                  ...
+                ...
+ 
+ GET /create 200 in 98ms (next.js: 43ms, application-code: 55ms)

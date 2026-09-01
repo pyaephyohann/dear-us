@@ -301,6 +301,8 @@ export const en: TranslationDict = {
   // ---------------------------------------------------------------------------
   previewCardHeader: "A Little Something",
   previewCardForYou: "For You 💌",
+  exampleCardHeader: "A Little Something",
+  exampleCardForYou: "For You 💌",
   previewCardIntro: "I made this just for you.\nAnswer honestly, okay? 🥹",
   previewCardQuestionOf: "Question {current} of {total}",
 
