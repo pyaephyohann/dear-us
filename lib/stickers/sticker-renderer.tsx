@@ -4,7 +4,7 @@
 
 "use client";
 
-import { STICKER_REGISTRY, getStickerAsset } from "./registry";
+import { getStickerAsset } from "./registry";
 
 interface StickerRendererProps {
   stickerId: string | null;
@@ -26,20 +26,15 @@ export function StickerRenderer({
   const asset = getStickerAsset(stickerId);
   if (!asset) return null;
 
-  const def = STICKER_REGISTRY[stickerId as keyof typeof STICKER_REGISTRY];
-  const label = def?.label ?? "Cute sticker";
-
   return (
     <div
       className={`mx-auto ${className}`}
       style={{ width: size, height: size }}
-      role="img"
-      aria-label={label}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={asset}
-        alt={label}
+        alt=""
         width={size}
         height={size}
         className="h-full w-full object-contain"

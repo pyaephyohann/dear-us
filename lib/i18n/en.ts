@@ -309,14 +309,8 @@ export const en: TranslationDict = {
   // ---------------------------------------------------------------------------
   // Sticker
   // ---------------------------------------------------------------------------
-  stickerLabel: "Cute Sticker",
   stickerNone: "No sticker",
   stickerChoose: "Choose a sticker",
-  stickerCatFight: "Cat Fight",
-  stickerCatWithFish: "Cat & Fish",
-  stickerLoveMilk: "Love Milk",
-  stickerTerrifiedHamster: "Terrified Hamster",
-  stickerWhiteAndBlue: "White & Blue",
 
   // ---------------------------------------------------------------------------
   // Share Page — Sticker Preview

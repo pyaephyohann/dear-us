@@ -1,5 +1,5 @@
 // Sticker types for DearUs
-// Each sticker has a stable ID, a label, and a local asset path.
+// Each sticker has a stable ID and a local asset path.
 
 export type StickerId =
   | "cat-fight"
@@ -10,7 +10,6 @@ export type StickerId =
 
 export type StickerDefinition = {
   id: StickerId;
-  label: string;
   /** Path to the sticker image in /public/stickers/ */
   asset: string;
 };

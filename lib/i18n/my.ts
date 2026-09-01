@@ -315,14 +315,8 @@ export const my: TranslationDict = {
   // ---------------------------------------------------------------------------
   // Sticker
   // ---------------------------------------------------------------------------
-  stickerLabel: "ချစ်စရာ Sticker 🐱",
   stickerNone: "Sticker မပါဘူး",
   stickerChoose: "Sticker ရွေးပါ",
-  stickerCatFight: "ကြောင်တွေရန်ဖြစ်နေတယ် 🐱",
-  stickerCatWithFish: "ငါးနဲ့ကြောင် 🐱🐟",
-  stickerLoveMilk: "နို့ကိုချစ်တယ် 🐱💕",
-  stickerTerrifiedHamster: "ကြောက်နေတဲ့ပဟေဠိ 🐹",
-  stickerWhiteAndBlue: "အဖြူနဲ့အပြာ 🐱",
 
   // ---------------------------------------------------------------------------
   // Share Page — Sticker Preview
