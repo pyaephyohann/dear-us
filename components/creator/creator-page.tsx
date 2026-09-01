@@ -50,6 +50,7 @@ function validate(
   let allValid = !formErrors.title;
 
   if (questions.length === 0) {
+    formErrors.questions = t("questionBuilderEmpty");
     allValid = false;
   }
 
@@ -157,6 +158,7 @@ export function CreatorPage({ editMode = null }: CreatorPageProps) {
   // --- Question operations ---
   const addQuestion = useCallback(() => {
     setQuestions((prev) => [...prev, makeDefaultQuestion()]);
+    setFormErrors((prev) => ({ ...prev, questions: undefined }));
   }, []);
 
   const deleteQuestion = useCallback((id: string) => {
@@ -431,6 +433,9 @@ export function CreatorPage({ editMode = null }: CreatorPageProps) {
           <h2 className="font-roboto text-lg font-semibold text-foreground mb-4">
             {t("yourQuestions")}
           </h2>
+          {formErrors.questions && (
+            <p className="mb-4 text-sm text-primary">{formErrors.questions}</p>
+          )}
           <QuestionBuilder
             questions={questions}
             questionErrors={questionErrors}

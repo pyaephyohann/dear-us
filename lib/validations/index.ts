@@ -151,6 +151,7 @@ const questionInputSchema = z.object({
   stickerId: z
     .string()
     .max(50)
+    .nullable()
     .optional()
     .refine((val) => isValidStickerId(val ?? null), {
       message: "Invalid sticker ID",
