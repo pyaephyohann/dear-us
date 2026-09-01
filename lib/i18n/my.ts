@@ -42,7 +42,7 @@ export const my: TranslationDict = {
   // Landing Page — Footer
   // ---------------------------------------------------------------------------
   footerMadeWith: "အချစ်တွေနဲ့ဖန်တီးထားတာနော်",
-  madeWith: "{brand} နဲ့ ဖန်တီးထားတယ်",
+  madeWith: "Made with love by DearUs",
 
   // ---------------------------------------------------------------------------
   // Navbar
@@ -91,19 +91,19 @@ export const my: TranslationDict = {
   // ---------------------------------------------------------------------------
   // Question Card
   // ---------------------------------------------------------------------------
-  questionPlaceholder: "ငါ့အကြောင်း ဘာကိုအကြိုက်ဆုံးလဲ?",
+  questionPlaceholder: "ကိုယ့်နဲ့ပတ်သတ်ပြီးဘာကိုသဘောအကျဆုံးလဲ",
   answersLabel: "အဖြေလေးတွေ",
 
   // ---------------------------------------------------------------------------
   // Answer Item
   // ---------------------------------------------------------------------------
-  answerPlaceholder: "အဖြေလေး",
+  answerPlaceholder: "အဖြေ",
   deleteTooltipMinAnswers: "အဖြေ ၂ ခုထက်မနည်း ထားရမယ် 💕",
 
   // ---------------------------------------------------------------------------
   // Answer List
   // ---------------------------------------------------------------------------
-  addAnswer: "+ အဖြေထည့်မယ်",
+  addAnswer: "အဖြေထပ်ထည့်မယ်",
 
   // ---------------------------------------------------------------------------
   // Preview Page
@@ -121,15 +121,15 @@ export const my: TranslationDict = {
   // ---------------------------------------------------------------------------
   // Share Page
   // ---------------------------------------------------------------------------
-  shareReady: "မင့် Little Thing လေး မျှဝေလို့ရပြီ! 💌",
+  shareReady: "Little Thing လေး share လို့ရပါပြီနော် 💌",
   shareSubtitle: "ဒီ link ကို ပို့လိုက်ပါ",
   shareYourLink: "မင့် link",
-  shareQrTitle: "ဒါမှမဟုတ် QR code ကို scan လုပ်ပါ",
-  shareCopyLink: "Copy ယူမယ် ✨",
+  shareQrTitle: "Or QR code ကို scan လုပ်ပါ",
+  shareCopyLink: "Copy",
   shareCopied: "ကူးပြီးပြီ! 💕",
-  shareOpen: "Little Thing ဖွင့်ကြည့်မယ် ✨",
-  shareManage: "စီမံမယ် 💕",
-  shareResponses: "အဖြေတွေ 💌",
+  shareOpen: "Little Thing လေးဖွင့်ကြည့်မယ် 🎉",
+  shareManage: "Edit မယ်",
+  shareResponses: "အဖြေလေးတွေ",
   shareAnalytics: "Analytics 📊",
   shareBackToDashboard: "← Dashboard ပြန်သွားမယ်",
 
@@ -147,11 +147,11 @@ export const my: TranslationDict = {
   dashboardSeeResponses: "အဖြေတွေ ကြည့်မယ် 💌",
   dashboardEdit: "ပြင်မယ်",
   dashboardViewAnalytics: "Analytics ကြည့်မယ် 📊",
-  dashboardPrivateLink: "မင့် Private Link 🔐",
+  dashboardPrivateLink: "Private Link 🔐",
   dashboardPrivateLinkDesc:
-    "ဒီ link ကို ဘေးကင်းတဲ့နေရာမှာ သိမ်းထားပါ — အဖြေတွေ ပြန်ကြည့်ဖို့ ဒီ link ကိုပဲသုံးရမှာ",
-  dashboardLinkWarning: "ဒီ link ရှိသမျှသူတွေ အဖြေတွေ ကြည့်လို့ရတယ်",
-  dashboardCopyLink: "Copy ယူမယ်",
+    "ဒီ link လေးကို သေချာလေးသိမ်းထားနော် — အဖြေလေးတွေပြန်ကြည့်ဖို့ ဒီ link လေးကို သုံးရမှာမို့လို့နော်",
+  dashboardLinkWarning: "ဒီ link လေးနဲ့ အဖြေတွေကို ကြည့်လို့ရပါတယ်",
+  dashboardCopyLink: "Copy",
   dashboardCopiedLink: "ကူးပြီးပြီ! 💕",
   dashboardQuickStats: "အကျဉ်းချုပ် 📊",
 
@@ -258,8 +258,8 @@ export const my: TranslationDict = {
   // ---------------------------------------------------------------------------
   // Recipient Experience
   // ---------------------------------------------------------------------------
-  recipientIntroLine: "တစ်ယောက်ယောက်က မင်းအတွက် ဒီလေးကို ဖန်တီးထားတယ် 💕",
-  recipientForYou: "မင်းအတွက်",
+  recipientIntroLine: "တစ်ယောက်ယောက်က မင်းအတွက် ဒီစာလေးကိုဖန်တီးပေးထားတယ် 💕",
+  recipientForYou: "မင်းလေးအတွက်",
   recipientMadeFor:
     "{creator} က မင်းအတွက် ဒါလေးကို လုပ်ထားတာ 💕",
   recipientBegin: "စလိုက်ရအောင် 💕",
@@ -267,8 +267,8 @@ export const my: TranslationDict = {
   recipientSaving: "မင်းရဲ့အဖြေလေးတွေ သိမ်းနေတယ်နော်... 💕",
   recipientSavingSub: "မင်းရဲ့အဖြေလေးတွေ သိမ်းနေတယ်နော်... 💕",
   recipientDone: "ဒါလေးပါပဲနော် 💕",
-  recipientDoneDesc: "{creator} က မင့်အဖြေတွေ ကြည့်ရင် ပျော်သွားမှာ",
-  recipientThanks: "ဖြေပေးလို့ ကျေးဇူးပါ ❤️",
+  recipientDoneDesc: "{creator} က မင်းအဖြေတွေမြင်ရင် အရမ်းပျော်သွားမှာ",
+  recipientThanks: "ဖြေပေးလို့ကျေးဇူးပါနော် ❤️",
   recipientTryAgain: "ထပ်ကြိုးစားကြည့်မယ် 💕",
   recipientSubmitError: "ဟင်... အဖြေတွေ သိမ်းတာ မအောင်မြင်ဘူးနော် ထပ်ကြိုးစားကြည့်ပါ 💕",
   recipientQuestionOf: "မေးခွန်း {current} / {total}",
@@ -321,8 +321,8 @@ export const my: TranslationDict = {
   // ---------------------------------------------------------------------------
   // Share Page — Sticker Preview
   // ---------------------------------------------------------------------------
-  shareStickerPreview: "မင့်မေးခွန်းလေးတွေ ကြိုကြည့်ကြည့်ပါ 💌",
-  shareStickerPreviewHint: "ဒီလိုပဲမြင်ရမှာ",
+  shareStickerPreview: "မေးခွန်းလေးတွေကြိုပြီးကြည့်ကြည့်ပါ 💌",
+  shareStickerPreviewHint: "ဒီလိုလေးမြင်ရမှာပါ",
 
   // ---------------------------------------------------------------------------
   // Landing Page — Sticker Hint
@@ -334,7 +334,7 @@ export const my: TranslationDict = {
   // ---------------------------------------------------------------------------
   previewHeaderLabel: "Preview",
   previewHeaderPublished: "ဒီ Little Thing က ထုတ်ဝေပြီးပြီ ✨",
-  previewHeaderDraft: "သူ့ကို ဒီလိုပဲမြင်ရမှာ 💕",
+  previewHeaderDraft: "သူကဒီလိုလေးမြင်ရမှာပါ 💕",
 
   // ---------------------------------------------------------------------------
   // Misc
