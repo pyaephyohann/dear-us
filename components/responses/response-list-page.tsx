@@ -124,7 +124,7 @@ function ResponseCardList({
                   type="button"
                   onClick={() => setConfirmDeleteId(response.id)}
                   disabled={deletingId === response.id}
-                  className="text-xs text-foreground-subtle hover:text-red-500 transition-colors disabled:opacity-50"
+                  className="text-xs text-foreground-subtle hover:text-red-500 transition-colors disabled:cursor-not-allowed disabled:opacity-50"
                   aria-label="Delete response"
                 >
                   {deletingId === response.id ? "..." : "✕"}

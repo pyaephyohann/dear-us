@@ -125,22 +125,22 @@ export const my: TranslationDict = {
   shareSubtitle: "ဒီ link ကို ပို့လိုက်ပါ",
   shareYourLink: "မင့် link",
   shareQrTitle: "Or QR code ကို scan လုပ်ပါ",
-  shareCopyLink: "Copy",
-  shareCopied: "ကူးပြီးပြီ! 💕",
-  shareOpen: "Little Thing လေးဖွင့်ကြည့်မယ် 🎉",
-  shareManage: "Edit မယ်",
-  shareResponses: "အဖြေလေးတွေ",
+  shareCopyLink: "Copy ✨",
+  shareCopied: "Copied 💕",
+  shareOpen: "Little Thing လေးဖွင့်ကြည့်မယ် ✨",
+  shareManage: "Edit မယ် 💕",
+  shareResponses: "အဖြေလေးတွေ 💌",
   shareAnalytics: "Analytics 📊",
   shareBackToDashboard: "← Dashboard ပြန်သွားမယ်",
 
   // ---------------------------------------------------------------------------
   // Dashboard
   // ---------------------------------------------------------------------------
-  dashboardYourThing: "မင့် Little Thing 💕",
+  dashboardYourThing: "Little Thing 💕",
   dashboardPublished: "ထုတ်ဝေပြီး",
   dashboardDraft: " draft",
-  dashboardPeopleAnswered: "လူ {count} ယောက်ဖြေပြီးပြီ 💌",
-  dashboardOneAnswered: "လူ ၁ ယောက်ဖြေပြီးပြီ 💌",
+  dashboardPeopleAnswered: "လူ {count} ယောက်ဖြေပြီးပါပြီ 💌",
+  dashboardOneAnswered: "လူ ၁ ယောက်ဖြေပြီးပါပြီ 💌",
   dashboardNoAnswers: "အဖြေမရှိသေးဘူး 💌",
   dashboardPreview: "ကြိုကြည့်မယ်",
   dashboardShare: "မျှဝေမယ်",
@@ -149,7 +149,7 @@ export const my: TranslationDict = {
   dashboardViewAnalytics: "Analytics ကြည့်မယ် 📊",
   dashboardPrivateLink: "Private Link 🔐",
   dashboardPrivateLinkDesc:
-    "ဒီ link လေးကို သေချာလေးသိမ်းထားနော် — အဖြေလေးတွေပြန်ကြည့်ဖို့ ဒီ link လေးကို သုံးရမှာမို့လို့နော်",
+    "ဒီ link လေးကို သေချာလေးသိမ်းထားနော် - အဖြေလေးတွေပြန်ကြည့်ဖို့ ဒီ link လေးကို သုံးရမှာမို့လို့နော်",
   dashboardLinkWarning: "ဒီ link လေးနဲ့ အဖြေတွေကို ကြည့်လို့ရပါတယ်",
   dashboardCopyLink: "Copy",
   dashboardCopiedLink: "ကူးပြီးပြီ! 💕",
@@ -168,12 +168,12 @@ export const my: TranslationDict = {
   // ---------------------------------------------------------------------------
   // Response List
   // ---------------------------------------------------------------------------
-  responseListTitle: "မင့် Little Thing 💕",
+  responseListTitle: "Little Thing 💕",
   responseListFor: "{name} အတွက်",
   responseCountZero: "ပထမဆုံး အဖြေအတွက် စောင့်နေတယ် 💌",
-  responseCountOne: "လူ ၁ ယောက်ဖြေပြီးပြီ 💌",
-  responseCountMany: "လူ {count} ယောက်ဖြေပြီးပြီ 💌",
-  responseSomeoneAnswered: "💌 တစ်ယောက်ယောက်ဖြေထားတယ်",
+  responseCountOne: "လူ ၁ ယောက်ဖြေပြီးပါပြီ 💌",
+  responseCountMany: "လူ {count} ယောက်ဖြေပြီးပါပြီ 💌",
+  responseSomeoneAnswered: "💌 တစ်ယောက်ယောက်ကဖြေထားပါတယ်",
   responseQuestionCount: "မေးခွန်း {count} ခုဖြေပြီး",
   responseQuestionCountPlural: "မေးခွန်း {count} ခုဖြေပြီး",
   responseEmptyTitle: "မရှိသေးဘူး...",
