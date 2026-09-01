@@ -164,7 +164,7 @@ export function RecipientPage({ littleThing }: RecipientPageProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="mx-auto w-full max-w-sm text-center"
+          className="mx-auto flex w-full max-w-sm flex-col gap-5 text-center sm:gap-6"
         >
           <p className="font-handwritten text-lg text-primary">
             {t("recipientIntroLine")}

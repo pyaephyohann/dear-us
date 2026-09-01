@@ -113,7 +113,7 @@ export const my: TranslationDict = {
   previewIntroSection: "ဒီလို စမှာပါ 👇",
   previewQuestionsSection: "မေးခွန်းတွေကတော့ ဒီလိုပါ 👇",
   previewQuestionOf: "မေးခွန်း {current} / {total}",
-  previewShareCta: "ထုတ်ဝေပြီး မျှဝေမယ် 💕",
+  previewShareCta: "မျှဝေမယ် 💕",
   previewPublishing: "ထုတ်ဝေနေတယ်... 💕",
   previewPublished: "ထုတ်ဝေပြီးပြီ! 🎉",
   previewBackToEditing: "← ပြန်ပြင်မယ်",
