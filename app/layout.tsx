@@ -43,7 +43,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-screen bg-background text-foreground font-sans antialiased">
+      <body className="min-h-screen bg-brand-pink text-foreground font-sans antialiased">
         <Providers>{children}</Providers>
       </body>
     </html>

@@ -114,7 +114,7 @@ export const my: TranslationDict = {
   previewQuestionsSection: "မေးခွန်းတွေကတော့ ဒီလိုပါ 👇",
   previewQuestionOf: "မေးခွန်း {current} / {total}",
   previewShareCta: "မျှဝေမယ် 💕",
-  previewPublishing: "ထုတ်ဝေနေတယ်... 💕",
+  previewPublishing: "မျှဝေနေပါတယ် 💕",
   previewPublished: "ထုတ်ဝေပြီးပြီ! 🎉",
   previewBackToEditing: "← ပြန်ပြင်မယ်",
 
@@ -170,17 +170,17 @@ export const my: TranslationDict = {
   // ---------------------------------------------------------------------------
   responseListTitle: "Little Thing 💕",
   responseListFor: "{name} အတွက်",
-  responseCountZero: "ပထမဆုံး အဖြေအတွက် စောင့်နေတယ် 💌",
+  responseCountZero: "ပထမဆုံးအဖြေအတွက်စောင့်နေပါတယ် 💌",
   responseCountOne: "လူ ၁ ယောက်ဖြေပြီးပါပြီ 💌",
   responseCountMany: "လူ {count} ယောက်ဖြေပြီးပါပြီ 💌",
   responseSomeoneAnswered: "💌 တစ်ယောက်ယောက်ကဖြေထားပါတယ်",
   responseQuestionCount: "မေးခွန်း {count} ခုဖြေပြီး",
   responseQuestionCountPlural: "မေးခွန်း {count} ခုဖြေပြီး",
-  responseEmptyTitle: "မရှိသေးဘူး...",
+  responseEmptyTitle: "မရှိသေးပါဘူးနော်",
   responseEmptyDesc:
-    "မင့် Little Thing လေး တစ်ယောက်ယောက်ဖြေဖို့ စောင့်နေတာ",
+    "Little Thing လေးကိုဖြေဆိုထားသူလေးမရှိသေးပါဘူးနော်",
   responseEmptyHint:
-    "သူတို့ကို ပို့ပြီး နောက်မှ ပြန်လာကြည့်ပါ 🥹",
+    "ချစ်ရတဲ့သူလေးကိုပို့ပြီးတစ်ခေါက်ပြန်လာကြည့်ပါနော်",
   responseShareAgain: "ထပ်မျှဝေမယ် 💕",
   backToDashboardLink: "← Dashboard ပြန်သွားမယ်",
 

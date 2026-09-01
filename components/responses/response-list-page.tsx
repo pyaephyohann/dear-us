@@ -149,7 +149,7 @@ export function ResponseListPage({
   const responseCount = responses.length;
 
   return (
-    <div className="min-h-screen bg-background px-5 py-12 sm:px-6 sm:py-16">
+    <div className="min-h-screen px-5 py-12 sm:px-6 sm:py-16">
       <FloatingLanguageToggle />
       <div className="mx-auto max-w-lg">
         {/* Header */}

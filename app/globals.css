@@ -9,7 +9,7 @@
 
 :root {
   /* ── Background ─────────────────────────────── */
-  --background: #FFF7FA;
+  --background: #FFD6E0;
   --background-secondary: #FFF0F3;
 
   /* ── Foreground / Text ─────────────────────── */
@@ -44,7 +44,7 @@
 
   /* ── Ring (focus) ──────────────────────────── */
   --ring: #e85d75;
-  --ring-offset: #FFF7FA;
+  --ring-offset: #FFD6E0;
 
   /* ── Shadow ────────────────────────────────── */
   --shadow-sm: 0 1px 2px rgba(45, 34, 38, 0.04);
@@ -65,6 +65,7 @@
  * Maps design tokens to Tailwind utility classes.
  */
 @theme inline {
+  --color-brand-pink: #FFD6E0;
   --color-background: var(--background);
   --color-background-secondary: var(--background-secondary);
   --color-foreground: var(--foreground);
@@ -109,7 +110,7 @@
  * Base styles
  */
 body {
-  background: var(--background);
+  background-color: #FFD6E0;
   color: var(--foreground);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
