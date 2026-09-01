@@ -8,7 +8,7 @@ import { StickerRenderer } from "@/lib/stickers";
 const questions = [
   {
     text: "What's your favorite memory with me?",
-    stickerId: "cat-love",
+    stickerId: "cat-fight",
     answers: [
       "Our first date",
       "That rainy day",
@@ -18,7 +18,7 @@ const questions = [
   },
   {
     text: "What do you love most about us?",
-    stickerId: "cat-happy",
+    stickerId: "cat-with-fish",
     answers: [
       "How safe I feel",
       "The little moments",

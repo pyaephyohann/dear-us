@@ -641,3 +641,41 @@ https://react.dev/link/hydration-mismatch
                 ...
  
  GET /create 200 in 98ms (next.js: 43ms, application-code: 55ms)
+✓ Compiled in 59ms
+ GET / 200 in 89ms (next.js: 51ms, application-code: 37ms)
+ GET /create 200 in 80ms (next.js: 67ms, application-code: 14ms)
+ GET / 200 in 42ms (next.js: 5ms, application-code: 36ms)
+ GET / 200 in 36ms (next.js: 3ms, application-code: 34ms)
+✓ Compiled in 378ms
+ GET /create 200 in 48ms (next.js: 17ms, application-code: 31ms)
+ GET / 200 in 51ms (next.js: 41ms, application-code: 9ms)
+✓ Compiled in 142ms
+ GET / 200 in 83ms (next.js: 15ms, application-code: 68ms)
+ GET /create 200 in 83ms (next.js: 52ms, application-code: 32ms)
+ GET /create 200 in 23ms (next.js: 4ms, application-code: 19ms)
+ GET / 200 in 24ms (next.js: 13ms, application-code: 11ms)
+✓ Compiled in 38ms
+ GET / 200 in 31ms (next.js: 7ms, application-code: 25ms)
+ GET /create 200 in 39ms (next.js: 17ms, application-code: 22ms)
+✓ Compiled in 38ms
+ GET / 200 in 23ms (next.js: 5ms, application-code: 18ms)
+ GET /create 200 in 23ms (next.js: 12ms, application-code: 11ms)
+✓ Compiled in 28ms
+✓ Compiled in 26ms
+ GET /create 200 in 50ms (next.js: 3ms, application-code: 47ms)
+ GET / 200 in 51ms (next.js: 15ms, application-code: 36ms)
+ GET /create 200 in 33ms (next.js: 3ms, application-code: 30ms)
+ GET / 200 in 34ms (next.js: 19ms, application-code: 15ms)
+✓ Compiled in 33ms
+ GET /create 200 in 31ms (next.js: 7ms, application-code: 24ms)
+ GET / 200 in 29ms (next.js: 14ms, application-code: 15ms)
+✓ Compiled in 41ms
+✓ Compiled in 65ms
+ GET / 200 in 75ms (next.js: 42ms, application-code: 33ms)
+ GET /create 200 in 75ms (next.js: 15ms, application-code: 59ms)
+✓ Compiled in 43ms
+ GET /create 200 in 62ms (next.js: 5ms, application-code: 57ms)
+ GET / 200 in 62ms (next.js: 34ms, application-code: 27ms)
+ GET /create 200 in 46ms (next.js: 7ms, application-code: 39ms)
+ GET / 200 in 48ms (next.js: 31ms, application-code: 17ms)
+✓ Compiled in 149ms

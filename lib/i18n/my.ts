@@ -14,7 +14,7 @@ export const my: TranslationDict = {
   heroTitle: "ချစ်ရတဲ့သူအတွက် ချစ်စရာကောင်းတာလေးပေးမယ် 💕",
   heroDescription:
     "ချိုမြိန်ပြီးချစ်စရာကောင်းတာလေးဖန်တီးပြီး ချစ်ရတဲ့သူကိုပေးပို့လိုက်ပါ 💌",
-  createCta: "ချစ်ရတဲ့သူလေးအတွက်သီးသန့်အမှတ်တရလေးလုပ်ကြရအောင် 💕",
+  createCta: "ဖန်တီးမယ် 💕",
   openLink: "လက်ခံရရှိထားလား? ဖွင့်ကြည့်မယ်",
 
   // ---------------------------------------------------------------------------
@@ -318,12 +318,11 @@ export const my: TranslationDict = {
   stickerLabel: "ချစ်စရာ Sticker 🐱",
   stickerNone: "Sticker မပါဘူး",
   stickerChoose: "Sticker ရွေးပါ",
-  stickerLove: "ချစ်တယ် 💕",
-  stickerHappy: "ပျော်တယ် ✨",
-  stickerShy: "ရှက်တယ် 🥺",
-  stickerKiss: "နမ်းမယ် 💋",
-  stickerLaugh: "ရယ်တယ် 😂",
-  stickerSleepy: "အိပ်ချင်ပြီ 😴",
+  stickerCatFight: "ကြောင်တွေရန်ဖြစ်နေတယ် 🐱",
+  stickerCatWithFish: "ငါးနဲ့ကြောင် 🐱🐟",
+  stickerLoveMilk: "နို့ကိုချစ်တယ် 🐱💕",
+  stickerTerrifiedHamster: "ကြောက်နေတဲ့ပဟေဠိ 🐹",
+  stickerWhiteAndBlue: "အဖြူနဲ့အပြာ 🐱",
 
   // ---------------------------------------------------------------------------
   // Share Page — Sticker Preview

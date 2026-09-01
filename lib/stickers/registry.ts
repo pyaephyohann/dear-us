@@ -5,12 +5,31 @@
 import type { StickerId, StickerDefinition } from "./types";
 
 export const STICKER_REGISTRY: Record<StickerId, StickerDefinition> = {
-  "cat-love":   { id: "cat-love",   label: "Cat Love 🐱💕",   asset: "/stickers/cat-love.svg" },
-  "cat-happy":  { id: "cat-happy",  label: "Cat Happy 🐱✨",   asset: "/stickers/cat-happy.svg" },
-  "cat-shy":    { id: "cat-shy",    label: "Cat Shy 🐱💗",     asset: "/stickers/cat-shy.svg" },
-  "cat-kiss":   { id: "cat-kiss",   label: "Cat Kiss 🐱💋",    asset: "/stickers/cat-kiss.svg" },
-  "cat-laugh":  { id: "cat-laugh",  label: "Cat Laugh 🐱😂",   asset: "/stickers/cat-laugh.svg" },
-  "cat-sleepy": { id: "cat-sleepy", label: "Cat Sleepy 🐱💤",  asset: "/stickers/cat-sleepy.svg" },
+  "cat-fight": {
+    id: "cat-fight",
+    label: "Cat Fight 🐱",
+    asset: "/stickers/cat-fight.png",
+  },
+  "cat-with-fish": {
+    id: "cat-with-fish",
+    label: "Cat with Fish 🐱🐟",
+    asset: "/stickers/cat-with-fish.png",
+  },
+  "love-milk": {
+    id: "love-milk",
+    label: "Love Milk 🐱💕",
+    asset: "/stickers/love-milk.png",
+  },
+  "terrified-hamster": {
+    id: "terrified-hamster",
+    label: "Terrified Hamster 🐹",
+    asset: "/stickers/terrified-hamster.webp",
+  },
+  "white-and-blue": {
+    id: "white-and-blue",
+    label: "White and Blue 🐱",
+    asset: "/stickers/white-and-blue.webp",
+  },
 };
 
 /** All valid sticker IDs. */

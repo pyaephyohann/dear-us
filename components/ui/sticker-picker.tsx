@@ -7,12 +7,11 @@ import { useTranslation } from "@/lib/i18n";
 
 /** Map sticker IDs to their label translation keys. */
 const STICKER_LABELS: Record<StickerId, string> = {
-  "cat-love": "stickerLove",
-  "cat-happy": "stickerHappy",
-  "cat-shy": "stickerShy",
-  "cat-kiss": "stickerKiss",
-  "cat-laugh": "stickerLaugh",
-  "cat-sleepy": "stickerSleepy",
+  "cat-fight": "stickerCatFight",
+  "cat-with-fish": "stickerCatWithFish",
+  "love-milk": "stickerLoveMilk",
+  "terrified-hamster": "stickerTerrifiedHamster",
+  "white-and-blue": "stickerWhiteAndBlue",
 };
 
 interface StickerPickerProps {

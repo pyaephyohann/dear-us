@@ -312,12 +312,11 @@ export const en: TranslationDict = {
   stickerLabel: "Cute Sticker",
   stickerNone: "No sticker",
   stickerChoose: "Choose a sticker",
-  stickerLove: "Love",
-  stickerHappy: "Happy",
-  stickerShy: "Shy",
-  stickerKiss: "Kiss",
-  stickerLaugh: "Laugh",
-  stickerSleepy: "Sleepy",
+  stickerCatFight: "Cat Fight",
+  stickerCatWithFish: "Cat & Fish",
+  stickerLoveMilk: "Love Milk",
+  stickerTerrifiedHamster: "Terrified Hamster",
+  stickerWhiteAndBlue: "White & Blue",
 
   // ---------------------------------------------------------------------------
   // Share Page — Sticker Preview

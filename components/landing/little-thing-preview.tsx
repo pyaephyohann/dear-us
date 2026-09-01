@@ -7,7 +7,7 @@ import { StickerRenderer } from "@/lib/stickers";
 const questions = [
   {
     text: "What's your favorite thing about me?",
-    stickerId: "cat-love" as const,
+    stickerId: "cat-fight" as const,
     answers: ["My smile", "Your stupid jokes 😂", "Your personality", "Everything ❤️"],
     selected: 3,
   },
@@ -19,7 +19,7 @@ const questions = [
   },
   {
     text: "What song makes you think of us?",
-    stickerId: "cat-happy" as const,
+    stickerId: "cat-with-fish" as const,
     answers: [
       "Our song 🎵",
       "Something by Taylor Swift",
