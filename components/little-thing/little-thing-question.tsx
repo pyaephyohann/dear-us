@@ -6,6 +6,7 @@ import { StickerRenderer } from "@/lib/stickers";
 interface LittleThingQuestionProps {
   questionText: string;
   stickerId?: string | null;
+  stickerSize?: number;
   answers: { id: string; text: string }[];
   selectedAnswerId: string | null;
   onSelect: (answerId: string) => void;
@@ -19,16 +20,17 @@ interface LittleThingQuestionProps {
 export function LittleThingQuestion({
   questionText,
   stickerId,
+  stickerSize = 144,
   answers,
   selectedAnswerId,
   onSelect,
 }: LittleThingQuestionProps) {
   return (
-    <div className="min-h-[180px]">
+    <div className="min-h-[240px]">
       {/* Cat sticker */}
       {stickerId && (
-        <div className="mb-4">
-          <StickerRenderer stickerId={stickerId} size={80} />
+        <div className="mb-3 flex justify-center py-1">
+          <StickerRenderer stickerId={stickerId} size={stickerSize} />
         </div>
       )}
       <p className="text-center text-base font-medium leading-snug text-foreground">

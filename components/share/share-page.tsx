@@ -131,11 +131,11 @@ export function SharePage({ creatorAccessToken, publicId, title, recipientName, 
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.15 + i * 0.05 }}
-                  className="rounded-xl border border-border-light bg-background-secondary px-4 py-3"
+                  className="rounded-xl border border-border-light bg-background-secondary px-4 py-4"
                 >
                   {q.stickerId && (
-                    <div className="mb-1">
-                      <StickerRenderer stickerId={q.stickerId} size={40} />
+                    <div className="mb-2 flex justify-center py-1">
+                      <StickerRenderer stickerId={q.stickerId} size={128} />
                     </div>
                   )}
                   <p className="text-sm font-medium leading-snug text-foreground">

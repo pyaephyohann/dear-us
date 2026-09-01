@@ -167,7 +167,7 @@ export function PreviewPage({ littleThing }: PreviewPageProps) {
 
         {/* Questions */}
         {!isComplete && currentQuestion && (
-          <div className="min-h-[260px]">
+          <div className="min-h-[280px]">
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentQuestion.id}
@@ -179,6 +179,7 @@ export function PreviewPage({ littleThing }: PreviewPageProps) {
                 <LittleThingQuestion
                   questionText={currentQuestion.text}
                   stickerId={currentQuestion.stickerId}
+                  stickerSize={144}
                   answers={currentQuestion.answers}
                   selectedAnswerId={
                     selectedAnswers[currentQuestion.id] ?? null
