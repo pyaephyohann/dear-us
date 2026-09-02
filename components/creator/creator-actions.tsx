@@ -29,7 +29,10 @@ export function CreatorActions({
     <div className="flex flex-col items-center gap-3 pt-4 sm:flex-row sm:justify-end">
       <button
         type="button"
-        onClick={onSave}
+        onClick={() => {
+          if (isSubmitting) return;
+          onSave();
+        }}
         disabled={isSubmitting}
         className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground shadow-md transition-all hover:bg-primary-hover hover:shadow-lg active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed"
       >

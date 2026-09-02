@@ -164,6 +164,11 @@ export const en: TranslationDict = {
   savedSuccess: "Saved! 💕",
   backToDashboard: "← Back to dashboard",
   saveError: "We couldn't save your changes just yet. Please try again. 💕",
+  errorNetwork: "Something interrupted the connection. Please try again. 💕",
+  errorValidation: "One little detail needs fixing. Please check your answers. 💌",
+  errorUnauthorized: "Your private link isn't valid anymore. 💌",
+  errorRateLimited: "You're moving a little too fast. Give it a moment and try again. 💕",
+  errorServerCreate: "We couldn't save your little thing just yet. Please try again. 💕",
 
   // ---------------------------------------------------------------------------
   // Response List

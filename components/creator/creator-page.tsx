@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { BasicInfoForm } from "./basic-info-form";
@@ -80,6 +80,33 @@ function validate(
   return { formErrors, questionErrors, valid: allValid };
 }
 
+async function readJsonBody(res: Response): Promise<Record<string, unknown>> {
+  const text = await res.text();
+  if (!text) return {};
+  try {
+    const parsed: unknown = JSON.parse(text);
+    return parsed && typeof parsed === "object"
+      ? (parsed as Record<string, unknown>)
+      : {};
+  } catch {
+    return {};
+  }
+}
+
+function messageForSaveFailure(
+  t: (key: string) => string,
+  isEditing: boolean,
+  status: number | "network",
+  serverMessage?: string
+): string {
+  if (status === "network") return t("errorNetwork");
+  if (status === 401 || status === 403) return t("errorUnauthorized");
+  if (status === 404) return serverMessage || t("errorUnauthorized");
+  if (status === 429) return t("errorRateLimited");
+  if (status === 400) return serverMessage || t("errorValidation");
+  return isEditing ? t("saveError") : t("errorServerCreate");
+}
+
 // ---------------------------------------------------------------------------
 // Edit mode initial data
 // ---------------------------------------------------------------------------
@@ -134,6 +161,7 @@ export function CreatorPage({ editMode = null }: CreatorPageProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
   const [saveSuccess, setSaveSuccess] = useState(false);
+  const submittingRef = useRef(false);
 
   // --- Basic info change ---
   const handleBasicInfoChange = useCallback((field: string, value: string) => {
@@ -277,6 +305,8 @@ export function CreatorPage({ editMode = null }: CreatorPageProps) {
 
   // --- Submit ---
   const handleSave = useCallback(async () => {
+    if (submittingRef.current) return;
+
     setServerError(null);
     setFormErrors({});
     setQuestionErrors({});
@@ -291,11 +321,12 @@ export function CreatorPage({ editMode = null }: CreatorPageProps) {
       return;
     }
 
+    submittingRef.current = true;
     setIsSubmitting(true);
+    let didNavigate = false;
 
     try {
       if (isEditing && editMode) {
-        // --- Edit mode: PATCH to update existing Little Thing ---
         const res = await fetch(`/api/little-things/${editMode.id}`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
@@ -319,19 +350,53 @@ export function CreatorPage({ editMode = null }: CreatorPageProps) {
           }),
         });
 
-        const data = await res.json();
+        const data = await readJsonBody(res);
+        const serverMessage =
+          typeof data.error === "string" ? data.error : undefined;
 
         if (!res.ok) {
-          setServerError(data.error ?? "We couldn't save your changes just yet. Please try again. 💕");
-          setIsSubmitting(false);
+          setServerError(
+            messageForSaveFailure(t, true, res.status, serverMessage)
+          );
           return;
         }
 
+        if (Array.isArray(data.questions)) {
+          const synced: QuestionDraft[] = [];
+          for (const raw of data.questions) {
+            if (!raw || typeof raw !== "object") continue;
+            const q = raw as {
+              id?: unknown;
+              text?: unknown;
+              stickerId?: unknown;
+              answers?: unknown;
+            };
+            if (typeof q.id !== "string" || typeof q.text !== "string") continue;
+            const answers: AnswerDraft[] = [];
+            if (Array.isArray(q.answers)) {
+              for (const rawA of q.answers) {
+                if (!rawA || typeof rawA !== "object") continue;
+                const a = rawA as { id?: unknown; text?: unknown };
+                if (typeof a.id === "string" && typeof a.text === "string") {
+                  answers.push({ id: a.id, text: a.text });
+                }
+              }
+            }
+            synced.push({
+              id: q.id,
+              text: q.text,
+              stickerId: typeof q.stickerId === "string" ? q.stickerId : null,
+              answers,
+            });
+          }
+          if (synced.length > 0) {
+            setQuestions(synced);
+          }
+        }
+
         setSaveSuccess(true);
-        setIsSubmitting(false);
         window.scrollTo({ top: 0, behavior: "smooth" });
       } else {
-        // --- Create mode: POST to create new Little Thing ---
         const res = await fetch("/api/little-things", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -350,23 +415,33 @@ export function CreatorPage({ editMode = null }: CreatorPageProps) {
           }),
         });
 
-        const data = await res.json();
+        const data = await readJsonBody(res);
+        const serverMessage =
+          typeof data.error === "string" ? data.error : undefined;
 
         if (!res.ok) {
-          setServerError(data.error ?? "Something went wrong. Please try again. 💕");
-          setIsSubmitting(false);
+          setServerError(
+            messageForSaveFailure(t, false, res.status, serverMessage)
+          );
           return;
         }
 
-        // Navigate to preview
-        router.push(`/preview/${data.id}`);
+        const createdId = typeof data.id === "string" ? data.id : null;
+        if (!createdId) {
+          setServerError(t("errorServerCreate"));
+          return;
+        }
+
+        didNavigate = true;
+        router.push(`/preview/${createdId}`);
       }
     } catch {
-      setServerError(isEditing
-        ? "We couldn't save your changes just yet. Please try again. 💕"
-        : "Something went wrong while saving. Please try again. 💕"
-      );
-      setIsSubmitting(false);
+      setServerError(messageForSaveFailure(t, isEditing, "network"));
+    } finally {
+      if (!didNavigate) {
+        submittingRef.current = false;
+        setIsSubmitting(false);
+      }
     }
   }, [isEditing, editMode, title, introMessage, creatorName, recipientName, questions, router, t]);
 
@@ -397,7 +472,7 @@ export function CreatorPage({ editMode = null }: CreatorPageProps) {
       {/* Save success */}
       {saveSuccess && (
         <div className="mt-6 rounded-xl border border-green-200 bg-green-50 p-4 text-center text-sm text-green-700">
-          Saved! 💕
+            {t("savedSuccess")}
         </div>
       )}
 
